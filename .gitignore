@@ -1,0 +1,9 @@
+/.vs
+/**/obj
+/**/bin
+/packages
+/PersisIntranet/node_modules
+/PersisIntranet/logs
+/ProjectsOnNetFramework/PersisIntranet/node_modules
+/ProjectsOnNetFramework/PersisIntranet/logs
+/ProjectsOnNetFramework/PersisIntranet/*.user

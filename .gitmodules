@@ -1,0 +1,9 @@
+[submodule "Submodules/Common-Services"]
+	path = Submodules/Common-Services
+	url = git@gitlab.persis.ru:common/common-services.git
+[submodule "Submodules/Infrastracture-Common-Services"]
+	path = Submodules/Infrastracture-Common-Services
+	url = git@gitlab.persis.ru:ee-services/infrastructure-common.git
+[submodule "Submodules/EFCore.BulkExtensions"]
+	path = Submodules/EFCore.BulkExtensions
+	url = https://github.com/borisdj/EFCore.BulkExtensions.git
