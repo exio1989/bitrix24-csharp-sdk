@@ -8,10 +8,22 @@
 
   <ItemGroup>
     <None Remove="test-data.json" />
+    <None Remove="TestData\company.json" />
+    <None Remove="TestData\timeline-comment.json" />
+    <None Remove="TestData\сontact.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="TestData\test-data.json">
+    <Content Include="TestData\company.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\timeline-comment.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\сontact.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\deal.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

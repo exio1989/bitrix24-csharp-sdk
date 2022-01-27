@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace Bitrix24RestApiClientNUnitTests
 {
-    public class Bitrix24Tests:IDisposable
+    public class CompanyTests : IDisposable
     {
         [Test, TestCaseSource(typeof(JsonFileDataSource), nameof(JsonFileDataSource.GetData), 
-            new object[]{ "TestData\\test-data.json", "Bitrix24Tests_ListDealTest" })]
-        public async Task ListDealTest(object expectedObj)
+            new object[]{ "TestData\\company.json", "ListTest" })]
+        public async Task ListLeadTest(object expectedObj)
         {
             Bitrix24DummyClient client = new Bitrix24DummyClient();
 
             int id = 100;
             var bitrix24 = new Bitrix24(client);
-            var items = await bitrix24.Deals
-                            .List<Deal>(x=> x
-                                .AddSelect(x=>x.Id, x=>x.CategoryId)
+            var items = await bitrix24.Crm.Companies
+                            .List<Company>(x=> x
+                                .AddSelect(x=>x.Id, x=>x.Title)
                                 .AddFilter(x=>x.Id, id, FilterOperator.GreateThan)
                                 .AddOrderBy(x => x.Id));
 
@@ -28,29 +28,29 @@ namespace Bitrix24RestApiClientNUnitTests
         }
 
         [Test, TestCaseSource(typeof(JsonFileDataSource), nameof(JsonFileDataSource.GetData), 
-            new object[] { "TestData\\test-data.json", "Bitrix24Tests_GetDealTest" })]
-        public async Task GetDealTest(object expectedObj)
+            new object[] { "TestData\\company.json", "GetTest" })]
+        public async Task GetLeadTest(object expectedObj)
         {
             Bitrix24DummyClient client = new Bitrix24DummyClient();
 
             int id = 100;
             var bitrix24 = new Bitrix24(client);
-            var item = await bitrix24.Deals
-                            .Get<Deal>(id, x => x.Id, x => x.CategoryId);
+            var item = await bitrix24.Crm.Companies
+                            .Get<Company>(id, x => x.Id, x => x.Title);
 
             Assert.IsTrue(TestHelpers.CompareJsons(expectedObj, client.LastRequestArgs));
         }
 
 
         [Test, TestCaseSource(typeof(JsonFileDataSource), nameof(JsonFileDataSource.GetData), 
-            new object[] { "TestData\\test-data.json", "Bitrix24Tests_DeleteDealTest" })]
-        public async Task DeleteDealTest(object expectedObj)
+            new object[] { "TestData\\company.json", "DeleteTest" })]
+        public async Task DeleteLeadTest(object expectedObj)
         {
             Bitrix24DummyClient client = new Bitrix24DummyClient();
 
             int id = 100;
             var bitrix24 = new Bitrix24(client);
-            var item = await bitrix24.Deals
+            var item = await bitrix24.Crm.Companies
                             .Delete(id);
 
             Assert.IsTrue(TestHelpers.CompareJsons(expectedObj, client.LastRequestArgs));
@@ -58,45 +58,45 @@ namespace Bitrix24RestApiClientNUnitTests
 
 
         [Test, TestCaseSource(typeof(JsonFileDataSource), nameof(JsonFileDataSource.GetData), 
-            new object[] { "TestData\\test-data.json", "Bitrix24Tests_UpdateDealTest" })]
-        public async Task UpdateDealTest(object expectedObj)
+            new object[] { "TestData\\company.json", "UpdateTest" })]
+        public async Task UpdateLeadTest(object expectedObj)
         {
             Bitrix24DummyClient client = new Bitrix24DummyClient();
 
             int id = 100;
             var bitrix24 = new Bitrix24(client);
-            var item = await bitrix24.Deals
-                            .Update<Deal>(id, x=> x.SetField(y=>y.CategoryId, "12"));
+            var item = await bitrix24.Crm.Companies
+                            .Update<Company>(id, x=> x.SetField(y=>y.Title, "12"));
 
             Assert.IsTrue(TestHelpers.CompareJsons(expectedObj, client.LastRequestArgs), $"Expected: {JsonConvert.SerializeObject(expectedObj)}, Actual: {client.LastRequestArgs}");
         }
 
 
         [Test, TestCaseSource(typeof(JsonFileDataSource), nameof(JsonFileDataSource.GetData), 
-            new object[] { "TestData\\test-data.json", "Bitrix24Tests_AddDealTest" })]
-        public async Task AddDealTest(object expectedObj)
+            new object[] { "TestData\\company.json", "AddTest" })]
+        public async Task AddLeadTest(object expectedObj)
         {
             Bitrix24DummyClient client = new Bitrix24DummyClient();
 
             var bitrix24 = new Bitrix24(client);
-            var item = await bitrix24.Deals
-                            .Add<Deal>(x => x.SetField(y => y.CategoryId, "12"));
+            var item = await bitrix24.Crm.Companies
+                            .Add<Company>(x => x.SetField(y => y.Title, "12"));
 
             Assert.IsTrue(TestHelpers.CompareJsons(expectedObj, client.LastRequestArgs), $"Expected: {JsonConvert.SerializeObject(expectedObj)}, Actual: {client.LastRequestArgs}");
         }
 
 
         [Test, TestCaseSource(typeof(JsonFileDataSource), nameof(JsonFileDataSource.GetData),
-            new object[] { "TestData\\test-data.json", "Bitrix24Tests_UpdateDealWithPhonesAndEmailsTest" })]
-        public async Task UpdateDealWithPhonesAndEmailsTest(object expectedObj)
+            new object[] { "TestData\\company.json", "UpdateWithPhonesAndEmailsTest" })]
+        public async Task UpdateLeadWithPhonesAndEmailsTest(object expectedObj)
         {
             Bitrix24DummyClient client = new Bitrix24DummyClient();
 
             int id = 100;
             var bitrix24 = new Bitrix24(client);
-            var item = await bitrix24.Deals
-                            .Update<Deal>(id, x => 
-                                x.SetField(y => y.CategoryId, "12")
+            var item = await bitrix24.Crm.Companies
+                            .Update<Company>(id, x => 
+                                x.SetField(y => y.Title, "12")
                                 .AddEmails(x=>x.SetField("test@test.ru", EmailType.Рабочий))
                                 .AddPhones(x => x.SetField("+79222222222", PhoneType.Рабочий))
                                 );
@@ -106,15 +106,15 @@ namespace Bitrix24RestApiClientNUnitTests
 
 
         [Test, TestCaseSource(typeof(JsonFileDataSource), nameof(JsonFileDataSource.GetData),
-            new object[] { "TestData\\test-data.json", "Bitrix24Tests_AddDealWithPhonesAndEmailsTest" })]
-        public async Task AddDealWithPhonesAndEmailsTest(object expectedObj)
+            new object[] { "TestData\\company.json", "AddWithPhonesAndEmailsTest" })]
+        public async Task AddLeadWithPhonesAndEmailsTest(object expectedObj)
         {
             Bitrix24DummyClient client = new Bitrix24DummyClient();
 
             var bitrix24 = new Bitrix24(client);
-            var item = await bitrix24.Deals
-                            .Add<Deal>(x =>
-                                x.SetField(y => y.CategoryId, "12")
+            var item = await bitrix24.Crm.Companies
+                            .Add<Company>(x =>
+                                x.SetField(y => y.Title, "12")
                                 .AddEmails(x => x.SetField("test@test.ru", EmailType.Рабочий))
                                 .AddPhones(x => x.SetField("+79222222222", PhoneType.Рабочий))
                                 );

@@ -7,52 +7,45 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Bitrix24ApiClient.src
+namespace Bitrix24RestApiClient.src.Core
 {
-    public class Deals
+    public class AbstractEntity
     {
         private IBitrix24Client client;
-        public DealsUserFields UserFields { get; private set; }
-        public Deals(IBitrix24Client client)
+        private string entityTypePrefix;
+
+        public AbstractEntity(IBitrix24Client client, string entityTypePrefix)
         {
             this.client = client;
-            UserFields = new DealsUserFields(client);
-        }
-
-        public RequestBuilder<TEntity> WithEntityType<TEntity>()
-        {
-            var builder = new RequestBuilder<TEntity>();
-            return builder
-                .WithClient(client)
-                .WithEntityType(EntityType.Deal);
+            this.entityTypePrefix = entityTypePrefix;
         }
 
         public async Task<ListResponse<TEntity>> List<TEntity>(Action<ListRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new ListRequestBuilder<TEntity>();
             builderFunc(builder);
-            return await client.List<TEntity>(EntityType.Deal, builder.BuildArgs());
+            return await client.List<TEntity>(entityTypePrefix, builder.BuildArgs());
         }
 
         public async Task<TEntity> First<TEntity>(Action<ListRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new ListRequestBuilder<TEntity>();
             builderFunc(builder);
-            return (await client.List<TEntity>(EntityType.Deal, builder.BuildArgs())).Result.FirstOrDefault();
+            return (await client.List<TEntity>(entityTypePrefix, builder.BuildArgs())).Result.FirstOrDefault();
         }
 
         public async Task<TEntity> Get<TEntity>(int id, params Expression<Func<TEntity, object>>[] fieldsExpr) where TEntity : class
         {
-            return await client.Get<TEntity>(EntityType.Deal, new CrmEntityGetRequestArgs
+            return await client.Get<TEntity>(entityTypePrefix, new CrmEntityGetRequestArgs
             {
                 Id = id,
-                Fields = fieldsExpr.Select(x=>x.JsonPropertyName()).ToList()
+                Fields = fieldsExpr.Select(x => x.JsonPropertyName()).ToList()
             });
         }
 
         public async Task<DeleteResponse> Delete(int id)
         {
-            return await client.Delete(EntityType.Deal, new CrmEntityDeleteRequestArgs
+            return await client.Delete(entityTypePrefix, new CrmEntityDeleteRequestArgs
             {
                 Id = id
             });
@@ -63,14 +56,14 @@ namespace Bitrix24ApiClient.src
             var builder = new UpdateRequestBuilder<TEntity>();
             builder.SetId(id);
             builderFunc(builder);
-            return await client.Update(EntityType.Deal, builder.BuildArgs());
+            return await client.Update(entityTypePrefix, builder.BuildArgs());
         }
 
         public async Task<AddResponse> Add<TEntity>(Action<AddRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new AddRequestBuilder<TEntity>();
             builderFunc(builder);
-            return await client.Add(EntityType.Deal, builder.BuildArgs());
+            return await client.Add(entityTypePrefix, builder.BuildArgs());
         }
     }
 }

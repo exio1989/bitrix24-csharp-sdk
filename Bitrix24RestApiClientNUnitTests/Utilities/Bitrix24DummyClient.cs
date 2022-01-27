@@ -9,37 +9,37 @@ namespace Bitrix24RestApiClientNUnitTests
     {
         public string LastRequestArgs { get; set; }
 
-        public Task<AddResponse> Add(EntityType entityType, CrmEntityAddArgs args)
+        public Task<AddResponse> Add(string entityTypePrefix, CrmEntityAddArgs args)
         {
             LastRequestArgs = JsonConvert.SerializeObject(args);
             return Task.FromResult<AddResponse>(null);
         }
 
-        public Task<DeleteResponse> Delete(EntityType entityType, CrmEntityDeleteRequestArgs args)
+        public Task<DeleteResponse> Delete(string entityTypePrefix,  CrmEntityDeleteRequestArgs args)
         {
             LastRequestArgs = JsonConvert.SerializeObject(args);
             return Task.FromResult<DeleteResponse>(null);
         }
 
-        public Task<TEntity> Get<TEntity>(EntityType entityType, CrmEntityGetRequestArgs args) where TEntity : class
+        public Task<TEntity> Get<TEntity>(string entityTypePrefix,  CrmEntityGetRequestArgs args) where TEntity : class
         {
             LastRequestArgs = JsonConvert.SerializeObject(args);
             return Task.FromResult<TEntity>(null);
         }
 
-        public Task<ListResponse<TEntity>> List<TEntity>(EntityType entityType, CrmEntityListRequestArgs args)
+        public Task<ListResponse<TEntity>> List<TEntity>(string entityTypePrefix,  CrmEntityListRequestArgs args)
         {
             LastRequestArgs = JsonConvert.SerializeObject(args);
             return Task.FromResult<ListResponse<TEntity>>(null);
         }
 
-        public Task<ListResponse<TEntity>> Search<TEntity>(EntityType entityType, CrmSearchRequestArgs args)
+        public Task<ListResponse<TEntity>> Search<TEntity>(string entityTypePrefix,  CrmSearchRequestArgs args)
         {
             LastRequestArgs = JsonConvert.SerializeObject(args);
             return Task.FromResult<ListResponse<TEntity>>(null);
         }
 
-        public Task<UpdateResponse> Update(EntityType entityType, CrmEntityUpdateArgs args)
+        public Task<UpdateResponse> Update(string entityTypePrefix,  CrmEntityUpdateArgs args)
         {
             LastRequestArgs = JsonConvert.SerializeObject(args);
             return Task.FromResult<UpdateResponse>(null);

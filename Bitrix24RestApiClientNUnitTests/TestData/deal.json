@@ -1,5 +1,5 @@
 ﻿{
-  "Bitrix24Tests_ListDealTest": {
+  "ListTest": {
     "select": [
       "ID",
       "CATEGORY_ID"
@@ -12,28 +12,28 @@
     },
     "start": null
   },
-  "Bitrix24Tests_GetDealTest": {
+  "GetTest": {
     "ID": 100,
     "fields": [
       "ID",
       "CATEGORY_ID"
     ]
   },
-  "Bitrix24Tests_DeleteDealTest": {
+  "DeleteTest": {
     "ID": 100
   },
-  "Bitrix24Tests_UpdateDealTest": {
+  "UpdateTest": {
     "ID": 100,
     "fields": {
       "CATEGORY_ID": "12"
     }
   },
-  "Bitrix24Tests_AddDealTest": {
+  "AddTest": {
     "fields": {
       "CATEGORY_ID": "12"
     }
   },
-  "Bitrix24Tests_AddDealWithPhonesAndEmailsTest": {
+  "AddWithPhonesAndEmailsTest": {
     "fields": {
       "CATEGORY_ID": "12",
       "EMAIL": [
@@ -54,7 +54,7 @@
       ]
     }
   },
-  "Bitrix24Tests_UpdateDealWithPhonesAndEmailsTest": {
+  "UpdateWithPhonesAndEmailsTest": {
     "ID": 100,
     "fields": {
       "CATEGORY_ID": "12",
