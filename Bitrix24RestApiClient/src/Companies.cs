@@ -1,14 +1,14 @@
 ﻿using Bitrix24ApiClient.src.Builders;
 using Bitrix24ApiClient.src.Models;
-using System.Threading.Tasks;
+using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 
 namespace Bitrix24ApiClient.src
 {
     public class Companies
     {
-        private Bitrix24Client client;
+        private IBitrix24Client client;
 
-        public Companies(Bitrix24Client client)
+        public Companies(IBitrix24Client client)
         {
             this.client = client;
         }

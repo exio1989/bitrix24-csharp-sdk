@@ -1,0 +1,79 @@
+﻿{
+  "Bitrix24Tests_ListDealTest": {
+    "select": [
+      "ID",
+      "CATEGORY_ID"
+    ],
+    "order": {
+      "ID": "ASC"
+    },
+    "filter": {
+      ">ID": "100"
+    },
+    "start": null
+  },
+  "Bitrix24Tests_GetDealTest": {
+    "ID": 100,
+    "fields": [
+      "ID",
+      "CATEGORY_ID"
+    ]
+  },
+  "Bitrix24Tests_DeleteDealTest": {
+    "ID": 100
+  },
+  "Bitrix24Tests_UpdateDealTest": {
+    "ID": 100,
+    "fields": {
+      "CATEGORY_ID": "12"
+    }
+  },
+  "Bitrix24Tests_AddDealTest": {
+    "fields": {
+      "CATEGORY_ID": "12"
+    }
+  },
+  "Bitrix24Tests_AddDealWithPhonesAndEmailsTest": {
+    "fields": {
+      "CATEGORY_ID": "12",
+      "EMAIL": [
+        {
+          "ID": null,
+          "VALUE_TYPE": "WORK",
+          "VALUE": "test@test.ru",
+          "TYPE_ID": "EMAIL"
+        }
+      ],
+      "PHONE": [
+        {
+          "ID": null,
+          "VALUE_TYPE": "WORK",
+          "VALUE": "+79222222222",
+          "TYPE_ID": "PHONE"
+        }
+      ]
+    }
+  },
+  "Bitrix24Tests_UpdateDealWithPhonesAndEmailsTest": {
+    "ID": 100,
+    "fields": {
+      "CATEGORY_ID": "12",
+      "EMAIL": [
+        {
+          "ID": null,
+          "VALUE_TYPE": "WORK",
+          "VALUE": "test@test.ru",
+          "TYPE_ID": "EMAIL"
+        }
+      ],
+      "PHONE": [
+        {
+          "ID": null,
+          "VALUE_TYPE": "WORK",
+          "VALUE": "+79222222222",
+          "TYPE_ID": "PHONE"
+        }
+      ]
+    }
+  }
+}

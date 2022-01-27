@@ -1,6 +1,7 @@
 ﻿using Bitrix24ApiClient.src.Builders;
 using Bitrix24ApiClient.src.Models;
 using Bitrix24ApiClient.src.Models.Crm.Timeline.Comment;
+using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 using System;
 using System.Threading.Tasks;
 
@@ -8,8 +9,8 @@ namespace Bitrix24ApiClient.src
 {
     public class TimelineComments
     {
-        private Bitrix24Client client;
-        public TimelineComments(Bitrix24Client client)
+        private IBitrix24Client client;
+        public TimelineComments(IBitrix24Client client)
         {
             this.client = client;
         }

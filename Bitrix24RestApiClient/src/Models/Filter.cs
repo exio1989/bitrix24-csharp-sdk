@@ -2,5 +2,29 @@
 
 namespace Bitrix24ApiClient.src
 {
-    public record Filter(string Name, string Value, FilterOperator Operator = FilterOperator.Equal);
+    public class Filter {
+        public string Name { get; set; }
+        public string Value { get; set; }
+        public FilterOperator Operator { get; set; } = FilterOperator.Equal;
+
+        public string NameWithOperatorPrefix {
+            get{
+                return $"{OperatorPrefix}{Name}";
+            }
+        }
+
+        private string OperatorPrefix
+        {
+            get
+            {
+                switch (Operator)
+                {
+                    case FilterOperator.GreateThan:
+                        return ">";
+                    default:
+                        return "";
+                }
+            }
+        }
+    }
 }

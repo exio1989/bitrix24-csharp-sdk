@@ -1,4 +1,5 @@
 ﻿using Bitrix24ApiClient.src.Models;
+using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace Bitrix24ApiClient.src.Builders
     {
         private EntityType entityType;
         private ListRequestArgs args = new ListRequestArgs();
-        private Bitrix24Client client;
+        private IBitrix24Client client;
         private Dictionary<string, object> fieldsToAddOrUpdate = new Dictionary<string, object>();
-        private CrmMultiFieldBuilder phonesBuilder = new CrmMultiFieldBuilder();
-        private CrmMultiFieldBuilder emailsBuilder = new CrmMultiFieldBuilder();
+        private EmailListBuilder phonesBuilder = new EmailListBuilder();
+        private EmailListBuilder emailsBuilder = new EmailListBuilder();
 
         public RequestBuilder<TEntity> SetField(string fieldName, string value)
         {
@@ -27,13 +28,13 @@ namespace Bitrix24ApiClient.src.Builders
             return this;
         }
 
-        public RequestBuilder<TEntity> AddPhones(Action<CrmMultiFieldBuilder> builderFunc)
+        public RequestBuilder<TEntity> AddPhones(Action<EmailListBuilder> builderFunc)
         {
             builderFunc(phonesBuilder);
             return this;
         }
 
-        public RequestBuilder<TEntity> AddEmails(Action<CrmMultiFieldBuilder> builderFunc)
+        public RequestBuilder<TEntity> AddEmails(Action<EmailListBuilder> builderFunc)
         {
             builderFunc(emailsBuilder);
             return this;
@@ -41,11 +42,16 @@ namespace Bitrix24ApiClient.src.Builders
 
         public RequestBuilder<TEntity> WithFilter(string name, string value, FilterOperator op = FilterOperator.Equal)
         {
-            args.Filter.Add(new Filter(name, value, op));
+            args.Filter.Add(new Filter
+            {
+                Name = name,
+                Value = value,
+                Operator = op
+            });
             return this;
         }
 
-        public RequestBuilder<TEntity> WithClient(Bitrix24Client client)
+        public RequestBuilder<TEntity> WithClient(IBitrix24Client client)
         {
             this.client = client;
             return this;
@@ -70,35 +76,41 @@ namespace Bitrix24ApiClient.src.Builders
             return this;
         }
 
-        public Task<TEntity> First()
+        public async Task<TEntity> First()
         {
-            return client.First<TEntity>(entityType, args);
+            return (await client.List<TEntity>(entityType, new CrmEntityListRequestArgs(args))).Result.FirstOrDefault();
         }
 
         public Task<ListResponse<TEntity>> List()
         {
-            return client.List<TEntity>(entityType, args);
+            return client.List<TEntity>(entityType, new CrmEntityListRequestArgs(args));
         }
 
         public Task<AddResponse> Add()
         {
-            fieldsToAddOrUpdate.Add(ContactFields.Email, emailsBuilder.Get());
-            fieldsToAddOrUpdate.Add(ContactFields.Phone, phonesBuilder.Get());
+            fieldsToAddOrUpdate.Add(ContactFields.Email, emailsBuilder.Build());
+            fieldsToAddOrUpdate.Add(ContactFields.Phone, phonesBuilder.Build());
 
-            return client.Add(entityType, new { fields = fieldsToAddOrUpdate });
+            return client.Add(entityType, new CrmEntityAddArgs
+            {
+                Fields = fieldsToAddOrUpdate
+            });
         }
 
-        public Task<UpdateResponse> Update(string entityId)
+        public Task<UpdateResponse> Update(int entityId)
         {
-            fieldsToAddOrUpdate.Add(ContactFields.Email, emailsBuilder.Get());
-            fieldsToAddOrUpdate.Add(ContactFields.Phone, phonesBuilder.Get());
+            fieldsToAddOrUpdate.Add(ContactFields.Email, emailsBuilder.Build());
+            fieldsToAddOrUpdate.Add(ContactFields.Phone, phonesBuilder.Build());
 
             return client.Update(entityType, new CrmEntityUpdateArgs{ Id = entityId, Fields = fieldsToAddOrUpdate });
         }
 
-        public async Task Delete(string dealId)
+        public async Task Delete(int dealId)
         {
-            await client.Delete(entityType, dealId);
+            await client.Delete(entityType, new CrmEntityDeleteRequestArgs
+            {
+                Id = dealId
+            });
         }
     }
 }

@@ -12,6 +12,8 @@
         public const string StageId = "STAGE_ID";
         public const string ClosedDate = "CLOSEDATE";
         public const string BeginDate = "BEGINDATE";
+        public const string Phones = "PHONE";
+        public const string Emails = "EMAIL";
 
         /// <summary>
         /// Идентификатор направления

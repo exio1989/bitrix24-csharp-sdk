@@ -1,4 +1,5 @@
 ﻿using Bitrix24ApiClient.src.Models;
+using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,12 @@ namespace Bitrix24ApiClient.src.Builders
 {
     public class UserFieldRequestBuilder<TEntity>
     {
-        private Bitrix24Client client;
+        private IBitrix24Client client;
         private EntityType entityType;
         private List<UserFieldListRequestBuilder> listBuilders = new List<UserFieldListRequestBuilder>();
         private Dictionary<string, string> fieldsToAddOrUpdate = new Dictionary<string, string>();
 
-        public UserFieldRequestBuilder(Bitrix24Client client)
+        public UserFieldRequestBuilder(IBitrix24Client client)
         {
             this.client = client;
         }
@@ -36,14 +37,14 @@ namespace Bitrix24ApiClient.src.Builders
             return this;
         }
 
-        public Task<TEntity> First()
+        public async Task<TEntity> First()
         {
-            return client.First<TEntity>(entityType);
+            return (await client.List<TEntity>(entityType, new CrmEntityListRequestArgs())).Result.FirstOrDefault();
         }
 
         public Task<ListResponse<TEntity>> List()
         {
-            return client.List<TEntity>(entityType);
+            return client.List<TEntity>(entityType, new CrmEntityListRequestArgs());
         }
 
         public Task<AddResponse> Add()
@@ -54,10 +55,13 @@ namespace Bitrix24ApiClient.src.Builders
 
             req.Add(UserFieldFields.List, listBuilders.Select(x=> x.Get()).ToList());
 
-            return client.Add(entityType, req);
+            return client.Add(entityType, new CrmEntityAddArgs
+            {
+                Fields = req
+            });
         }
 
-        public Task<UpdateResponse> Update(string id)
+        public Task<UpdateResponse> Update(int id)
         {
             Dictionary<string, object> fields = new Dictionary<string, object>();
             foreach (var field in fieldsToAddOrUpdate)

@@ -14,7 +14,12 @@ namespace Bitrix24ApiClient.src.Builders
 
         public ListRequestArgsBuilder WithFilter(string name, string value, FilterOperator op = FilterOperator.Equal)
         {
-            args.Filter.Add(new Filter(name, value, op));
+            args.Filter.Add(new Filter
+            {
+                Name = name,
+                Value = value,
+                Operator = op
+            });
             return this;
         }
 

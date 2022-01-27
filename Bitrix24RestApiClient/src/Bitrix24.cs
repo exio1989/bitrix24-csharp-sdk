@@ -1,12 +1,14 @@
-﻿namespace Bitrix24ApiClient.src
+﻿using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
+
+namespace Bitrix24ApiClient.src
 {
     public class Bitrix24
     {
-        private Bitrix24Client client;
+        private IBitrix24Client client;
 
-        public Bitrix24(string webhookUrl)
+        public Bitrix24(IBitrix24Client client)
         {
-            client = new Bitrix24Client(webhookUrl);
+            this.client = client;
             Users = new Users(client);
             Deals = new Deals(client);
             Companies = new Companies(client);

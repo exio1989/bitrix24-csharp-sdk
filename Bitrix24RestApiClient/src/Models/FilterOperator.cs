@@ -2,6 +2,7 @@
 {
     public enum FilterOperator
     {
-        Equal = 0
+        Equal = 0,
+        GreateThan = 1
     }
 }

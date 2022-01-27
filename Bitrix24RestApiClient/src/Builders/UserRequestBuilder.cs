@@ -1,4 +1,5 @@
 ﻿using Bitrix24ApiClient.src.Models;
+using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +7,7 @@ namespace Bitrix24ApiClient.src.Builders
 {
     public class UserRequestBuilder<TEntity>
     {
-        private Bitrix24Client client;
+        private IBitrix24Client client;
         private Dictionary<string, string> fieldsToAddOrUpdate = new Dictionary<string, string>();
         private EntityType entityType;
         private List<Filter> filter = new List<Filter>();
@@ -19,7 +20,12 @@ namespace Bitrix24ApiClient.src.Builders
 
         public UserRequestBuilder<TEntity> WithFilter(string name, string value, FilterOperator op = FilterOperator.Equal)
         {
-            filter.Add(new Filter(name, value, op));
+            filter.Add(new Filter
+            {
+                Name = name,
+                Value = value,
+                Operator = op
+            });
             return this;
         }
 
@@ -29,7 +35,7 @@ namespace Bitrix24ApiClient.src.Builders
             return this;
         }
 
-        public UserRequestBuilder<TEntity> WithClient(Bitrix24Client client)
+        public UserRequestBuilder<TEntity> WithClient(IBitrix24Client client)
         {
             this.client = client;
             return this;
@@ -37,7 +43,7 @@ namespace Bitrix24ApiClient.src.Builders
 
         public Task<ListResponse<TEntity>> Search()
         {
-            return client.Search<TEntity>(entityType, filter);
+            return client.Search<TEntity>(entityType, new CrmSearchRequestArgs(filter));
         }
     }
 }

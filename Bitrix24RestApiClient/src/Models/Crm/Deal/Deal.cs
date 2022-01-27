@@ -5,7 +5,7 @@ namespace Bitrix24ApiClient.src.Models
     public class Deal
     {
         [JsonProperty(DealFields.Id)]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty(DealFields.Title)]
         public string Title { get; set; }
