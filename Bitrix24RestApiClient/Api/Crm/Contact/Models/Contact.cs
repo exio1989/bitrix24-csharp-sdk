@@ -7,7 +7,7 @@ namespace Bitrix24ApiClient.src.Models
     public class Contact
     {
         [JsonProperty(ContactFields.Id)]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty(ContactFields.Name)]
         public string Name { get; set; }

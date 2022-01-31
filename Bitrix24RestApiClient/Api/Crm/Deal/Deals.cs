@@ -4,7 +4,7 @@ using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 
 namespace Bitrix24ApiClient.src
 {
-    public class Deals: AbstractEntity
+    public class Deals: AbstractEntity<Deal>
     {
         public Deals(IBitrix24Client client)
             :base(client, EntityTypePrefix.Deal)

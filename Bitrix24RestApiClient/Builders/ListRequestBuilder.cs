@@ -11,7 +11,7 @@ namespace Bitrix24ApiClient.src.Builders
     {
         private int? start;
         private bool selectAll;
-        private Expression<Func<TEntity, object>>[] selectExpressions;
+        private List<string> select = new List<string>();
         private List<Filter> filter = new List<Filter>();
         private List<Order> order = new List<Order>();
 
@@ -21,9 +21,9 @@ namespace Bitrix24ApiClient.src.Builders
             return this;
         }
 
-        public ListRequestBuilder<TEntity> AddSelect(params Expression<Func<TEntity, object>>[] fields)
+        public ListRequestBuilder<TEntity> AddSelect(params Expression<Func<TEntity, object>>[] fieldsExpression)
         {
-            selectExpressions = fields;
+            select = fieldsExpression.Select(x => x.JsonPropertyName()).ToList();
             return this;
         }
 
@@ -49,6 +49,27 @@ namespace Bitrix24ApiClient.src.Builders
             });
             return this;
         }
+        public ListRequestBuilder<TEntity> AddPhoneFilter(string phone, FilterOperator op = FilterOperator.Equal)
+        {
+            filter.Add(new Filter
+            {
+                Name = "PHONE",
+                Value = phone,
+                Operator = op
+            });
+            return this;
+        }
+
+        public ListRequestBuilder<TEntity> AddEmailFilter(string phone, FilterOperator op = FilterOperator.Equal)
+        {
+            filter.Add(new Filter
+            {
+                Name = "EMAIL",
+                Value = phone,
+                Operator = op
+            });
+            return this;
+        }
 
         public ListRequestBuilder<TEntity> SelectAll()
         {
@@ -58,7 +79,6 @@ namespace Bitrix24ApiClient.src.Builders
 
         public CrmEntityListRequestArgs BuildArgs()
         {
-            List<string> select = selectExpressions.Select(x => x.JsonPropertyName()).ToList();
             if (selectAll)
                 select.Add("*");
 

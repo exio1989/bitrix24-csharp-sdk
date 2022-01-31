@@ -4,6 +4,7 @@
     {
         public const string All = "*";
         public const string Id = "ID";
+        public const string Closed = "CLOSED";
         public const string Title = "TITLE";
         public const string ResponsibleId = "ASSIGNED_BY_ID";
         public const string CompanyId = "COMPANY_ID";

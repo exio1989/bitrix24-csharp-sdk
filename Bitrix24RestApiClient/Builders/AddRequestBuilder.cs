@@ -12,7 +12,7 @@ namespace Bitrix24ApiClient.src.Builders
         private PhoneListBuilder phonesBuilder = new PhoneListBuilder();
         private EmailListBuilder emailsBuilder = new EmailListBuilder();
 
-        public AddRequestBuilder<TEntity> SetField(Expression<Func<TEntity, object>> fieldNameExpr, string value)
+        public AddRequestBuilder<TEntity> SetField(Expression<Func<TEntity, object>> fieldNameExpr, object value)
         {
             fields[fieldNameExpr.JsonPropertyName()] = value;
             return this;

@@ -4,7 +4,7 @@ using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 
 namespace Bitrix24ApiClient.src
 {
-    public class Contacts:AbstractEntity
+    public class Contacts:AbstractEntity<Contact>
     {
         public Contacts(IBitrix24Client client)
             : base(client, EntityTypePrefix.Contact)

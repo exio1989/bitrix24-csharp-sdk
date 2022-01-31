@@ -11,7 +11,7 @@ namespace Bitrix24ApiClient.src.Models.Crm.Timeline.Comment
         public string EntityType { get; set; }
 
         [JsonProperty(TimelineCommentFields.EntityId)]
-        public string EntityId { get; set; }
+        public int EntityId { get; set; }
 
         [JsonProperty(TimelineCommentFields.Created)]
         public string Created { get; set; }

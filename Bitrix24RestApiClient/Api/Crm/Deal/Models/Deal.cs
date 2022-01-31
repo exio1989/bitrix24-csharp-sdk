@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Bitrix24RestApiClient.Models.Core.Enums;
+using Newtonsoft.Json;
 
 namespace Bitrix24ApiClient.src.Models
 {
@@ -24,6 +25,9 @@ namespace Bitrix24ApiClient.src.Models
 
         [JsonProperty(DealFields.StageId)]
         public string StageId { get; set; }
+
+        [JsonProperty(DealFields.Closed)]
+        public YesNoEnum Closed { get; set; }
 
         /// <summary>
         /// Идентификатор направления
