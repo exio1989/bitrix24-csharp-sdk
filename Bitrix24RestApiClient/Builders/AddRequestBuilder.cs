@@ -34,11 +34,11 @@ namespace Bitrix24ApiClient.src.Builders
         {
             var phones = phonesBuilder.Build();
             if (phones.Count > 0)
-                fields[DealFields.Phones] = phones;
+                fields["PHONE"] = phones;
 
             var emails = emailsBuilder.Build();
             if (emails.Count > 0)
-                fields[DealFields.Emails] = emails;
+                fields["EMAIL"] = emails;
 
             return new CrmEntityAddArgs
             {
