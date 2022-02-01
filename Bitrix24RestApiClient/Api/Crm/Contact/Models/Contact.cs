@@ -13,10 +13,13 @@ namespace Bitrix24ApiClient.src.Models
         public string Name { get; set; }
 
         [JsonProperty(ContactFields.Email)]
-        public List<Email> Emails { get; set; }
+        public List<CrmMultiFieldEmail> Emails { get; set; }
 
         [JsonProperty(ContactFields.Phone)]
-        public List<Phone> Phones { get; set; }
+        public List<CrmMultiFieldPhone> Phones { get; set; }
+
+        [JsonProperty(ContactFields.CompanyId)]
+        public int? CompanyId { get; set; }
         /*
         ADDRESS Адрес контакта string
         ADDRESS_2   Вторая страница адреса string В некоторых странах принято разбивать адрес на 2 части

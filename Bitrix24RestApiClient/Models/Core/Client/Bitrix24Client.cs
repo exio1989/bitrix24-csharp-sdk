@@ -5,16 +5,19 @@ using Flurl.Http;
 using System.Threading.Tasks;
 using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Logging;
 
 namespace Bitrix24ApiClient.src
 {
     public class Bitrix24Client: IBitrix24Client
     {
         private string webhookUrl;
+        private ILogger<Bitrix24Client> logger;
 
-        public Bitrix24Client(string webhookUrl)
+        public Bitrix24Client(string webhookUrl, ILogger<Bitrix24Client> logger)
         {
             this.webhookUrl = webhookUrl;
+            this.logger = logger;
         }
 
         public async Task<ListResponse<TEntity>> List<TEntity>(string entityTypePrefix, CrmEntityListRequestArgs args)
@@ -51,7 +54,7 @@ namespace Bitrix24ApiClient.src
         {
             try
             {
-                var json = JsonConvert.SerializeObject(args);//TODO
+                logger.LogTrace($"Bitrix24 API request. Endpoint: {entityTypePrefix}, Args: {JsonConvert.SerializeObject(args)}");
                 IFlurlResponse response = await webhookUrl
                        .AppendPathSegment(GetMethod(entityTypePrefix, entityMethod))
                        .PostJsonAsync(args);

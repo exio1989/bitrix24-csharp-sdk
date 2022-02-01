@@ -48,9 +48,9 @@ namespace Bitrix24RestApiClient.src.Core
             return (await client.List<TCustomEntity>(entityTypePrefix, builder.BuildArgs())).Result.FirstOrDefault();
         }
 
-        public async Task<TEntity> Get(int id, params Expression<Func<TEntity, object>>[] fieldsExpr)
+        public async Task<GetResponse<TEntity>> Get(int id, params Expression<Func<TEntity, object>>[] fieldsExpr)
         {
-            return await client.Get<TEntity>(entityTypePrefix, new CrmEntityGetRequestArgs
+            return await client.Get<GetResponse<TEntity>>(entityTypePrefix, new CrmEntityGetRequestArgs
             {
                 Id = id,
                 Fields = fieldsExpr.Select(x => x.JsonPropertyName()).ToList()

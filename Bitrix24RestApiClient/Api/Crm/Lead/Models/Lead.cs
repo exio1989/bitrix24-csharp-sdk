@@ -155,7 +155,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Множественное
         /// </summary>
         [JsonProperty(LeadFields.Email)]
-        public List<Email> Emails { get; set; }
+        public List<CrmMultiFieldEmail> Emails { get; set; }
 
         /// <summary>
         /// Проверка заполненности поля электронной почты	
@@ -351,7 +351,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Множественное
         /// </summary>
         [JsonProperty(LeadFields.Phone)]
-        public List<Phone> Phone { get; set; }
+        public List<CrmMultiFieldPhone> Phone { get; set; }
 
         /// <summary>
         /// Должность			

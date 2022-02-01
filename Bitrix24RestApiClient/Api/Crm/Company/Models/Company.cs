@@ -139,7 +139,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Множественное	
         /// </summary>
         [JsonProperty(CompanyFields.Email)]
-        public List<Email> Emails { get; set; }
+        public List<CrmMultiFieldEmail> Emails { get; set; }
 
         //TODO crm_status
         /// <summary>
@@ -332,7 +332,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Множественное	
         /// </summary>
         [JsonProperty(CompanyFields.Phone)]
-        public List<Phone> Phones { get; set; }
+        public List<CrmMultiFieldPhone> Phones { get; set; }
 
         /// <summary>
         /// Юридический адрес компании		

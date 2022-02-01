@@ -9,7 +9,7 @@ namespace Bitrix24ApiClient.src.Builders
 
         public EmailListBuilder SetField(string email, string type = EmailType.Рабочий)
         {
-            fields.Add(new Email(email, type));
+            fields.Add(new CrmMultiFieldEmail(email, type));
             return this;
         }
 

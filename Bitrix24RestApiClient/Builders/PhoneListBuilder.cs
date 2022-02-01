@@ -9,7 +9,7 @@ namespace Bitrix24ApiClient.src.Builders
 
         public PhoneListBuilder SetField(string phone, string type)
         {
-            fields.Add(new Phone(phone, type));
+            fields.Add(new CrmMultiFieldPhone(phone, type));
             return this;
         }
 
