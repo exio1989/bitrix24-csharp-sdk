@@ -3,6 +3,7 @@ using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bitrix24ApiClient.src.Models
 {
@@ -149,11 +150,49 @@ namespace Bitrix24ApiClient.src.Models
         public string Employees { get; set; }
 
         /// <summary>
+        /// Проверка заполненности поля электронной почты	
+        /// Тип: char	
+        /// </summary>
+        [NotMapped]
+        public bool HasEmail
+        {
+            get
+            {
+                return HasEmailExt == YesNoEnum.Y.ToString("F");
+            }
+            set
+            {
+                HasEmailExt = value
+                    ? YesNoEnum.Y.ToString("F")
+                    : YesNoEnum.N.ToString("F");
+            }
+        }
+
+        /// <summary>
         /// Проверка заполненности поля электронной почты		
         /// Тип: char	Только для чтения	
         /// </summary>
         [JsonProperty(CompanyFields.HasEmail)]
-        public YesNoEnum HasEmail { get; set; }
+        public string HasEmailExt { get; set; }
+
+        /// <summary>
+        /// Проверка заполненности поля телефон		
+        /// Тип: char	
+        /// </summary>
+        [NotMapped]
+        public bool HasPhone
+        {
+            get
+            {
+                return HasEmailExt == YesNoEnum.Y.ToString("F");
+            }
+            set
+            {
+                HasPhoneExt = value
+                    ? YesNoEnum.Y.ToString("F")
+                    : YesNoEnum.N.ToString("F");
+            }
+        }
 
         /// <summary>
         /// Проверка заполненности поля телефон		
@@ -161,7 +200,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Только для чтения	
         /// </summary>
         [JsonProperty(CompanyFields.HasPhone)]
-        public YesNoEnum HasPhone { get; set; }
+        public string HasPhoneExt { get; set; }
 
         /// <summary>
         /// Идентификатор компании		
@@ -188,11 +227,30 @@ namespace Bitrix24ApiClient.src.Models
         public string Industry { get; set; }
 
         /// <summary>
+        ///  				
+        /// Тип: char	
+        /// </summary>
+        [NotMapped]
+        public bool IsMyCompany
+        {
+            get
+            {
+                return IsMyCompanyExt == YesNoEnum.Y.ToString("F");
+            }
+            set
+            {
+                IsMyCompanyExt = value
+                    ? YesNoEnum.Y.ToString("F")
+                    : YesNoEnum.N.ToString("F");
+            }
+        }
+
+        /// <summary>
         ///  			
         /// Тип: char		
         /// </summary>
         [JsonProperty(CompanyFields.IsMyCompany)]
-        public string IsMyCompany { get; set; }
+        public string IsMyCompanyExt { get; set; }
 
         /// <summary>
         /// Идентификатор лида, связанного с компанией		
@@ -220,10 +278,29 @@ namespace Bitrix24ApiClient.src.Models
 
         /// <summary>
         /// Доступен для всех		
+        /// Тип: char	
+        /// </summary>
+        [NotMapped]
+        public bool Opened
+        {
+            get
+            {
+                return OpenedExt == YesNoEnum.Y.ToString("F");
+            }
+            set
+            {
+                OpenedExt = value
+                    ? YesNoEnum.Y.ToString("F")
+                    : YesNoEnum.N.ToString("F");
+            }
+        }
+
+        /// <summary>
+        /// Доступен для всех		
         /// Тип: char		
         /// </summary>
         [JsonProperty(CompanyFields.Opened)]
-        public string Opened { get; set; }
+        public string OpenedExt { get; set; }
 
         /// <summary>
         /// Идентификатор источника данных		

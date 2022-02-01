@@ -7,6 +7,7 @@
         public const string Title = "TITLE";
         public const string Email = "EMAIL";
         public const string Phone = "PHONE";
+        public const string AssignedById = "ASSIGNED_BY_ID";
         public const string UtmTerm = "UTM_TERM";
         public const string UtmSource = "UTM_SOURCE";
         public const string UtmMedium = "UTM_MEDIUM";

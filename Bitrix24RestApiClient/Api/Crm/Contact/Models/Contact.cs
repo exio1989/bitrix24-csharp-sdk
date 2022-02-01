@@ -1,7 +1,23 @@
-﻿namespace Bitrix24ApiClient.src.Models
+﻿using Bitrix24ApiClient.src.Models.Crm.Core;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+
+namespace Bitrix24ApiClient.src.Models
 {
     public class Contact
-    {/*
+    {
+        [JsonProperty(ContactFields.Id)]
+        public int Id { get; set; }
+
+        [JsonProperty(ContactFields.Name)]
+        public string Name { get; set; }
+
+        [JsonProperty(ContactFields.Email)]
+        public List<Email> Emails { get; set; }
+
+        [JsonProperty(ContactFields.Phone)]
+        public List<Phone> Phones { get; set; }
+        /*
         ADDRESS Адрес контакта string
         ADDRESS_2   Вторая страница адреса string В некоторых странах принято разбивать адрес на 2 части
         ADDRESS_CITY    Город string

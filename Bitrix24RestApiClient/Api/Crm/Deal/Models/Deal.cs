@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Bitrix24RestApiClient.Models.Core.Enums;
+using Newtonsoft.Json;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bitrix24ApiClient.src.Models
 {
@@ -47,8 +49,28 @@ namespace Bitrix24ApiClient.src.Models
         /// Завершена	
         /// Тип: char	
         /// </summary>
+        [NotMapped]
+        public bool Closed
+        {
+            get
+            {
+                return ClosedExt == YesNoEnum.Y.ToString("F");
+            }
+            set
+            {
+                ClosedExt = value
+                    ? YesNoEnum.Y.ToString("F")
+                    : YesNoEnum.N.ToString("F");
+            }
+        }
+
+        /// <summary>
+        /// Завершена.	
+        /// Тип: char
+        /// Скрытое свойство для передачи в битрикс
+        /// </summary>
         [JsonProperty(DealFields.Closed)]
-        public string Closed { get; set; }
+        public string ClosedExt { get; set; }
 
         /// <summary>
         /// Дата завершения			
@@ -130,25 +152,82 @@ namespace Bitrix24ApiClient.src.Models
         public int? Id { get; set; }
 
         /// <summary>
+        /// Флаг новой сделки (т. е. сделка в первой стадии)				
+        /// Тип: char	
+        /// </summary>
+        [NotMapped]
+        public bool IsNew
+        {
+            get
+            {
+                return IsNewExt == YesNoEnum.Y.ToString("F");
+            }
+            set
+            {
+                IsNewExt = value
+                    ? YesNoEnum.Y.ToString("F")
+                    : YesNoEnum.N.ToString("F");
+            }
+        }
+
+        /// <summary>
         /// Флаг новой сделки (т. е. сделка в первой стадии)			
         /// Тип: char	
         /// </summary>
         [JsonProperty(DealFields.IsNew)]
-        public string IsNew { get; set; }
+        public string IsNewExt { get; set; }
+
+        /// <summary>
+        /// Флаг шаблона регулярной сделки (если стоит Y, то это не сделка, а шаблон)		
+        /// Тип: char	
+        /// </summary>
+        [NotMapped]
+        public bool IsRecurring
+        {
+            get
+            {
+                return IsRecurringExt == YesNoEnum.Y.ToString("F");
+            }
+            set
+            {
+                IsRecurringExt = value
+                    ? YesNoEnum.Y.ToString("F")
+                    : YesNoEnum.N.ToString("F");
+            }
+        }
 
         /// <summary>
         /// Флаг шаблона регулярной сделки (если стоит Y, то это не сделка, а шаблон)			
         /// Тип: char	
         /// </summary>
         [JsonProperty(DealFields.IsRecurring)]
-        public string IsRecurring { get; set; }
+        public string IsRecurringExt { get; set; }
+
+        /// <summary>
+        /// Признак повторного лида			
+        /// Тип: char	
+        /// </summary>
+        [NotMapped]
+        public bool IsReturnCustomer
+        {
+            get
+            {
+                return IsReturnCustomerExt == YesNoEnum.Y.ToString("F");
+            }
+            set
+            {
+                IsReturnCustomerExt = value
+                    ? YesNoEnum.Y.ToString("F")
+                    : YesNoEnum.N.ToString("F");
+            }
+        }
 
         /// <summary>
         /// Признак повторного лида			
         /// Тип: char	
         /// </summary>
         [JsonProperty(DealFields.IsReturnCustomer)]
-        public string IsReturnCustomer { get; set; }
+        public string IsReturnCustomerExt { get; set; }
 
         /// <summary>
         /// Идентификатор привязанного лида			
@@ -175,11 +254,30 @@ namespace Bitrix24ApiClient.src.Models
         public int? ModifyById { get; set; }
 
         /// <summary>
+        /// Доступен для всех		
+        /// Тип: char	
+        /// </summary>
+        [NotMapped]
+        public bool Opened
+        {
+            get
+            {
+                return OpenedExt == YesNoEnum.Y.ToString("F");
+            }
+            set
+            {
+                OpenedExt = value
+                    ? YesNoEnum.Y.ToString("F")
+                    : YesNoEnum.N.ToString("F");
+            }
+        }
+
+        /// <summary>
         /// Доступен для всех			
         /// Тип: char	
         /// </summary>
         [JsonProperty(DealFields.Opened)]
-        public string Opened { get; set; }
+        public string OpenedExt { get; set; }
 
         /// <summary>
         /// Сумма			

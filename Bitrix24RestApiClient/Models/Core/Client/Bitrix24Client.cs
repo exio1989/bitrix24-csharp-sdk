@@ -4,6 +4,7 @@ using Flurl;
 using Flurl.Http;
 using System.Threading.Tasks;
 using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
+using Newtonsoft.Json;
 
 namespace Bitrix24ApiClient.src
 {
@@ -50,6 +51,7 @@ namespace Bitrix24ApiClient.src
         {
             try
             {
+                var json = JsonConvert.SerializeObject(args);//TODO
                 IFlurlResponse response = await webhookUrl
                        .AppendPathSegment(GetMethod(entityTypePrefix, entityMethod))
                        .PostJsonAsync(args);
