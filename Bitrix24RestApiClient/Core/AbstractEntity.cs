@@ -20,6 +20,11 @@ namespace Bitrix24RestApiClient.src.Core
             this.entityTypePrefix = entityTypePrefix;
         }
 
+        public async Task<FieldsResponse> Fields()
+        {
+            return await client.Fields(entityTypePrefix);
+        }
+
         public async Task<ListResponse<TEntity>> List(Action<ListRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new ListRequestBuilder<TEntity>();

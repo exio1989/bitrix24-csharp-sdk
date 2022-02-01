@@ -11,5 +11,6 @@ namespace Bitrix24RestApiClient.src.Models.Crm.Core.Client
         Task<UpdateResponse> Update(string entityTypePrefix, CrmEntityUpdateArgs args);
         Task<AddResponse> Add(string entityTypePrefix, CrmEntityAddArgs args);
         Task<DeleteResponse> Delete(string entityTypePrefix, CrmEntityDeleteRequestArgs args);
+        Task<FieldsResponse> Fields(string entityTypePrefix);
     }
 }

@@ -50,6 +50,11 @@ namespace Bitrix24ApiClient.src
             return await SendPostRequest<CrmEntityDeleteRequestArgs, DeleteResponse>(entityTypePrefix, EntityMethod.Delete, args);
         }
 
+        public async Task<FieldsResponse> Fields(string entityTypePrefix)
+        {
+            return await SendPostRequest<object, FieldsResponse>(entityTypePrefix, EntityMethod.Fields, new { });
+        }
+
         private async Task<TResponse> SendPostRequest<TArgs,TResponse>(string entityTypePrefix, EntityMethod entityMethod, TArgs args)
         {
             try
@@ -89,6 +94,9 @@ namespace Bitrix24ApiClient.src
                     break;
                 case EntityMethod.Delete:
                     entityMethodPart = "delete";
+                    break;
+                case EntityMethod.Fields:
+                    entityMethodPart = "fields";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

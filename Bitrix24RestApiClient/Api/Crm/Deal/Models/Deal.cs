@@ -49,7 +49,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Завершена	
         /// Тип: char	
         /// </summary>
-        [NotMapped]
+        [JsonIgnore]
         public bool Closed
         {
             get
@@ -155,7 +155,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Флаг новой сделки (т. е. сделка в первой стадии)				
         /// Тип: char	
         /// </summary>
-        [NotMapped]
+        [JsonIgnore]
         public bool IsNew
         {
             get
@@ -181,7 +181,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Флаг шаблона регулярной сделки (если стоит Y, то это не сделка, а шаблон)		
         /// Тип: char	
         /// </summary>
-        [NotMapped]
+        [JsonIgnore]
         public bool IsRecurring
         {
             get
@@ -207,7 +207,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Признак повторного лида			
         /// Тип: char	
         /// </summary>
-        [NotMapped]
+        [JsonIgnore]
         public bool IsReturnCustomer
         {
             get
@@ -257,7 +257,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Доступен для всех		
         /// Тип: char	
         /// </summary>
-        [NotMapped]
+        [JsonIgnore]
         public bool Opened
         {
             get

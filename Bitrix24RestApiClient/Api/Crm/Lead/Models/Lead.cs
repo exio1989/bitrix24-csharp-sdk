@@ -161,7 +161,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Проверка заполненности поля электронной почты	
         /// Тип: char	
         /// </summary>
-        [NotMapped]
+        [JsonIgnore]
         public bool HasEmail
         {
             get
@@ -187,7 +187,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Проверка заполненности поля телефон		
         /// Тип: char	
         /// </summary>
-        [NotMapped]
+        [JsonIgnore]
         public bool HasPhone
         {
             get
@@ -240,7 +240,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// Только для чтения
         /// </summary>
-        [NotMapped]
+        [JsonIgnore]
         public bool IsReturnCustomer
         {
             get
@@ -292,7 +292,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Доступен для всех		
         /// Тип: char	
         /// </summary>
-        [NotMapped]
+        [JsonIgnore]
         public bool Opened
         {
             get
@@ -402,7 +402,7 @@ namespace Bitrix24ApiClient.src.Models
         /// S (success) - обработан успешно,
         /// P (processing) - лид в обработке.
         /// </summary>
-        [NotMapped]
+        [JsonIgnore]
         public StatusSemanticIdEnum StatusSemanticId
         {
             get

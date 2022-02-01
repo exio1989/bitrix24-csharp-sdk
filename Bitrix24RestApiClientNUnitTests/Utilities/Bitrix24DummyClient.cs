@@ -15,6 +15,12 @@ namespace Bitrix24RestApiClientNUnitTests
             return Task.FromResult<AddResponse>(null);
         }
 
+        public Task<FieldsResponse> Fields(string entityTypePrefix)
+        {
+            LastRequestArgs = JsonConvert.SerializeObject(new { });
+            return Task.FromResult<FieldsResponse>(null);
+        }
+
         public Task<DeleteResponse> Delete(string entityTypePrefix,  CrmEntityDeleteRequestArgs args)
         {
             LastRequestArgs = JsonConvert.SerializeObject(args);

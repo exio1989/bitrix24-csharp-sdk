@@ -7,6 +7,7 @@
         Update = 2,
         Delete = 3,
         Search = 4,
-        Get = 5
+        Get = 5,
+        Fields = 6
     }
 }
