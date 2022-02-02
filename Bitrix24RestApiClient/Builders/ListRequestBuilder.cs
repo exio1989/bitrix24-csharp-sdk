@@ -44,7 +44,7 @@ namespace Bitrix24ApiClient.src.Builders
             filter.Add(new Filter
             {
                 Name = nameExpr.JsonPropertyName(),
-                Value = value?.ToString(),
+                Value = nameExpr.MapValue(value),
                 Operator = op
             });
             return this;

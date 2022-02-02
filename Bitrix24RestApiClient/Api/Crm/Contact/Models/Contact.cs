@@ -1,4 +1,5 @@
 ﻿using Bitrix24ApiClient.src.Models.Crm.Core;
+using Bitrix24RestApiClient.Models.Core.Attributes;
 using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
 using System;
@@ -144,6 +145,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Защита от сотрудников, которые хотят украсть базу клиентов.
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(ContactFields.Export)]
         public bool Export
         {
             get
@@ -178,6 +180,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(ContactFields.HasEmail)]
         public bool HasEmail
         {
             get
@@ -205,6 +208,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(ContactFields.HasPhone)]
         public bool HasPhone
         {
             get
@@ -287,6 +291,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(ContactFields.Opened)]
         public bool Opened
         {
             get

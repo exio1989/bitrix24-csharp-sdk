@@ -19,7 +19,7 @@ namespace Bitrix24ApiClient.src.Builders
             return this;
         }
 
-        public UpdateRequestBuilder<TEntity> SetField(Expression<Func<TEntity, object>> fieldNameExpr, string value)
+        public UpdateRequestBuilder<TEntity> SetField(Expression<Func<TEntity, object>> fieldNameExpr, object value)
         {
             fields[fieldNameExpr.JsonPropertyName()] = value;
             return this;

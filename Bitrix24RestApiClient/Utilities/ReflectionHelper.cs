@@ -19,6 +19,18 @@ namespace Bitrix24RestApiClient.src.Utilities
             return propertyNameArgument.Value.Value as string;
         }
 
+        public static string GetPropertyNameFromCrmYesNoFieldTypeAttribute(MemberInfo memberInfo)
+        {
+            CustomAttributeTypedArgument? propertyNameArgument = memberInfo.CustomAttributes
+                .FirstOrDefault(x => x.AttributeType.FullName == "Bitrix24RestApiClient.Models.Core.Attributes.CrmYesNoFieldTypeAttribute")
+                ?.ConstructorArguments.FirstOrDefault();
+
+            if (propertyNameArgument == null)
+                return null;
+
+            return propertyNameArgument.Value.Value as string;
+        }
+
         public static MemberInfo GetMemberInfo(LambdaExpression expression)
         {
             if (expression.Body.NodeType == ExpressionType.Convert)

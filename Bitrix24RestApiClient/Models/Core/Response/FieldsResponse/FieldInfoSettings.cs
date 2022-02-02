@@ -1,4 +1,5 @@
-﻿using Bitrix24RestApiClient.Models.Core.Enums;
+﻿using Bitrix24RestApiClient.Models.Core.Attributes;
+using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,6 +18,7 @@ namespace Bitrix24RestApiClient.Models.Core.Response.FieldsResponse
 		public string CaptionNoValue { get; set; }
 
         [JsonIgnore]
+        [CrmYesNoFieldType("SHOW_NO_VALUE")]
         public bool ShowNoValue
         {
             get

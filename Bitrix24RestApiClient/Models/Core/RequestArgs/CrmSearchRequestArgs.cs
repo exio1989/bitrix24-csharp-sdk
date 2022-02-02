@@ -6,7 +6,7 @@ namespace Bitrix24ApiClient.src.Models
     public class CrmSearchRequestArgs
     {
         [JsonProperty("filter")]
-        public Dictionary<string, string> Filter { get; set; } = new Dictionary<string, string>();
+        public Dictionary<string, object> Filter { get; set; } = new Dictionary<string, object>();
 
         public CrmSearchRequestArgs(List<Filter> filters)
         {

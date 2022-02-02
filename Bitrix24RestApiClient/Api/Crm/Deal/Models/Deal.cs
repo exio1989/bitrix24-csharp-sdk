@@ -1,4 +1,5 @@
-﻿using Bitrix24RestApiClient.Models.Core.Enums;
+﻿using Bitrix24RestApiClient.Models.Core.Attributes;
+using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -50,6 +51,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(DealFields.Closed)]
         public bool Closed
         {
             get
@@ -156,6 +158,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(DealFields.IsNew)]
         public bool IsNew
         {
             get
@@ -182,6 +185,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(DealFields.IsRecurring)]
         public bool IsRecurring
         {
             get
@@ -208,6 +212,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(DealFields.IsReturnCustomer)]
         public bool IsReturnCustomer
         {
             get
@@ -258,6 +263,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(DealFields.Opened)]
         public bool Opened
         {
             get

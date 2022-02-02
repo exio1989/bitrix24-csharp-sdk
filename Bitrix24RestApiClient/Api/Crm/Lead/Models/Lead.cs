@@ -1,4 +1,5 @@
 ﻿using Bitrix24ApiClient.src.Models.Crm.Core;
+using Bitrix24RestApiClient.Models.Core.Attributes;
 using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
 using System;
@@ -162,6 +163,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(LeadFields.HasEmail)]
         public bool HasEmail
         {
             get
@@ -180,7 +182,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Проверка заполненности поля электронной почты		
         /// Тип: char	Только для чтения	
         /// </summary>
-        [JsonProperty(CompanyFields.HasEmail)]
+        [JsonProperty(LeadFields.HasEmail)]
         public string HasEmailExt { get; set; }
 
         /// <summary>
@@ -188,6 +190,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(LeadFields.HasPhone)]
         public bool HasPhone
         {
             get
@@ -207,7 +210,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// Только для чтения	
         /// </summary>
-        [JsonProperty(CompanyFields.HasPhone)]
+        [JsonProperty(LeadFields.HasPhone)]
         public string HasPhoneExt { get; set; }
 
         //TODO crm_status
@@ -241,6 +244,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Только для чтения
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(LeadFields.IsReturnCustomer)]
         public bool IsReturnCustomer
         {
             get
@@ -293,6 +297,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(LeadFields.Opened)]
         public bool Opened
         {
             get
@@ -403,6 +408,7 @@ namespace Bitrix24ApiClient.src.Models
         /// P (processing) - лид в обработке.
         /// </summary>
         [JsonIgnore]
+        [CrmStatusSemanticIdType]
         public StatusSemanticIdEnum StatusSemanticId
         {
             get

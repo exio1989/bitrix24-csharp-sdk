@@ -59,7 +59,7 @@ namespace Bitrix24ApiClient.src
         {
             try
             {
-                logger.LogTrace($"Bitrix24 API request. Endpoint: {entityTypePrefix}, Args: {JsonConvert.SerializeObject(args)}");
+                logger.LogInformation($"Bitrix24 API request. Endpoint: {entityTypePrefix}, Args: {JsonConvert.SerializeObject(args)}");
                 IFlurlResponse response = await webhookUrl
                        .AppendPathSegment(GetMethod(entityTypePrefix, entityMethod))
                        .PostJsonAsync(args);

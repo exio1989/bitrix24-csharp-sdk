@@ -1,4 +1,5 @@
 ﻿using Bitrix24ApiClient.src.Models.Crm.Core;
+using Bitrix24RestApiClient.Models.Core.Attributes;
 using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
 using System;
@@ -154,6 +155,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(CompanyFields.HasEmail)]
         public bool HasEmail
         {
             get
@@ -180,6 +182,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(CompanyFields.HasPhone)]
         public bool HasPhone
         {
             get
@@ -231,6 +234,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(CompanyFields.IsMyCompany)]
         public bool IsMyCompany
         {
             get
@@ -281,6 +285,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
+        [CrmYesNoFieldType(CompanyFields.Opened)]
         public bool Opened
         {
             get
