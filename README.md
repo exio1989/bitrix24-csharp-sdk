@@ -68,3 +68,37 @@ AddResponse response = await bitrix24.Crm.Deals.Add<CustomDeal>(x=>x
      
 int dealId = response.Result;
 ```
+
+# Пример изменения сделки
+```C#
+int dealId = 1;
+
+AddResponse response = await bitrix24.Crm.Deals.Update(dealId, x=>x
+   .SetField(x=>x.CompanyId, 1)
+   .AddEmails(x=>x
+      .SetField("work@test.ru", EmailType.Рабочий)
+      .SetField("other@test.ru", EmailType.Другой))
+   .AddEmails(x => x
+     .SetField("+79222444333", EmailType.Рабочий)
+     .SetField("+79222444333", EmailType.Другой)));
+     
+int dealId = response.Result;
+```
+
+И вариант с пользовательскими полями:
+```C#
+public class CustomDeal: Deal
+{
+    [JsonProperty("UF_CRM_1642491608176")]
+    public string CustomField { get; set; }
+}
+
+...
+
+int dealId = 1;
+
+AddResponse response = await bitrix24.Crm.Deals.Update<CustomDeal>(dealId, x=>x
+   .SetField(x=>x.CustomField, "1"));
+     
+int dealId = response.Result;
+```
