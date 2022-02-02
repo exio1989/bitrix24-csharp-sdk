@@ -52,3 +52,19 @@ AddResponse response = await bitrix24.Crm.Deals.Add(x=>x
      
 int dealId = response.Result;
 ```
+
+И вариант с пользовательскими полями:
+```C#
+public class CustomDeal: Deal
+{
+    [JsonProperty("UF_CRM_1642491608176")]
+    public string CustomField { get; set; }
+}
+
+...
+
+AddResponse response = await bitrix24.Crm.Deals.Add<CustomDeal>(x=>x
+   .SetField(x=>x.CustomField, "1"));
+     
+int dealId = response.Result;
+```
