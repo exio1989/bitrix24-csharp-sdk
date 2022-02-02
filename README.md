@@ -13,7 +13,7 @@ var bitrix24 = new Bitrix24(client);
 # Пример получения сделки из API
 ```C#
 int dealId = 1;
-GetResponse response = bitrix24.Crm.Deals.Get(dealId, x=>x.Id, x=>x.CompanyId);
+GetResponse response = await bitrix24.Crm.Deals.Get(dealId, x=>x.Id, x=>x.CompanyId);
 Deal deal = response.Result;
 ```
 
@@ -28,6 +28,27 @@ public class CustomDeal: Deal
 ...
 
 int dealId = 1;
-GetResponse response = bitrix24.Crm.Deals.Get<CustomDeal>(dealId, x=>x.Id, x=>x.CustomField);
+GetResponse response = await bitrix24.Crm.Deals.Get<CustomDeal>(dealId, x=>x.Id, x=>x.CustomField);
 Deal deal = response.Result;
+```
+
+# Пример удаления сделки
+```C#
+int dealId = 1;
+DeleteResponse response = await bitrix24.Crm.Deals.Delete(dealId);
+bool isDeleted = response.Result;
+```
+
+# Пример создания сделки
+```C#
+AddResponse response = await bitrix24.Crm.Deals.Add(x=>x
+   .SetField(x=>x.CompanyId, 1)
+   .AddEmails(x=>x
+      .SetField("work@test.ru", EmailType.Рабочий)
+      .SetField("other@test.ru", EmailType.Другой))
+   .AddEmails(x => x
+     .SetField("+79222444333", EmailType.Рабочий)
+     .SetField("+79222444333", EmailType.Другой)));
+     
+int dealId = response.Result;
 ```
