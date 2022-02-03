@@ -336,7 +336,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: crm_status	
         /// </summary>
         [JsonProperty(DealFields.StageId)]
-        public int? StageId { get; set; }
+        public string StageId { get; set; }
 
         /// <summary>
         /// Имя	
@@ -382,7 +382,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Используется только для привязки к внешнему источнику.
         /// </summary>
         [JsonProperty(DealFields.TypeId)]
-        public int? TypeId { get; set; }
+        public string TypeId { get; set; }
 
         /// <summary>
         /// Обозначение рекламной кампании		
