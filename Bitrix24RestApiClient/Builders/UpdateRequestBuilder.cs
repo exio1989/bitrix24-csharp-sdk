@@ -6,32 +6,33 @@ using System.Linq.Expressions;
 
 namespace Bitrix24ApiClient.src.Builders
 {
-    public class UpdateRequestBuilder<TEntity>
+
+    public class UpdateRequestBuilder<TEntity>: IUpdateRequestBuilder<TEntity>
     {
         private int id;
         private Dictionary<string, object> fields = new Dictionary<string, object>();
         private PhoneListBuilder phonesBuilder = new PhoneListBuilder();
         private EmailListBuilder emailsBuilder = new EmailListBuilder();
 
-        public UpdateRequestBuilder<TEntity> SetId(int id)
+        public IUpdateRequestBuilder<TEntity> SetId(int id)
         {
             this.id = id;
             return this;
         }
 
-        public UpdateRequestBuilder<TEntity> SetField(Expression<Func<TEntity, object>> fieldNameExpr, object value)
+        public IUpdateRequestBuilder<TEntity> SetField(Expression<Func<TEntity, object>> fieldNameExpr, object value)
         {
             fields[fieldNameExpr.JsonPropertyName()] = value;
             return this;
         }
 
-        public UpdateRequestBuilder<TEntity> AddPhones(Action<PhoneListBuilder> builderFunc)
+        public IUpdateRequestBuilder<TEntity> AddPhones(Action<IPhoneListBuilder> builderFunc)
         {
             builderFunc(phonesBuilder);
             return this;
         }
 
-        public UpdateRequestBuilder<TEntity> AddEmails(Action<EmailListBuilder> builderFunc)
+        public IUpdateRequestBuilder<TEntity> AddEmails(Action<IEmailListBuilder> builderFunc)
         {
             builderFunc(emailsBuilder);
             return this;

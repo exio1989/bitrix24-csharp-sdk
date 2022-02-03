@@ -7,3 +7,4 @@
 /ProjectsOnNetFramework/PersisIntranet/node_modules
 /ProjectsOnNetFramework/PersisIntranet/logs
 /ProjectsOnNetFramework/PersisIntranet/*.user
+/Bitrix24RestApiClientNUnitTests/test.runsettings

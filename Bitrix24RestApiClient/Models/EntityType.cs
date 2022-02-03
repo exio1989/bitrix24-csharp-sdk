@@ -4,6 +4,8 @@
     {
         public const string Company = "crm.company";
         public const string Deal = "crm.deal";
+        public const string DealContact = "crm.deal.contact";
+        public const string DealContactItems = "crm.deal.contact.items";
         public const string Lead = "crm.lead";
         public const string DealUserFields = "crm.deal.userfield";
         public const string Contact = "crm.contact";

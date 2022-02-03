@@ -1,0 +1,7 @@
+﻿<RunSettings>
+  <RunConfiguration>
+      <EnvironmentVariables>
+        <WebhookUrl>https://test.ru/rest/17/fsghgshfdhgfh/</WebhookUrl>
+      </EnvironmentVariables>
+  </RunConfiguration>
+</RunSettings>

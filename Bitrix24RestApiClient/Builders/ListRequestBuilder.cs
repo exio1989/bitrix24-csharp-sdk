@@ -7,7 +7,8 @@ using System.Linq.Expressions;
 
 namespace Bitrix24ApiClient.src.Builders
 {
-    public class ListRequestBuilder<TEntity>
+
+    public class ListRequestBuilder<TEntity>: IListRequestBuilder<TEntity>
     {
         private int? start;
         private bool selectAll;
@@ -15,31 +16,31 @@ namespace Bitrix24ApiClient.src.Builders
         private List<Filter> filter = new List<Filter>();
         private List<Order> order = new List<Order>();
 
-        public ListRequestBuilder<TEntity> SetStart(int start)
+        public IListRequestBuilder<TEntity> SetStart(int start)
         {
             this.start = start;
             return this;
         }
 
-        public ListRequestBuilder<TEntity> AddSelect(params Expression<Func<TEntity, object>>[] fieldsExpression)
+        public IListRequestBuilder<TEntity> AddSelect(params Expression<Func<TEntity, object>>[] fieldsExpression)
         {
             select = fieldsExpression.Select(x => x.JsonPropertyName()).ToList();
             return this;
         }
 
-        public ListRequestBuilder<TEntity> AddOrderBy(Expression<Func<TEntity, object>> fieldExpr)
+        public IListRequestBuilder<TEntity> AddOrderBy(Expression<Func<TEntity, object>> fieldExpr)
         {
             order.Add(new Order(fieldExpr.JsonPropertyName(), OrderDirection.ASC));
             return this;
         }
 
-        public ListRequestBuilder<TEntity> AddOrderByDesc(Expression<Func<TEntity, object>> fieldExpr)
+        public IListRequestBuilder<TEntity> AddOrderByDesc(Expression<Func<TEntity, object>> fieldExpr)
         {
             order.Add(new Order(fieldExpr.JsonPropertyName(), OrderDirection.DESC));
             return this;
         }
 
-        public ListRequestBuilder<TEntity> AddFilter(Expression<Func<TEntity, object>> nameExpr, object value, FilterOperator op = FilterOperator.Equal)
+        public IListRequestBuilder<TEntity> AddFilter(Expression<Func<TEntity, object>> nameExpr, object value, FilterOperator op = FilterOperator.Equal)
         {
             filter.Add(new Filter
             {
@@ -49,7 +50,7 @@ namespace Bitrix24ApiClient.src.Builders
             });
             return this;
         }
-        public ListRequestBuilder<TEntity> AddPhoneFilter(string phone, FilterOperator op = FilterOperator.Equal)
+        public IListRequestBuilder<TEntity> AddPhoneFilter(string phone, FilterOperator op = FilterOperator.Equal)
         {
             filter.Add(new Filter
             {
@@ -60,7 +61,7 @@ namespace Bitrix24ApiClient.src.Builders
             return this;
         }
 
-        public ListRequestBuilder<TEntity> AddEmailFilter(string phone, FilterOperator op = FilterOperator.Equal)
+        public IListRequestBuilder<TEntity> AddEmailFilter(string phone, FilterOperator op = FilterOperator.Equal)
         {
             filter.Add(new Filter
             {
@@ -71,7 +72,7 @@ namespace Bitrix24ApiClient.src.Builders
             return this;
         }
 
-        public ListRequestBuilder<TEntity> SelectAll()
+        public IListRequestBuilder<TEntity> SelectAll()
         {
             selectAll = true;
             return this;

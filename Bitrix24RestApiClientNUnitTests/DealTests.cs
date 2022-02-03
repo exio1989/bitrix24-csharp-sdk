@@ -13,9 +13,8 @@ namespace Bitrix24RestApiClientNUnitTests
     {
         [Test]
         public async Task GetFieldsTest()
-        {
-            string webhookUrl = "https://bitrix.persis.ru/rest/17/lkyun3zvykg9e8n1/";
-            Bitrix24Client client = new Bitrix24Client(webhookUrl, new DummyLogger<Bitrix24Client>());
+        {            
+            Bitrix24Client client = new Bitrix24Client(Constants.WebhookUrl, new DummyLogger<Bitrix24Client>());
             var bitrix24 = new Bitrix24(client);
 
             FieldsResponse fields = await bitrix24.Crm.Deals.Fields();

@@ -10,7 +10,9 @@ namespace Bitrix24ApiClient.src
             :base(client, EntityTypePrefix.Deal)
         {
             UserFields = new DealsUserFields(client);
+            Contacts = new DealContacts(client);
         }
+        public DealContacts Contacts { get; private set; }
         public DealsUserFields UserFields { get; private set; }
     }
 }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Bitrix24ApiClient.src.Builders
 {
-    public class PhoneListBuilder
+    public class PhoneListBuilder: IPhoneListBuilder
     {
         private List<CrmMultiField> fields = new List<CrmMultiField>();
 
-        public PhoneListBuilder SetField(string phone, string type)
+        public IPhoneListBuilder SetField(string phone, string type = EmailType.Рабочий)
         {
             fields.Add(new CrmMultiFieldPhone(phone, type));
             return this;

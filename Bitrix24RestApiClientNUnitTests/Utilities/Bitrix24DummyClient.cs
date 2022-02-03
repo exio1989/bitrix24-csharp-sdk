@@ -50,5 +50,17 @@ namespace Bitrix24RestApiClientNUnitTests
             LastRequestArgs = JsonConvert.SerializeObject(args);
             return Task.FromResult<UpdateResponse>(null);
         }
+
+        public Task<UpdateResponse> Set<TEntity>(string entityTypePrefix, CrmEntitySetArgs<TEntity> args)
+        {
+            LastRequestArgs = JsonConvert.SerializeObject(args);
+            return Task.FromResult<UpdateResponse>(null);
+        }
+
+        public Task<TResponse> SendPostRequest<TArgs, TResponse>(string entityTypePrefix, EntityMethodEnum method, TArgs args) where TResponse : class
+        {
+            LastRequestArgs = JsonConvert.SerializeObject(args);
+            return Task.FromResult<TResponse>(null);
+        }
     }
 }

@@ -22,80 +22,102 @@ namespace Bitrix24ApiClient.src
 
         public async Task<ListResponse<TEntity>> List<TEntity>(string entityTypePrefix, CrmEntityListRequestArgs args)
         {
-            return await SendPostRequest<CrmEntityListRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.List, args);
+            return await SendPostRequest<CrmEntityListRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethodEnum.List, args);
         }
 
         public async Task<TEntity> Get<TEntity>(string entityTypePrefix, CrmEntityGetRequestArgs args) where TEntity : class
         {
-            return await SendPostRequest<CrmEntityGetRequestArgs, TEntity>(entityTypePrefix, EntityMethod.Get, args);
+            return await SendPostRequest<CrmEntityGetRequestArgs, TEntity>(entityTypePrefix, EntityMethodEnum.Get, args);
         }
 
         public async Task<ListResponse<TEntity>> Search<TEntity>(string entityTypePrefix, CrmSearchRequestArgs args)
         {
-            return await SendPostRequest<CrmSearchRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.Search, args);
+            return await SendPostRequest<CrmSearchRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethodEnum.Search, args);
         }
 
         public async Task<UpdateResponse> Update(string entityTypePrefix, CrmEntityUpdateArgs args)
         {
-            return await SendPostRequest<CrmEntityUpdateArgs, UpdateResponse>(entityTypePrefix, EntityMethod.Update, args);
+            return await SendPostRequest<CrmEntityUpdateArgs, UpdateResponse>(entityTypePrefix, EntityMethodEnum.Update, args);
         }
    
         public async Task<AddResponse> Add(string entityTypePrefix, CrmEntityAddArgs args)
         {
-            return await SendPostRequest<CrmEntityAddArgs, AddResponse>(entityTypePrefix, EntityMethod.Add, args);
+            return await SendPostRequest<CrmEntityAddArgs, AddResponse>(entityTypePrefix, EntityMethodEnum.Add, args);
+        }
+
+        public async Task<UpdateResponse> Set<TEntity>(string entityTypePrefix, CrmEntitySetArgs<TEntity> args)
+        {
+            return await SendPostRequest<CrmEntitySetArgs<TEntity>, UpdateResponse>(entityTypePrefix, EntityMethodEnum.Set, args);
         }
 
         public async Task<DeleteResponse> Delete(string entityTypePrefix, CrmEntityDeleteRequestArgs args)
         {
-            return await SendPostRequest<CrmEntityDeleteRequestArgs, DeleteResponse>(entityTypePrefix, EntityMethod.Delete, args);
+            return await SendPostRequest<CrmEntityDeleteRequestArgs, DeleteResponse>(entityTypePrefix, EntityMethodEnum.Delete, args);
         }
 
         public async Task<FieldsResponse> Fields(string entityTypePrefix)
         {
-            return await SendPostRequest<object, FieldsResponse>(entityTypePrefix, EntityMethod.Fields, new { });
+            return await SendPostRequest<object, FieldsResponse>(entityTypePrefix, EntityMethodEnum.Fields, new { });
         }
 
-        private async Task<TResponse> SendPostRequest<TArgs,TResponse>(string entityTypePrefix, EntityMethod entityMethod, TArgs args)
+        public async Task<TResponse> SendPostRequest<TArgs,TResponse>(string entityTypePrefix, EntityMethodEnum entityMethod, TArgs args) where TResponse : class
         {
+            TResponse responseBody = null;
+
             try
             {
-                logger.LogInformation($"Bitrix24 API request. Endpoint: {entityTypePrefix}, Args: {JsonConvert.SerializeObject(args)}");
                 IFlurlResponse response = await webhookUrl
                        .AppendPathSegment(GetMethod(entityTypePrefix, entityMethod))
                        .PostJsonAsync(args);
 
-                return await response.GetJsonAsync<TResponse>();
+                responseBody = await response.GetJsonAsync<TResponse>();
+                return responseBody;
             }
             catch(FlurlHttpException ex)
             {
-                throw;
+                try
+                {
+                    string errorResponseBody = await ex.Call.Response.GetStringAsync();
+                    throw new Exception(errorResponseBody, ex);
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+            finally
+            {
+                logger.LogInformation($"Bitrix24 API request\r\n\tMethod: {GetMethod(entityTypePrefix, entityMethod)}\r\n\tArgs: {JsonConvert.SerializeObject(args)}\r\n\tBody: {JsonConvert.SerializeObject(responseBody)}\r\n");
             }
         }
 
-        private string GetMethod(string entityTypePrefix, EntityMethod method)
+        private string GetMethod(string entityTypePrefix, EntityMethodEnum method)
         {
             string entityMethodPart;
             switch (method)
             {
-                case EntityMethod.Get:
+                case EntityMethodEnum.Get:
                     entityMethodPart = "get.json";
                     break;
-                case EntityMethod.List:
+                case EntityMethodEnum.Set:
+                    entityMethodPart = "set.json";
+                    break;
+                case EntityMethodEnum.List:
                     entityMethodPart = "list.json";
                     break;
-                case EntityMethod.Search:
+                case EntityMethodEnum.Search:
                     entityMethodPart = "search.json";
                     break;
-                case EntityMethod.Add:
+                case EntityMethodEnum.Add:
                     entityMethodPart = "add.json";
                     break;
-                case EntityMethod.Update:
+                case EntityMethodEnum.Update:
                     entityMethodPart = "update.json";
                     break;
-                case EntityMethod.Delete:
+                case EntityMethodEnum.Delete:
                     entityMethodPart = "delete";
                     break;
-                case EntityMethod.Fields:
+                case EntityMethodEnum.Fields:
                     entityMethodPart = "fields";
                     break;
                 default:

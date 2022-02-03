@@ -20,14 +20,20 @@ namespace Bitrix24ApiClient.src
             this.client = client;
         }
 
-        public async Task<ListResponse<TEntity>> Search<TEntity>(Action<SearchRequestBuilder<TEntity>> builderFunc)
+        public async Task<ListResponse<TEntity>> Search<TEntity>()
+        {
+            var builder = new SearchRequestBuilder<TEntity>();
+            return await client.Search<TEntity>(entityTypePrefix, builder.BuildArgs());
+        }
+
+        public async Task<ListResponse<TEntity>> Search<TEntity>(Action<ISearchRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new SearchRequestBuilder<TEntity>();
             builderFunc(builder);
             return await client.Search<TEntity>(entityTypePrefix, builder.BuildArgs());
         }
 
-        public async Task<TEntity> First<TEntity>(Action<SearchRequestBuilder<TEntity>> builderFunc)
+        public async Task<TEntity> First<TEntity>(Action<ISearchRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new SearchRequestBuilder<TEntity>();
             builderFunc(builder);
@@ -51,7 +57,7 @@ namespace Bitrix24ApiClient.src
             });
         }
 
-        public async Task<UpdateResponse> Update<TEntity>(int id, Action<UpdateRequestBuilder<TEntity>> builderFunc)
+        public async Task<UpdateResponse> Update<TEntity>(int id, Action<IUpdateRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new UpdateRequestBuilder<TEntity>();
             builder.SetId(id);
@@ -59,7 +65,7 @@ namespace Bitrix24ApiClient.src
             return await client.Update(entityTypePrefix, builder.BuildArgs());
         }
 
-        public async Task<AddResponse> Add<TEntity>(Action<AddRequestBuilder<TEntity>> builderFunc)
+        public async Task<AddResponse> Add<TEntity>(Action<IAddRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new AddRequestBuilder<TEntity>();
             builderFunc(builder);

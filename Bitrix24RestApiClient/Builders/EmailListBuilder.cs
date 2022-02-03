@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 namespace Bitrix24ApiClient.src.Builders
 {
-    public class EmailListBuilder
+
+    public class EmailListBuilder: IEmailListBuilder
     {
         private List<CrmMultiField> fields = new List<CrmMultiField>();
 
-        public EmailListBuilder SetField(string email, string type = EmailType.Рабочий)
+        public IEmailListBuilder SetField(string email, string type = EmailType.Рабочий)
         {
             fields.Add(new CrmMultiFieldEmail(email, type));
             return this;
