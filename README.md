@@ -1,5 +1,5 @@
-# bitrix24-csharp-sdk
-A C# library for the Bitrix24 REST API
+# bitrix24 C# SDK
+C# библиотека для Bitrix24 REST API.
 
 ## Инициализация клиента
 На данный момент клиент поддерживает только один способ авторизации: входящий вебхук.
