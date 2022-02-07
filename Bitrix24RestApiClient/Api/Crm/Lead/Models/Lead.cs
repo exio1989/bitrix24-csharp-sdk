@@ -163,7 +163,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(LeadFields.HasEmail)]
+        [CrmField(LeadFields.HasEmail, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool HasEmail
         {
             get
@@ -190,7 +190,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(LeadFields.HasPhone)]
+        [CrmField(LeadFields.HasPhone, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool HasPhone
         {
             get
@@ -244,7 +244,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Только для чтения
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(LeadFields.IsReturnCustomer)]
+        [CrmField(LeadFields.IsReturnCustomer, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool IsReturnCustomer
         {
             get
@@ -297,7 +297,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(LeadFields.Opened)]
+        [CrmField(LeadFields.Opened, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool Opened
         {
             get
@@ -408,7 +408,7 @@ namespace Bitrix24ApiClient.src.Models
         /// P (processing) - лид в обработке.
         /// </summary>
         [JsonIgnore]
-        [CrmStatusSemanticIdType]
+        [CrmField(LeadFields.StatusSemanticId, CrmFieldSubTypeEnum.String_StatusSemanticIdEnum)]
         public StatusSemanticIdEnum StatusSemanticId
         {
             get

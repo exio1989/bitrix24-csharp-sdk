@@ -145,7 +145,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Защита от сотрудников, которые хотят украсть базу клиентов.
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(ContactFields.Export)]
+        [CrmField(ContactFields.Export, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool Export
         {
             get
@@ -180,7 +180,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(ContactFields.HasEmail)]
+        [CrmField(ContactFields.HasEmail, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool HasEmail
         {
             get
@@ -208,7 +208,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(ContactFields.HasPhone)]
+        [CrmField(ContactFields.HasPhone, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool HasPhone
         {
             get
@@ -291,7 +291,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(ContactFields.Opened)]
+        [CrmField(ContactFields.Opened, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool Opened
         {
             get

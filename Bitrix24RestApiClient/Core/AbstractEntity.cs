@@ -22,61 +22,61 @@ namespace Bitrix24RestApiClient.src.Core
 
         public async Task<FieldsResponse> Fields()
         {
-            return await client.Fields(entityTypePrefix);
+            return await client.SendPostRequest<object, FieldsResponse>(entityTypePrefix, EntityMethod.Fields, new { });
         }
 
         public async Task<ListResponse<TEntity>> List()
         {
             var builder = new ListRequestBuilder<TEntity>();
-            return await client.List<TEntity>(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs());
         }
 
         public async Task<ListResponse<TEntity>> List(Action<IListRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new ListRequestBuilder<TEntity>();
             builderFunc(builder);
-            return await client.List<TEntity>(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs());
         }
 
         public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>()
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
-            return await client.List<TCustomEntity>(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs());
         }
 
         public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc)
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builderFunc(builder);
-            return await client.List<TCustomEntity>(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs());
         }
 
         public async Task<TEntity> First(Action<IListRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new ListRequestBuilder<TEntity>();
             builderFunc(builder);
-            return (await client.List<TEntity>(entityTypePrefix, builder.BuildArgs())).Result.FirstOrDefault();
+            return (await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs())).Result.FirstOrDefault();
         }
 
         public async Task<TCustomEntity> First<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc)
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builderFunc(builder);
-            return (await client.List<TCustomEntity>(entityTypePrefix, builder.BuildArgs())).Result.FirstOrDefault();
+            return (await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs())).Result.FirstOrDefault();
         }
 
         public async Task<GetResponse<TEntity>> Get(int id, params Expression<Func<TEntity, object>>[] fieldsExpr)
         {
-            return await client.Get<GetResponse<TEntity>>(entityTypePrefix, new CrmEntityGetRequestArgs
+            return await client.SendPostRequest<CrmEntityGetRequestArgs, GetResponse<TEntity>>(entityTypePrefix, EntityMethod.Get, new CrmEntityGetRequestArgs
             {
                 Id = id,
                 Fields = fieldsExpr.Select(x => x.JsonPropertyName()).ToList()
             });
         }
 
-        public async Task<TCustomEntity> Get<TCustomEntity>(int id, params Expression<Func<TCustomEntity, object>>[] fieldsExpr) where TCustomEntity : class
+        public async Task<GetResponse<TCustomEntity>> Get<TCustomEntity>(int id, params Expression<Func<TCustomEntity, object>>[] fieldsExpr) where TCustomEntity : class
         {
-            return await client.Get<TCustomEntity>(entityTypePrefix, new CrmEntityGetRequestArgs
+            return await client.SendPostRequest<CrmEntityGetRequestArgs, GetResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.Get, new CrmEntityGetRequestArgs
             {
                 Id = id,
                 Fields = fieldsExpr.Select(x => x.JsonPropertyName()).ToList()
@@ -85,7 +85,7 @@ namespace Bitrix24RestApiClient.src.Core
 
         public async Task<DeleteResponse> Delete(int id)
         {
-            return await client.Delete(entityTypePrefix, new CrmEntityDeleteRequestArgs
+            return await client.SendPostRequest<CrmEntityDeleteRequestArgs, DeleteResponse>(entityTypePrefix, EntityMethod.Delete, new CrmEntityDeleteRequestArgs
             {
                 Id = id
             });
@@ -96,7 +96,7 @@ namespace Bitrix24RestApiClient.src.Core
             var builder = new UpdateRequestBuilder<TEntity>();
             builder.SetId(id);
             builderFunc(builder);
-            return await client.Update(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmEntityUpdateArgs, UpdateResponse>(entityTypePrefix, EntityMethod.Update, builder.BuildArgs());
         }
 
         public async Task<UpdateResponse> Update<TCustomEntity>(int id, Action<IUpdateRequestBuilder<TCustomEntity>> builderFunc)
@@ -104,27 +104,27 @@ namespace Bitrix24RestApiClient.src.Core
             var builder = new UpdateRequestBuilder<TCustomEntity>();
             builder.SetId(id);
             builderFunc(builder);
-            return await client.Update(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmEntityUpdateArgs, UpdateResponse>(entityTypePrefix, EntityMethod.Update, builder.BuildArgs());
         }
 
         public async Task<AddResponse> Add()
         {
             var builder = new AddRequestBuilder<TEntity>();
-            return await client.Add(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmEntityAddArgs, AddResponse>(entityTypePrefix, EntityMethod.Add, builder.BuildArgs());
         }
 
         public async Task<AddResponse> Add(Action<IAddRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new AddRequestBuilder<TEntity>();
             builderFunc(builder);
-            return await client.Add(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmEntityAddArgs, AddResponse>(entityTypePrefix, EntityMethod.Add, builder.BuildArgs());
         }
 
         public async Task<AddResponse> Add<TCustomEntity>(Action<IAddRequestBuilder<TCustomEntity>> builderFunc)
         {
             var builder = new AddRequestBuilder<TCustomEntity>();
             builderFunc(builder);
-            return await client.Add(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmEntityAddArgs, AddResponse>(entityTypePrefix, EntityMethod.Add, builder.BuildArgs());
         }
     }
 }

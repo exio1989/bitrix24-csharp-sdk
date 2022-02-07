@@ -51,7 +51,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(DealFields.Closed)]
+        [CrmField(DealFields.Closed, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool Closed
         {
             get
@@ -158,7 +158,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(DealFields.IsNew)]
+        [CrmField(DealFields.IsNew, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool IsNew
         {
             get
@@ -185,7 +185,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(DealFields.IsRecurring)]
+        [CrmField(DealFields.IsRecurring, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool IsRecurring
         {
             get
@@ -212,7 +212,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(DealFields.IsReturnCustomer)]
+        [CrmField(DealFields.IsReturnCustomer, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool IsReturnCustomer
         {
             get
@@ -263,7 +263,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(DealFields.Opened)]
+        [CrmField(DealFields.Opened, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool Opened
         {
             get

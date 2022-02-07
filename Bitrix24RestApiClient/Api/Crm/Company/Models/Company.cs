@@ -155,7 +155,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(CompanyFields.HasEmail)]
+        [CrmField(CompanyFields.HasEmail, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool HasEmail
         {
             get
@@ -182,7 +182,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(CompanyFields.HasPhone)]
+        [CrmField(CompanyFields.HasPhone, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool HasPhone
         {
             get
@@ -234,7 +234,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(CompanyFields.IsMyCompany)]
+        [CrmField(CompanyFields.IsMyCompany, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool IsMyCompany
         {
             get
@@ -285,7 +285,7 @@ namespace Bitrix24ApiClient.src.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(CompanyFields.Opened)]
+        [CrmField(CompanyFields.Opened, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool Opened
         {
             get

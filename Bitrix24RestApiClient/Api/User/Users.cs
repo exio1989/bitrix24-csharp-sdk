@@ -23,26 +23,26 @@ namespace Bitrix24ApiClient.src
         public async Task<ListResponse<TEntity>> Search<TEntity>()
         {
             var builder = new SearchRequestBuilder<TEntity>();
-            return await client.Search<TEntity>(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmSearchRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.Search, builder.BuildArgs());
         }
 
         public async Task<ListResponse<TEntity>> Search<TEntity>(Action<ISearchRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new SearchRequestBuilder<TEntity>();
             builderFunc(builder);
-            return await client.Search<TEntity>(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmSearchRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.Search, builder.BuildArgs());
         }
 
         public async Task<TEntity> First<TEntity>(Action<ISearchRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new SearchRequestBuilder<TEntity>();
             builderFunc(builder);
-            return (await client.Search<TEntity>(entityTypePrefix, builder.BuildArgs())).Result.FirstOrDefault();
+            return (await client.SendPostRequest<CrmSearchRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.Search, builder.BuildArgs())).Result.FirstOrDefault();
         }
 
         public async Task<TEntity> Get<TEntity>(int id, params Expression<Func<TEntity, object>>[] fieldsExpr) where TEntity : class
         {
-            return await client.Get<TEntity>(entityTypePrefix, new CrmEntityGetRequestArgs
+            return await client.SendPostRequest<CrmEntityGetRequestArgs, TEntity>(entityTypePrefix, EntityMethod.Get, new CrmEntityGetRequestArgs
             {
                 Id = id,
                 Fields = fieldsExpr.Select(x => x.JsonPropertyName()).ToList()
@@ -51,7 +51,7 @@ namespace Bitrix24ApiClient.src
 
         public async Task<DeleteResponse> Delete(int id)
         {
-            return await client.Delete(entityTypePrefix, new CrmEntityDeleteRequestArgs
+            return await client.SendPostRequest<CrmEntityDeleteRequestArgs, DeleteResponse>(entityTypePrefix, EntityMethod.Delete, new CrmEntityDeleteRequestArgs
             {
                 Id = id
             });
@@ -62,14 +62,14 @@ namespace Bitrix24ApiClient.src
             var builder = new UpdateRequestBuilder<TEntity>();
             builder.SetId(id);
             builderFunc(builder);
-            return await client.Update(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmEntityUpdateArgs, UpdateResponse>(entityTypePrefix, EntityMethod.Update, builder.BuildArgs());
         }
 
         public async Task<AddResponse> Add<TEntity>(Action<IAddRequestBuilder<TEntity>> builderFunc)
         {
             var builder = new AddRequestBuilder<TEntity>();
             builderFunc(builder);
-            return await client.Add(entityTypePrefix, builder.BuildArgs());
+            return await client.SendPostRequest<CrmEntityAddArgs, AddResponse>(entityTypePrefix, EntityMethod.Add, builder.BuildArgs());
         }
     }
 }

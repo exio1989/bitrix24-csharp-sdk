@@ -30,7 +30,7 @@ namespace Bitrix24RestApiClient.Api.Crm.Deal.Contact.Models
         /// Тип: char	
         /// </summary>
         [JsonIgnore]
-        [CrmYesNoFieldType(DealContactFields.IsPrimary)]
+        [CrmField(DealContactFields.IsPrimary, CrmFieldSubTypeEnum.Char_YesNo)]
         public bool IsPrimary
         {
             get
