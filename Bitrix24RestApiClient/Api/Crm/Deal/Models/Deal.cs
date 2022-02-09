@@ -1,12 +1,12 @@
-﻿using Bitrix24RestApiClient.Models.Core.Attributes;
+﻿using Bitrix24RestApiClient.Core.Models;
+using Bitrix24RestApiClient.Models.Core.Attributes;
 using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bitrix24ApiClient.src.Models
 {
-    public class Deal
+    public class Deal: AbstractEntity
     {
         /// <summary>
         /// Дополнительная информация	
@@ -144,14 +144,6 @@ namespace Bitrix24ApiClient.src.Models
         /// </summary>
         [JsonProperty(DealFields.DateModify)]
         public DateTimeOffset? DateModify { get; set; }
-
-        /// <summary>
-        /// Идентификатор сделки			
-        /// Тип: integer	
-        /// Только для чтения
-        /// </summary>
-        [JsonProperty(DealFields.Id)]
-        public int? Id { get; set; }
 
         /// <summary>
         /// Флаг новой сделки (т. е. сделка в первой стадии)				

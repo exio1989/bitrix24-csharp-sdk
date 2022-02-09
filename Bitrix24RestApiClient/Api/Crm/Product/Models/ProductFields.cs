@@ -2,7 +2,6 @@
 {
     public static class ProductFields
     {
-        public const string All = "*";
         public const string Active = "ACTIVE";
         public const string CatalogId = "CATALOG_ID";
         public const string CreatedBy = "CREATED_BY";
@@ -11,7 +10,6 @@
         public const string Description = "DESCRIPTION";
         public const string DescriptionType = "DESCRIPTION_TYPE";
         public const string DetailPicture = "DETAIL_PICTURE";
-        public const string Id = "ID";
         public const string Measure = "MEASURE";
         public const string ModifiedBy = "MODIFIED_BY";
         public const string Name = "NAME";

@@ -2,8 +2,6 @@
 {
     public static class PaySystemFields
     {
-        public const string All = "*";
-		public const string Id = "ID";
 		public const string Name = "NAME";
 		public const string Active = "ACTIVE";
 		public const string Sort = "SORT";

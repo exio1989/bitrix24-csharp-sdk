@@ -1,5 +1,6 @@
 ﻿using Bitrix24ApiClient.src.Builders;
 using Bitrix24ApiClient.src.Models;
+using Bitrix24RestApiClient.Core.Models;
 using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 using System;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Bitrix24ApiClient.src
 {
     public class PaySystems
     {
-        private string entityTypePrefix = EntityTypePrefix.PaySystem;
+        private string entityTypePrefix = EntryPointPrefix.PaySystem;
         private IBitrix24Client client;
 
         public PaySystems(IBitrix24Client client)
@@ -35,13 +36,13 @@ namespace Bitrix24ApiClient.src
             return await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<PaySystem>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs());
         }
 
-        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>()
+        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>() where TCustomEntity : AbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             return await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs());
         }
 
-        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc)
+        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc) where TCustomEntity : AbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builderFunc(builder);
@@ -55,7 +56,7 @@ namespace Bitrix24ApiClient.src
             return (await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<PaySystem>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs())).Result.FirstOrDefault();
         }
 
-        public async Task<TCustomEntity> First<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc)
+        public async Task<TCustomEntity> First<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc) where TCustomEntity : AbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builderFunc(builder);

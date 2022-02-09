@@ -2,7 +2,6 @@
 {
     public class TimelineCommentFields
     {
-        public const string Id = "ID";
         public const string Created = "CREATED";
         public const string EntityId = "ENTITY_ID";
         public const string EntityType = "ENTITY_TYPE";

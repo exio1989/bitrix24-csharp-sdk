@@ -1,5 +1,7 @@
 ﻿using Bitrix24ApiClient.src.Builders;
 using Bitrix24ApiClient.src.Models;
+using Bitrix24RestApiClient.Core.BatchStrategies;
+using Bitrix24RestApiClient.Core.Models;
 using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 using Bitrix24RestApiClient.src.Utilities;
 using System;
@@ -9,16 +11,19 @@ using System.Threading.Tasks;
 
 namespace Bitrix24RestApiClient.src.Core
 {
-    public class AbstractEntity<TEntity> where TEntity : class
+    public class AbstractEntities<TEntity> where TEntity : AbstractEntity
     {
         private IBitrix24Client client;
         private string entityTypePrefix;
 
-        public AbstractEntity(IBitrix24Client client, string entityTypePrefix)
+        public AbstractEntities(IBitrix24Client client, string entityTypePrefix)
         {
             this.client = client;
             this.entityTypePrefix = entityTypePrefix;
+            this.BatchOperations = new BatchOperations(client, entityTypePrefix);
         }
+
+        public BatchOperations BatchOperations { get; private set; }
 
         public async Task<FieldsResponse> Fields()
         {
@@ -38,13 +43,13 @@ namespace Bitrix24RestApiClient.src.Core
             return await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs());
         }
 
-        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>()
+        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>() where TCustomEntity: AbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             return await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs());
         }
 
-        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc)
+        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc) where TCustomEntity : AbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builderFunc(builder);
@@ -58,7 +63,7 @@ namespace Bitrix24RestApiClient.src.Core
             return (await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs())).Result.FirstOrDefault();
         }
 
-        public async Task<TCustomEntity> First<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc)
+        public async Task<TCustomEntity> First<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc) where TCustomEntity : AbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builderFunc(builder);

@@ -2,7 +2,6 @@
 {
     public static class ProductRowFields
     {
-        public const string Id = "ID";
         public const string Price = "PRICE";
         public const string DiscountPrice = "DISCOUNT_PRICE";
         public const string ProductId = "PRODUCT_ID";

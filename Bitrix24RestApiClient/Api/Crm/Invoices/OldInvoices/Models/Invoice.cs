@@ -1,4 +1,5 @@
 ﻿using Bitrix24ApiClient.src.Models;
+using Bitrix24RestApiClient.Core.Models;
 using Bitrix24RestApiClient.Models.Core.Attributes;
 using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
@@ -7,16 +8,8 @@ using System.Collections.Generic;
 
 namespace Bitrix24RestApiClient.Api.Crm.Invoices.OldInvoices.Models
 {
-    public class Invoice
+    public class Invoice: AbstractEntity
     {
-        /// <summary>
-        /// Идентификатор				
-        /// Тип: interger	
-        /// Только для чтения
-        /// </summary>
-        [JsonProperty(InvoiceFields.Id)]
-        public int? Id { get; set; }
-
         /// <summary>
         /// Номер				
         /// Тип: string	

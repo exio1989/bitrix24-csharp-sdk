@@ -1,11 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Bitrix24RestApiClient.Core.Models;
+using Newtonsoft.Json;
 namespace Bitrix24ApiClient.src.Models.Crm
 {
-    public class UserFieldList
+    public class UserFieldList: AbstractEntity
     {
-        [JsonProperty(UserFieldListFields.Id)]
-        public string Id { get; set; }
-
         [JsonProperty(UserFieldListFields.Value)]
         public string Value { get; set; }
     }

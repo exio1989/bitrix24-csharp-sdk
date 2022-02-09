@@ -1,4 +1,5 @@
 ﻿using Bitrix24ApiClient.src.Models;
+using System;
 
 namespace Bitrix24ApiClient.src
 {
@@ -21,8 +22,28 @@ namespace Bitrix24ApiClient.src
                 {
                     case FilterOperator.GreateThan:
                         return ">";
-                    default:
+                    case FilterOperator.LessThan:
+                        return "<";
+                    case FilterOperator.GreateThanOrEqual:
+                        return ">=";
+                    case FilterOperator.LessThanOrEqual:
+                        return "<=";
+                    case FilterOperator.InArray:
+                        return "@";
+                    case FilterOperator.NotInArray:
+                        return "!@";
+                    case FilterOperator.Substring:
+                        return "%";
+                    case FilterOperator.NotEqual:
+                        return "!";
+                    case FilterOperator.NotSubstring:
+                        return "!%";
+                    case FilterOperator.Like:
+                        return "=%";
+                    case FilterOperator.Equal:
                         return "";
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
         }

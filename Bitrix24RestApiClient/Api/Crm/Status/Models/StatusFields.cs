@@ -2,8 +2,6 @@
 {
     public static class StatusFields
     {
-        public const string All = "*";
-        public const string Id = "ID";
         public const string EntityId = "ENTITY_ID";
         public const string StatusId = "STATUS_ID";
         public const string Sort = "SORT";

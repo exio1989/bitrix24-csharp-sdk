@@ -10,7 +10,7 @@ namespace Bitrix24ApiClient.src
 {
     public class DealContactItems
     {
-        private const string entityTypePrefix = EntityTypePrefix.DealContactItems;
+        private const string entityTypePrefix = EntryPointPrefix.DealContactItems;
         private IBitrix24Client client;
 
         public DealContactItems(IBitrix24Client client)

@@ -56,7 +56,10 @@ namespace Bitrix24ApiClient.src
 
         private string GetMethod(string entityTypePrefix, EntityMethod method)
         {
-            return $"{entityTypePrefix}.{method.Method}";
+            if (method.Value == EntityMethod.None.Value)
+                return entityTypePrefix;
+
+            return $"{entityTypePrefix}.{method.Value}";
         }
     }
 }

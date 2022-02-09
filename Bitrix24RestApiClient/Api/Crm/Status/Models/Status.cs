@@ -1,23 +1,13 @@
-﻿using Bitrix24ApiClient.src.Models.Crm.Core;
-using Bitrix24RestApiClient.Api.Crm.Status.Models;
+﻿using Bitrix24RestApiClient.Api.Crm.Status.Models;
+using Bitrix24RestApiClient.Core.Models;
 using Bitrix24RestApiClient.Models.Core.Attributes;
 using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bitrix24ApiClient.src.Models
 {
-    public class Status
-    {
-		/// <summary>
-		/// ID		
-		/// Тип: integer
-		/// </summary>
-		[JsonProperty(StatusFields.Id)]
-        public int? Id { get; set; }
-
+    public class Status: AbstractEntity
+	{
 		/// <summary>
 		/// ID элемента сущности		
 		/// Тип: string

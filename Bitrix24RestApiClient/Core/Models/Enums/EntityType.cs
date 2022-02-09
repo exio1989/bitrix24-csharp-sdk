@@ -1,8 +1,9 @@
 ﻿namespace Bitrix24ApiClient.src.Models
 {
-    public static class EntityTypePrefix
+    public static class EntryPointPrefix
     {
-        public const string Statuse = "crm.status";
+        public const string Batch = "batch";
+        public const string Status = "crm.status";
         public const string PaySystem = "crm.paysystem";
         public const string Invoice = "crm.invoice";
         public const string Product = "crm.product";

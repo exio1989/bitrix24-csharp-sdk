@@ -2,8 +2,6 @@
 {
     public static class ContactFields
     {
-        public const string All = "*";
-        public const string Id = "ID";
         public const string Name = "NAME";
         public const string Email = "EMAIL";
         public const string Phone = "PHONE";

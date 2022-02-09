@@ -13,7 +13,7 @@ namespace Bitrix24ApiClient.src
     public class Users
     {
         private IBitrix24Client client;
-        private string entityTypePrefix = EntityTypePrefix.User;
+        private string entityTypePrefix = EntryPointPrefix.User;
 
         public Users(IBitrix24Client client)
         {

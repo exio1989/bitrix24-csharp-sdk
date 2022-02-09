@@ -1,14 +1,12 @@
-﻿using Bitrix24ApiClient.src.Models.Crm.Core;
+﻿using Bitrix24RestApiClient.Core.Models;
 using Bitrix24RestApiClient.Models.Core.Attributes;
 using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bitrix24ApiClient.src.Models
 {
-    public class Product
+    public class Product: AbstractEntity
     {
         /// <summary>
         /// Активен
@@ -87,14 +85,6 @@ namespace Bitrix24ApiClient.src.Models
         /// </summary>
         [JsonProperty(ProductFields.DetailPicture)]
         public string DetailPicture { get; set; }
-
-        /// <summary>
-        /// Идентификатор товара    			
-        /// Тип: integer 
-        /// Только для чтения
-        /// </summary>
-        [JsonProperty(ProductFields.Id)]
-        public int? Id { get; set; }
 
         /// <summary>
         /// Единица измерения 			

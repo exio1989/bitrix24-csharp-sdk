@@ -1,18 +1,12 @@
-﻿using Bitrix24RestApiClient.Models.Core.Attributes;
+﻿using Bitrix24RestApiClient.Core.Models;
+using Bitrix24RestApiClient.Models.Core.Attributes;
 using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
 
 namespace Bitrix24ApiClient.src.Models
 {
-    public class PaySystem
-    {
-		/// <summary>
-		/// ID			
-		/// Тип: integer
-		/// </summary>
-		[JsonProperty(PaySystemFields.Id)]
-        public int? Id { get; set; }
-
+    public class PaySystem: AbstractEntity
+	{
 		/// <summary>
 		/// Название			
 		/// Тип: string

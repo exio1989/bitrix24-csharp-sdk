@@ -1,14 +1,14 @@
 ﻿using Bitrix24ApiClient.src.Models.Crm.Core;
+using Bitrix24RestApiClient.Core.Models;
 using Bitrix24RestApiClient.Models.Core.Attributes;
 using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bitrix24ApiClient.src.Models
 {
-    public class Contact
+    public class Contact: AbstractEntity
     {
         /// <summary>
         /// Адрес контакта 		
@@ -237,14 +237,6 @@ namespace Bitrix24ApiClient.src.Models
         /// </summary>
         [JsonProperty(ContactFields.Honorific)]
         public string Honorific { get; set; }
-
-        /// <summary>
-        /// Идентификатор контакта 		
-        /// Тип: integer 
-        /// Только для чтения
-        /// </summary>
-        [JsonProperty(ContactFields.Id)]
-        public int? Id { get; set; }
 
         /// <summary>
         ///  Мессенджеры 		

@@ -2,8 +2,6 @@
 {
     public static class LeadFields
     {
-        public const string All = "*";
-        public const string Id = "ID";
         public const string UtmTerm = "UTM_TERM";
         public const string UtmSource = "UTM_SOURCE";
         public const string UtmMedium = "UTM_MEDIUM";

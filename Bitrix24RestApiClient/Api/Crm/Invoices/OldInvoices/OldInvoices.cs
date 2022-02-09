@@ -5,10 +5,10 @@ using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 
 namespace Bitrix24ApiClient.src
 {
-    public class OldInvoices : AbstractEntity<Invoice>
+    public class OldInvoices : AbstractEntities<Invoice>
     {
         public OldInvoices(IBitrix24Client client)
-            :base(client, EntityTypePrefix.Invoice)
+            :base(client, EntryPointPrefix.Invoice)
         {
         }
 

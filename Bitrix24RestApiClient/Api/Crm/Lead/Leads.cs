@@ -4,10 +4,10 @@ using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 
 namespace Bitrix24ApiClient.src
 {
-    public class Leads: AbstractEntity<Lead>
+    public class Leads: AbstractEntities<Lead>
     {
         public Leads(IBitrix24Client client)
-            :base(client, EntityTypePrefix.Lead)
+            :base(client, EntryPointPrefix.Lead)
         {
         }
     }

@@ -4,10 +4,10 @@ using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 
 namespace Bitrix24ApiClient.src
 {
-    public class Statuses: AbstractEntity<Status>
+    public class Statuses: AbstractEntities<Status>
     {
         public Statuses(IBitrix24Client client)
-            :base(client, EntityTypePrefix.Lead)
+            :base(client, EntryPointPrefix.Lead)
         {
         }
     }

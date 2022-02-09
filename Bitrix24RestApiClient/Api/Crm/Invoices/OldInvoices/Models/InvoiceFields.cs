@@ -2,8 +2,6 @@
 {
     public static class InvoiceFields
     {
-        public const string All = "*";
-        public const string Id = "ID";
         public const string AccountNumber = "ACCOUNT_NUMBER";
         public const string Comments = "COMMENTS";
         public const string CreatedBy = "CREATED_BY";
