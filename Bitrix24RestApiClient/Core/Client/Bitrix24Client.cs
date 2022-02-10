@@ -50,7 +50,12 @@ namespace Bitrix24ApiClient.src
             }
             finally
             {
-                logger.LogInformation($"Bitrix24 API request\r\n\tMethod: {GetMethod(entityTypePrefix, entityMethod)}\r\n\tArgs: {JsonConvert.SerializeObject(args)}\r\n\tBody: {responseBodyStr}\r\n");
+                int partLength = 300;
+                string bodyStr = responseBodyStr.Length <= partLength*2
+                    ? responseBodyStr
+                    : $"{responseBodyStr.Substring(0, partLength)} ... {responseBodyStr.Substring(responseBodyStr.Length - partLength, partLength)}";
+
+                logger.LogInformation($"Bitrix24 API request\r\n\tMethod: {GetMethod(entityTypePrefix, entityMethod)}\r\n\tArgs: {JsonConvert.SerializeObject(args)}\r\n\tBody: {bodyStr}\r\n");
             }
         }
 

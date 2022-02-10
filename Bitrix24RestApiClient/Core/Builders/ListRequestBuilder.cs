@@ -40,8 +40,14 @@ namespace Bitrix24ApiClient.src.Builders
             select = fieldsExpression.Select(x => x.JsonPropertyName()).ToList();
             return this;
         }
+        public ListRequestBuilder<TEntity> ClearSelect()
+        {
+            selectAll = false;
+            select.Clear();
+            return this;
+        }
 
-        public IListRequestBuilder<TEntity> ClearOrderBy()
+        public ListRequestBuilder<TEntity> ClearOrderBy()
         {
             order.Clear();
             return this;

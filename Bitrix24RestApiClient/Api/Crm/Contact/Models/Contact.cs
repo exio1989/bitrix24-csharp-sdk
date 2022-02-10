@@ -339,13 +339,12 @@ namespace Bitrix24ApiClient.src.Models
         [JsonProperty(CompanyFields.Phone)]
         public List<CrmMultiFieldPhone> Phones { get; set; }
 
-        //TODO file
         /// <summary>
         /// Фото контакта 		
         /// Тип: file
         /// </summary>
         [JsonProperty(ContactFields.Photo)]
-        public string Photo { get; set; }
+        public CrmFile Photo { get; set; }
 
         /// <summary>
         /// Должность   		

@@ -37,6 +37,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
             ListRequestBuilder<TCustomEntity> fetchMinIdBuilder = builder.Copy();
             fetchMinIdBuilder
                 .ClearOrderBy()
+                .ClearSelect()
                 .AddSelect(x => x.Id)
                 .AddOrderBy(x => x.Id);
 
@@ -67,13 +68,14 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
                     yield return item;
             }
         }
+
         private async IAsyncEnumerable<TCustomEntity> BatchGetItems<TCustomEntity>(List<TCustomEntity> items) where TCustomEntity : AbstractEntity
         {
-            CrmBatchRequestArgs getItemsBatch = new CrmBatchRequestArgs()
+            CrmBatchRequestArgs getItemsBatch = new CrmBatchRequestArgs() 
             {
                 Halt = 0,
                 Commands = items
-                    .Select(x => new { Id = x.Id, Cmd = $"{EntryPointPrefix.Deal}.{EntityMethod.Get.Value}?ID={x.Id}" })
+                    .Select(x => new { Id = x.Id, Cmd = $"{entityTypePrefix}.{EntityMethod.Get.Value}?ID={x.Id}" })
                     .ToDictionary(x => x.Id.Value.ToString(), x => x.Cmd)
             };
 
