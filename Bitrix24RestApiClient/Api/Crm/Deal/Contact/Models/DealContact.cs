@@ -1,11 +1,7 @@
-﻿using Bitrix24RestApiClient.Models.Core.Attributes;
+﻿#nullable enable
+using Bitrix24RestApiClient.Models.Core.Attributes;
 using Bitrix24RestApiClient.Models.Core.Enums;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bitrix24RestApiClient.Api.Crm.Deal.Contact.Models
 {

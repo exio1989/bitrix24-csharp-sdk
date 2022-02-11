@@ -4,6 +4,7 @@
     {
         public const string Batch = "batch";
         public const string Status = "crm.status";
+        public const string SmartProcess = "crm.item";
         public const string PaySystem = "crm.paysystem";
         public const string Invoice = "crm.invoice";
         public const string Product = "crm.product";

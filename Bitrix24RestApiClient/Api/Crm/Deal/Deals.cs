@@ -4,6 +4,9 @@ using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 
 namespace Bitrix24ApiClient.src
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Deals: AbstractEntities<Deal>
     {
         public Deals(IBitrix24Client client)

@@ -15,7 +15,10 @@ namespace Bitrix24ApiClient.src
             Invoices = new Invoices(client);
             PaySystems = new PaySystems(client);
             Statuses = new Statuses(client);
+            SmartProcesses = new SmartProcesses(client);
         }
+         
+        public SmartProcesses SmartProcesses { get; private set; }
         public Companies Companies { get; private set; }
         public Leads Leads { get; private set; }
         public Deals Deals { get; private set; }
