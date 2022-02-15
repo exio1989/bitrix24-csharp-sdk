@@ -78,13 +78,12 @@ namespace Bitrix24ApiClient.src.Models
         [JsonProperty(ProductFields.DescriptionType)]
         public string DescriptionType { get; set; }
 
-        //TODO product_file
         /// <summary>
         /// Детальная картинка  			
         /// Тип: product_file
         /// </summary>
         [JsonProperty(ProductFields.DetailPicture)]
-        public string DetailPicture { get; set; }
+        public CrmFile DetailPicture { get; set; }
 
         /// <summary>
         /// Единица измерения 			
@@ -108,13 +107,12 @@ namespace Bitrix24ApiClient.src.Models
         [JsonProperty(ProductFields.Name)]
         public string Name { get; set; }
 
-        //TODO product_file
         /// <summary>
         /// Картинка для анонса 			
         /// Тип: product_file
         /// </summary>
         [JsonProperty(ProductFields.PreviewPicture)]
-        public string PreviewPicture { get; set; }
+        public CrmFile PreviewPicture { get; set; }
 
         /// <summary>
         /// Цена 			

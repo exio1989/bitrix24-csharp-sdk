@@ -100,7 +100,7 @@ namespace Bitrix24RestApiTools
                 //(description: "Локализаций для валют", className: "CurrencyLocalizations", entryPoint: "crm.currency.localizations.fields", dirs: new List<string> { "Crm", "Currency", "Localizations" }, responseClass: "FieldsResponse" ),
                 //(description: "Единицы измерения", className: "Measure", entryPoint: "crm.measure.fields", dirs: new List<string> { "Crm", "Measure" }, responseClass: "FieldsResponse" ),
                 //(description: "Разделы товаров", className: "ProductSection", entryPoint: "crm.productsection.fields", dirs: new List<string> { "Crm", "ProductSection" }, responseClass: "FieldsResponse" ),
-                (description: "Товарные позиции (старые)", className: "ProductRowOld", entryPoint: "crm.productrow.fields", dirs: new List<string> { "Crm", "ProductRowOld" }, responseClass: "FieldsResponse" ),
+                //(description: "Товарные позиции (старые)", className: "ProductRowOld", entryPoint: "crm.productrow.fields", dirs: new List<string> { "Crm", "ProductRowOld" }, responseClass: "FieldsResponse" ),
                 //(description: "Товарные позиции", className: "ProductRow", entryPoint: "crm.item.productrow.fields", dirs: new List<string> { "Crm", "ProductRow" }, responseClass: "ExtFieldsResponse" ),
                 //(description: "Товары", className: "Product", entryPoint: "crm.product.fields", dirs: new List<string> { "Crm", "Product" }, responseClass: "FieldsResponse" ),
                 //(description: "Свойства товар", className: "ProductProperty", entryPoint: "crm.product.property.fields", dirs: new List<string> { "Crm", "Product", "Property" }, responseClass: "FieldsResponse" ),

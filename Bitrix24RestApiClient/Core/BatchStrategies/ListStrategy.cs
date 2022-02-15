@@ -49,7 +49,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
 
             for (int i = 0; i < firstListResponse.Total; i += 50)
             {
-                var nextListResponse = await FetchNextList(fetchMinIdBuilder, nextMinId);
+                var nextListResponse = await FetchNextListItems(fetchMinIdBuilder, nextMinId);
 
                 if (nextListResponse.Result.Items.Count == 0)
                     yield break;
@@ -64,7 +64,61 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
             }
         }
 
-        private async Task<ListItemsResponse<TCustomEntity>> FetchNextList<TCustomEntity>(ListRequestBuilder<TCustomEntity> fetchMinIdBuilder, int nextMinId) where TCustomEntity : AbstractEntity
+        /// <summary>
+        /// Получить список сущностей простым перебором элементов по списку с структурой ответа ListResponse
+        /// Ограничения: стратегия не поддерживает сортировку элементов. Элементы вернутся кучей.
+        /// Плюсы: используется только list.
+        /// </summary>
+        /// <param name="builderFunc"></param>
+        /// <returns></returns>
+        public async IAsyncEnumerable<TCustomEntity> ListAll<TCustomEntity>(Action<IListAllRequestBuilder<TCustomEntity>> builderFunc, int? limit = null) where TCustomEntity : AbstractEntity
+        {
+            var builder = new ListRequestBuilder<TCustomEntity>();
+            builderFunc(builder);
+
+            ListRequestBuilder<TCustomEntity> fetchMinIdBuilder = builder.Copy();
+            fetchMinIdBuilder
+                .ClearOrderBy()
+                .ClearSelect()
+                .AddOrderBy(x => x.Id);
+
+            ListResponse<TCustomEntity> firstListResponse = await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, fetchMinIdBuilder.BuildArgs());
+            if (firstListResponse.Total == 0)
+                yield break;
+
+            int nextMinId = firstListResponse.Result.Max(x => x.Id).Value;
+
+            foreach (TCustomEntity item in firstListResponse.Result)
+                yield return item;
+
+            for (int i = 0; i < firstListResponse.Total; i += 50)
+            {
+                var nextListResponse = await FetchNextList(fetchMinIdBuilder, nextMinId);
+
+                if (nextListResponse.Result.Count == 0)
+                    yield break;
+
+                nextMinId = nextListResponse.Result.Max(x => x.Id).Value;
+
+                foreach (TCustomEntity item in nextListResponse.Result)
+                    yield return item;
+
+                if (limit != null && i > limit.Value)
+                    break;
+            }
+        }
+
+        private async Task<ListResponse<TCustomEntity>> FetchNextList<TCustomEntity>(ListRequestBuilder<TCustomEntity> fetchMinIdBuilder, int nextMinId) where TCustomEntity : AbstractEntity
+        {
+            ListRequestBuilder<TCustomEntity> fetchNextBuilder = fetchMinIdBuilder.Copy();
+            fetchNextBuilder
+                .AddFilter(x => x.Id, nextMinId, FilterOperator.GreateThan);
+
+            ListResponse<TCustomEntity> listResponse = await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, fetchNextBuilder.BuildArgs());
+            return listResponse;
+        }
+
+        private async Task<ListItemsResponse<TCustomEntity>> FetchNextListItems<TCustomEntity>(ListRequestBuilder<TCustomEntity> fetchMinIdBuilder, int nextMinId) where TCustomEntity : AbstractEntity
         {
             ListRequestBuilder<TCustomEntity> fetchNextBuilder = fetchMinIdBuilder.Copy();
             fetchNextBuilder

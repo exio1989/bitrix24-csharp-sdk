@@ -23,7 +23,7 @@ namespace Bitrix24RestApiClientNUnitTests.Tests.IntegrationTests
         }
 
         [Test]
-        public async Task ListStrategyTest()
+        public async Task ListItemsStrategyTest()
         {
             IAsyncEnumerable<DealStageHistory> items = bitrix24.Crm.StageHistories.Deals.BatchOperations.ListStrategy.ListItemsAll<DealStageHistory>(x => x
                 .SetEntityTypeId(EntityTypeIdEnum.Deal)
@@ -32,6 +32,17 @@ namespace Bitrix24RestApiClientNUnitTests.Tests.IntegrationTests
             List<DealStageHistory> dealStageHistory = new List<DealStageHistory>();
             await foreach (var item in items)
                 dealStageHistory.Add(item);
+        }
+
+        [Test]
+        public async Task ListStrategyTest()
+        {
+            IAsyncEnumerable<Product> items = bitrix24.Crm.Products.BatchOperations.ListStrategy.ListAll<Product>(x => x
+                .AddFilter(y => y.Id, 0, FilterOperator.GreateThan));
+
+            List<Product> products = new List<Product>();
+            await foreach (var item in items)
+                products.Add(item);
         }
     }
 }
