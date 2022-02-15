@@ -11,7 +11,7 @@ namespace Bitrix24ApiClient.src.Models
         public CrmSearchRequestArgs(List<Filter> filters)
         {
             foreach (var filter in filters)
-                Filter.Add(filter.Name, filter.Value);
+                Filter.Add(filter.NameWithOperatorPrefix, filter.Value);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Bitrix24ApiClient.src
     public class Statuses: AbstractEntities<Status>
     {
         public Statuses(IBitrix24Client client)
-            :base(client, EntryPointPrefix.Lead)
+            :base(client, EntryPointPrefix.Status)
         {
         }
     }

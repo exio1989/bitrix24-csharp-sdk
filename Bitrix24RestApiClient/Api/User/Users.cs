@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Bitrix24ApiClient.src
+namespace Bitrix24ApiClient.Api.User
 {
     //TODO Не проверено 
     public class Users

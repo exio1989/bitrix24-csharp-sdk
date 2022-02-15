@@ -9,8 +9,9 @@ using System.Linq.Expressions;
 namespace Bitrix24ApiClient.src.Builders
 {
 
-    public class ListRequestBuilder<TEntity> : IListRequestBuilder<TEntity>, IListAllRequestBuilder<TEntity> where TEntity : AbstractEntity
+    public class ListRequestBuilder<TEntity> : IListRequestBuilder<TEntity>, IStageHistoriesListRequestBuilder<TEntity>, IListAllRequestBuilder<TEntity> where TEntity : AbstractEntity
     {
+        private int? entityTypeId;
         private int? start;
         private bool selectAll;
         private List<string> select = new List<string>();
@@ -20,13 +21,20 @@ namespace Bitrix24ApiClient.src.Builders
         public ListRequestBuilder(){
         }
 
-        public ListRequestBuilder(int? start, bool selectAll, List<string> select, List<Filter> filter, List<Order> order)
+        public ListRequestBuilder(int? entityTypeId, int? start, bool selectAll, List<string> select, List<Filter> filter, List<Order> order)
         {
+            this.entityTypeId = entityTypeId;
             this.start = start;
             this.selectAll = selectAll;
             this.select = select;
             this.filter = filter;
             this.order = order;
+        }
+
+        public IListRequestBuilder<TEntity> SetEntityTypeId(EntityTypeIdEnum entityTypeId)
+        {
+            this.entityTypeId = entityTypeId.EntityTypeId;
+            return this;
         }
 
         public IListRequestBuilder<TEntity> SetStart(int start)
@@ -109,7 +117,7 @@ namespace Bitrix24ApiClient.src.Builders
 
         public ListRequestBuilder<TEntity> Copy()
         {
-            return new ListRequestBuilder<TEntity>(start, selectAll, select.ToList(), filter.ToList(), order.ToList());
+            return new ListRequestBuilder<TEntity>(entityTypeId, start, selectAll, select.ToList(), filter.ToList(), order.ToList());
         }
 
         public CrmEntityListRequestArgs BuildArgs()
@@ -117,17 +125,27 @@ namespace Bitrix24ApiClient.src.Builders
             if (selectAll)
                 select.Add("*");
 
-            return new CrmEntityListRequestArgs(new ListRequestArgs
-            {
-                Select = select,
-                Order = order,
-                Filter = filter,
-                Start = start
-            });
+            var args = new CrmEntityListRequestArgs();
+
+            args.EntityTypeId = entityTypeId;
+            args.Select = select;
+            args.Start = start;
+
+            foreach (var filterItem in filter)
+                args.Filter.Add(filterItem.NameWithOperatorPrefix, filterItem.Value);
+
+            foreach (var orderItem in order)
+                args.Order.Add(orderItem.Name, orderItem.direction == OrderDirection.ASC ? "ASC" : "DESC");
+
+            return args;
         }
 
         private void AddFilterInternal(Expression<Func<TEntity, object>> nameExpr, object value, FilterOperator op)
         {
+            var matchedFilter = filter.FirstOrDefault(x => x.Name == nameExpr.JsonPropertyName() && x.Operator == op);
+            if (matchedFilter != null)
+                filter.Remove(matchedFilter);
+
             filter.Add(new Filter
             {
                 Name = nameExpr.JsonPropertyName(),

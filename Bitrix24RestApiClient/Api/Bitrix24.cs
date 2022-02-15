@@ -1,4 +1,5 @@
-﻿using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
+﻿using Bitrix24ApiClient.Api.User;
+using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 
 namespace Bitrix24ApiClient.src
 {

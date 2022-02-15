@@ -7,8 +7,10 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
         public BatchOperations(IBitrix24Client client, string entityTypePrefix)
         {
             ListGetStrategy = new ListGetStrategy(client, entityTypePrefix);
+            ListStrategy = new ListStrategy(client, entityTypePrefix);
         }
 
         public ListGetStrategy ListGetStrategy { get; private set; }
+        public ListStrategy ListStrategy { get; private set; }
     }
 }

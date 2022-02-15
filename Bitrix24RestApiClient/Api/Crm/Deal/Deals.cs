@@ -14,8 +14,10 @@ namespace Bitrix24ApiClient.src
         {
             UserFields = new DealsUserFields(client);
             Contacts = new DealContacts(client);
+            ProductRows = new DealProductRows(client);
         }
         public DealContacts Contacts { get; private set; }
         public DealsUserFields UserFields { get; private set; }
+        public DealProductRows ProductRows { get; private set; }
     }
 }

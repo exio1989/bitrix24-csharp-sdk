@@ -11,7 +11,7 @@ namespace Bitrix24RestApiClientNUnitTests.Tests.IntegrationTests
     public class BatchOperationsTests : AbstractTest
     {
         [Test]
-        public async Task ListAllTest()
+        public async Task ListGetStrategyTest()
         {
             IAsyncEnumerable<Deal> items = bitrix24.Crm.Deals.BatchOperations.ListGetStrategy.ListAll<Deal>(x=>x
                 .AddFilter(y=>y.DateModify, "2022-02-01", FilterOperator.GreateThanOrEqual)
@@ -20,6 +20,18 @@ namespace Bitrix24RestApiClientNUnitTests.Tests.IntegrationTests
             List<Deal> deals = new List<Deal>();
             await foreach (var item in items)
                 deals.Add(item);
+        }
+
+        [Test]
+        public async Task ListStrategyTest()
+        {
+            IAsyncEnumerable<DealStageHistory> items = bitrix24.Crm.StageHistories.Deals.BatchOperations.ListStrategy.ListItemsAll<DealStageHistory>(x => x
+                .SetEntityTypeId(EntityTypeIdEnum.Deal)
+                .AddFilter(y => y.Id, 132700, FilterOperator.GreateThan));
+
+            List<DealStageHistory> dealStageHistory = new List<DealStageHistory>();
+            await foreach (var item in items)
+                dealStageHistory.Add(item);
         }
     }
 }
