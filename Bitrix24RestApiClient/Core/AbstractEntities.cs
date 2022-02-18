@@ -14,9 +14,9 @@ namespace Bitrix24RestApiClient.src.Core
     public class AbstractEntities<TEntity> where TEntity : AbstractEntity
     {
         private IBitrix24Client client;
-        private string entityTypePrefix;
+        private EntryPointPrefix entityTypePrefix;
 
-        public AbstractEntities(IBitrix24Client client, string entityTypePrefix)
+        public AbstractEntities(IBitrix24Client client, EntryPointPrefix entityTypePrefix)
         {
             this.client = client;
             this.entityTypePrefix = entityTypePrefix;

@@ -10,7 +10,7 @@ namespace Bitrix24ApiClient.src
 {
     public class PaySystems
     {
-        private string entityTypePrefix = EntryPointPrefix.PaySystem;
+        private EntryPointPrefix entityTypePrefix = EntryPointPrefix.PaySystem;
         private IBitrix24Client client;
 
         public PaySystems(IBitrix24Client client)

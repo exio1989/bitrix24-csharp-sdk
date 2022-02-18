@@ -12,9 +12,9 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
     public class ListStrategy
     {
         private IBitrix24Client client;
-        private string entityTypePrefix;
+        private EntryPointPrefix entityTypePrefix;
 
-        public ListStrategy(IBitrix24Client client, string entityTypePrefix)
+        public ListStrategy(IBitrix24Client client, EntryPointPrefix entityTypePrefix)
         {
             this.client = client;
             this.entityTypePrefix = entityTypePrefix;

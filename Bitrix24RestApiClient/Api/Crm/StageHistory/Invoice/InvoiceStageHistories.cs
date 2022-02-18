@@ -9,7 +9,7 @@ namespace Bitrix24ApiClient.src
 {
     public class InvoiceStageHistories
     {
-        private string entityTypePrefix = "crm.stagehistory";
+        private EntryPointPrefix entityTypePrefix = EntryPointPrefix.StageHistory;
         private IBitrix24Client client;
 
         public InvoiceStageHistories(IBitrix24Client client)

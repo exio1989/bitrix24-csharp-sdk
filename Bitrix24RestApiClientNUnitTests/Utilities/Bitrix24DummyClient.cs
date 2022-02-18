@@ -9,7 +9,7 @@ namespace Bitrix24RestApiClientNUnitTests
     {
         public string LastRequestArgs { get; set; }
 
-        public Task<TResponse> SendPostRequest<TArgs, TResponse>(string entityTypePrefix, EntityMethod method, TArgs args) where TResponse : class
+        public Task<TResponse> SendPostRequest<TArgs, TResponse>(EntryPointPrefix entityTypePrefix, EntityMethod method, TArgs args) where TResponse : class
         {
             LastRequestArgs = JsonConvert.SerializeObject(args);
             return Task.FromResult<TResponse>(null);

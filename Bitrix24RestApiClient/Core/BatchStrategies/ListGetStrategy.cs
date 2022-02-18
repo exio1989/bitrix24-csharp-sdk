@@ -13,9 +13,9 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
     public class ListGetStrategy
     {
         private IBitrix24Client client;
-        private string entityTypePrefix;
+        private EntryPointPrefix entityTypePrefix;
 
-        public ListGetStrategy(IBitrix24Client client, string entityTypePrefix)
+        public ListGetStrategy(IBitrix24Client client, EntryPointPrefix entityTypePrefix)
         {
             this.client = client;
             this.entityTypePrefix = entityTypePrefix;
@@ -75,7 +75,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
             {
                 Halt = 0,
                 Commands = items
-                    .Select(x => new { Id = x.Id, Cmd = $"{entityTypePrefix}.{EntityMethod.Get.Value}?ID={x.Id}" })
+                    .Select(x => new { Id = x.Id, Cmd = $"{entityTypePrefix.Value}.{EntityMethod.Get.Value}?ID={x.Id}" })
                     .ToDictionary(x => x.Id.Value.ToString(), x => x.Cmd)
             };
 

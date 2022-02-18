@@ -1,21 +1,28 @@
 ﻿namespace Bitrix24ApiClient.src.Models
 {
-    public static class EntryPointPrefix
+    public class EntryPointPrefix
     {
-        public const string Batch = "batch";
-        public const string Status = "crm.status";
-        public const string SmartProcess = "crm.item";
-        public const string PaySystem = "crm.paysystem";
-        public const string Invoice = "crm.invoice";
-        public const string Product = "crm.product";
-        public const string Company = "crm.company";
-        public const string Deal = "crm.deal";
-        public const string DealContact = "crm.deal.contact";
-        public const string DealContactItems = "crm.deal.contact.items";
-        public const string Lead = "crm.lead";
-        public const string DealUserFields = "crm.deal.userfield";
-        public const string Contact = "crm.contact";
-        public const string TimelineComment = "crm.timeline.comment";
-        public const string User = "user";
+        public EntryPointPrefix() { }
+        public EntryPointPrefix(string value) {
+            Value = value;
+        }
+        public string Value { get; private set; }
+        public static EntryPointPrefix StageHistory = new EntryPointPrefix { Value = "crm.stagehistory" };        
+        public static EntryPointPrefix DealProductRows = new EntryPointPrefix { Value = "crm.deal.productrows" };        
+        public static EntryPointPrefix Batch = new EntryPointPrefix { Value = "batch" };
+        public static EntryPointPrefix Status = new EntryPointPrefix { Value = "crm.status" };
+        public static EntryPointPrefix SmartProcess = new EntryPointPrefix { Value = "crm.item" };
+        public static EntryPointPrefix PaySystem = new EntryPointPrefix { Value = "crm.paysystem" };
+        public static EntryPointPrefix Invoice = new EntryPointPrefix { Value = "crm.invoice" };
+        public static EntryPointPrefix Product = new EntryPointPrefix { Value = "crm.product" };
+        public static EntryPointPrefix Company = new EntryPointPrefix { Value = "crm.company" };
+        public static EntryPointPrefix Deal = new EntryPointPrefix { Value = "crm.deal" };
+        public static EntryPointPrefix DealContact = new EntryPointPrefix { Value = "crm.deal.contact" };
+        public static EntryPointPrefix DealContactItems = new EntryPointPrefix { Value = "crm.deal.contact.items" };
+        public static EntryPointPrefix Lead = new EntryPointPrefix { Value = "crm.lead" };
+        public static EntryPointPrefix DealUserFields = new EntryPointPrefix { Value = "crm.deal.userfield" };
+        public static EntryPointPrefix Contact = new EntryPointPrefix { Value = "crm.contact" };
+        public static EntryPointPrefix TimelineComment = new EntryPointPrefix { Value = "crm.timeline.comment" };
+        public static EntryPointPrefix User = new EntryPointPrefix { Value = "user" };
     }
 }

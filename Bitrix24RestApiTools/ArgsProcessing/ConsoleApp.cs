@@ -27,12 +27,12 @@ namespace Bitrix24RestApiTools
             Dictionary<string, FieldInfo> fields;
             if (args.ResponseClass == "FieldsResponse")
             {
-                FieldsResponse response = await client.SendPostRequest<object, FieldsResponse>(args.FieldsEntryPoint, EntityMethod.None, body);
+                FieldsResponse response = await client.SendPostRequest<object, FieldsResponse>(new EntryPointPrefix(args.FieldsEntryPoint), EntityMethod.None, body);
                 fields = response.Result;
             }
             else if(args.ResponseClass == "UserFieldsResponse")
             {
-                UserFieldsResponse response = await client.SendPostRequest<object, UserFieldsResponse>(args.FieldsEntryPoint, EntityMethod.None, body);
+                UserFieldsResponse response = await client.SendPostRequest<object, UserFieldsResponse>(new EntryPointPrefix(args.FieldsEntryPoint), EntityMethod.None, body);
                 fields = response.Result.Select(x=> new FieldInfo
                 {
                     Title = x.Value,
@@ -42,7 +42,7 @@ namespace Bitrix24RestApiTools
             }
             else
             {
-                ExtFieldsResponse response = await client.SendPostRequest<object, ExtFieldsResponse>(args.FieldsEntryPoint, EntityMethod.None, body);
+                ExtFieldsResponse response = await client.SendPostRequest<object, ExtFieldsResponse>(new EntryPointPrefix(args.FieldsEntryPoint), EntityMethod.None, body);
                 fields = response.Fields.Result;
             }
 

@@ -22,7 +22,7 @@ namespace Bitrix24ApiClient.src
             this.logger = logger;
         }
 
-        public async Task<TResponse> SendPostRequest<TArgs,TResponse>(string entityTypePrefix, EntityMethod entityMethod, TArgs args) where TResponse : class
+        public async Task<TResponse> SendPostRequest<TArgs,TResponse>(EntryPointPrefix entityTypePrefix, EntityMethod entityMethod, TArgs args) where TResponse : class
         {
             string responseBodyStr = null;
 
@@ -59,12 +59,12 @@ namespace Bitrix24ApiClient.src
             }
         }
 
-        private string GetMethod(string entityTypePrefix, EntityMethod method)
+        private string GetMethod(EntryPointPrefix entityTypePrefix, EntityMethod method)
         {
             if (method.Value == EntityMethod.None.Value)
-                return entityTypePrefix;
+                return entityTypePrefix.Value;
 
-            return $"{entityTypePrefix}.{method.Value}";
+            return $"{entityTypePrefix.Value}.{method.Value}";
         }
     }
 }
