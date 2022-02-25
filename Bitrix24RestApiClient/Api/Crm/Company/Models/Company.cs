@@ -205,13 +205,12 @@ namespace Bitrix24ApiClient.src.Models
         [JsonProperty(CompanyFields.HasPhone)]
         public string HasPhoneExt { get; set; }
 
-        //TODO CrmMultiField
         /// <summary>
         /// Мессенджеры		
         /// Тип: crm_multifield	Множественное	
         /// </summary>
         [JsonProperty(CompanyFields.Im)]
-        public CrmMultiField Im { get; set; }
+        public List<CrmMultiField> Im { get; set; }
 
         //TODO crm_status
         /// <summary>
@@ -457,14 +456,13 @@ namespace Bitrix24ApiClient.src.Models
         [JsonProperty(CompanyFields.UtmTerm)]
         public string UtmTerm { get; set; }
 
-        //TODO CrmMultiField
         /// <summary>
         /// URL ресурсов компании		
         /// Тип: crm_multifield	
         /// Множественное	
         /// </summary>
         [JsonProperty(CompanyFields.Web)]
-        public CrmMultiField Web { get; set; }
+        public List<CrmMultiField> Web { get; set; }
 
     }
 }

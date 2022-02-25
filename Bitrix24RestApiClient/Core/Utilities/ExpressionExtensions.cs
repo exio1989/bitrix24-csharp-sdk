@@ -60,6 +60,9 @@ namespace Bitrix24RestApiClient.src.Utilities
 
                     case CrmFieldSubTypeEnum.Int_EntityTypeIdEnum:
                         return EntityTypeIdEnum.Create((int)value);
+
+                    case CrmFieldSubTypeEnum.Int:
+                        return (int?)value;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

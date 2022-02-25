@@ -9,10 +9,22 @@ namespace Bitrix24ApiClient.src.Builders
 
     public class AddRequestBuilder<TEntity>: IAddRequestBuilder<TEntity>
     {
+        private int? entityTypeId;
         private Dictionary<string, object> fields = new Dictionary<string, object>();
         private PhoneListBuilder phonesBuilder = new PhoneListBuilder();
         private EmailListBuilder emailsBuilder = new EmailListBuilder();
 
+        public IAddRequestBuilder<TEntity> SetEntityTypeId(EntityTypeIdEnum entityTypeId)
+        {
+            this.entityTypeId = entityTypeId.EntityTypeId;
+            return this;
+        }
+
+        public IAddRequestBuilder<TEntity> SetEntityTypeId(int? entityTypeId)
+        {
+            this.entityTypeId = entityTypeId;
+            return this;
+        }
         public IAddRequestBuilder<TEntity> SetField(Expression<Func<TEntity, object>> fieldNameExpr, object value)
         {
             fields[fieldNameExpr.JsonPropertyName()] = fieldNameExpr.MapValue(value);
@@ -43,6 +55,7 @@ namespace Bitrix24ApiClient.src.Builders
 
             return new CrmEntityAddArgs
             {
+                EntityTypeId = entityTypeId,
                 Fields = fields
             };
         }

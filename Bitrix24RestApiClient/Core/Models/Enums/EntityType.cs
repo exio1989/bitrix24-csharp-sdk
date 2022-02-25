@@ -11,7 +11,7 @@
         public static EntryPointPrefix DealProductRows = new EntryPointPrefix { Value = "crm.deal.productrows" };        
         public static EntryPointPrefix Batch = new EntryPointPrefix { Value = "batch" };
         public static EntryPointPrefix Status = new EntryPointPrefix { Value = "crm.status" };
-        public static EntryPointPrefix SmartProcess = new EntryPointPrefix { Value = "crm.item" };
+        public static EntryPointPrefix SmartProcessType = new EntryPointPrefix { Value = "crm.type" };
         public static EntryPointPrefix PaySystem = new EntryPointPrefix { Value = "crm.paysystem" };
         public static EntryPointPrefix Invoice = new EntryPointPrefix { Value = "crm.invoice" };
         public static EntryPointPrefix Product = new EntryPointPrefix { Value = "crm.product" };
@@ -24,5 +24,6 @@
         public static EntryPointPrefix Contact = new EntryPointPrefix { Value = "crm.contact" };
         public static EntryPointPrefix TimelineComment = new EntryPointPrefix { Value = "crm.timeline.comment" };
         public static EntryPointPrefix User = new EntryPointPrefix { Value = "user" };
+        public static EntryPointPrefix Item = new EntryPointPrefix { Value = "crm.item" };
     }
 }

@@ -28,6 +28,7 @@
         IndexArray,
         Variable,
         Object,
+        Null,
         RecurringParams,
         AttachedDiskfile,
         CrmEnumFields,

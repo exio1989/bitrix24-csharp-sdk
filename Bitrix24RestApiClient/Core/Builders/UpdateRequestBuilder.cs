@@ -9,6 +9,7 @@ namespace Bitrix24ApiClient.src.Builders
 
     public class UpdateRequestBuilder<TEntity>: IUpdateRequestBuilder<TEntity>
     {
+        private int? entityTypeId;
         private int id;
         private Dictionary<string, object> fields = new Dictionary<string, object>();
         private PhoneListBuilder phonesBuilder = new PhoneListBuilder();
@@ -17,6 +18,18 @@ namespace Bitrix24ApiClient.src.Builders
         public IUpdateRequestBuilder<TEntity> SetId(int id)
         {
             this.id = id;
+            return this;
+        }
+
+        public IUpdateRequestBuilder<TEntity> SetEntityTypeId(EntityTypeIdEnum entityTypeId)
+        {
+            this.entityTypeId = entityTypeId.EntityTypeId;
+            return this;
+        }
+
+        public IUpdateRequestBuilder<TEntity> SetEntityTypeId(int? entityTypeId)
+        {
+            this.entityTypeId = entityTypeId;
             return this;
         }
 
@@ -50,6 +63,7 @@ namespace Bitrix24ApiClient.src.Builders
 
             return new CrmEntityUpdateArgs
             {
+                EntityTypeId = entityTypeId,
                 Id = id,
                 Fields = fields
             };

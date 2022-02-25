@@ -1,5 +1,6 @@
 ﻿using Bitrix24ApiClient.src.Models;
 using Bitrix24RestApiClientNUnitTests.Utilities;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -44,5 +45,117 @@ namespace Bitrix24RestApiClientNUnitTests.Tests.IntegrationTests
             await foreach (var item in items)
                 products.Add(item);
         }
+
+        [Test]
+        public async Task T1()
+        {
+            var itemsIterator = bitrix24.Crm.Deals.BatchOperations.ListGetStrategy.ListAll<PersisDeal>(x => x
+                               .AddFilter(y => y.DateModify, "2022-01-23T21:17:37+05:00", FilterOperator.GreateThanOrEqual)
+                               .AddFilter(y => y.DateModify, "2022-01-23T17:17:37+00:00", FilterOperator.LessThanOrEqual));
+
+            List<PersisDeal> items = new List<PersisDeal>();
+
+            await foreach (PersisDeal item in itemsIterator)
+            {
+                items.Add(item);
+            }
+        }
+    }
+
+    public static class PersisDealFields
+    {
+        public const string ПочемуНеПокупают = "UF_CRM_1642491608176";
+        public const string ПричинаОтказа = "UF_CRM_1642491506867";
+        public const string ПричинаОтказаДетальноеОписание = "UF_CRM_1642491562718";
+        public const string ТочкаМаршрута = "UF_CRM_1642603594744";
+        public const string Описание = "UF_CRM_1642603610353";
+        public const string Договоренность = "UF_CRM_1642603625435";
+        public const string Date = "UF_CRM_1642603644877";
+        public const string ДатаВыполнения = "UF_CRM_1642603661551";
+        public const string ОтложитьДо = "UF_CRM_1642603675663";
+        public const string Срок = "UF_CRM_1642603688942";
+        public const string CrmRef = "UF_CRM_1642603846875";
+        public const string ПроцедураЗаключенияДоговора = "UF_CRM_1642664899678";
+        public const string СпособОбменаДоговора = "UF_CRM_1642664924274";
+        public const string ТипЗаявки = "UF_CRM_1643785582238";
+        public const string Источник = "UF_CRM_1643785609208";
+        public const string ОписаниеИсточника = "UF_CRM_1643785639159";
+        public const string Ценность = "UF_CRM_1643898651534";
+    }
+
+    public class PersisDeal : Deal
+    {
+
+        [JsonProperty(PersisDealFields.ПочемуНеПокупают)]
+        public string ПочемуНеПокупают { get; set; }
+
+        [JsonProperty(PersisDealFields.ПричинаОтказа)]
+        public string ПричинаОтказа { get; set; }
+
+        [JsonProperty(PersisDealFields.ПричинаОтказаДетальноеОписание)]
+        public string ПричинаОтказаДетальноеОписание { get; set; }
+
+        [JsonProperty(PersisDealFields.ТочкаМаршрута)]
+        public string ТочкаМаршрута { get; set; }
+
+        [JsonProperty(PersisDealFields.Описание)]
+        public string Описание { get; set; }
+
+        [JsonProperty(PersisDealFields.Договоренность)]
+        public string Договоренность { get; set; }
+
+        [JsonProperty(PersisDealFields.Date)]
+        public string Date { get; set; }
+
+        [JsonProperty(PersisDealFields.ДатаВыполнения)]
+        public string ДатаВыполнения { get; set; }
+
+        [JsonProperty(PersisDealFields.ОтложитьДо)]
+        public string ОтложитьДо { get; set; }
+
+        [JsonProperty(PersisDealFields.Срок)]
+        public string Срок { get; set; }
+
+        [JsonProperty(PersisDealFields.CrmRef)]
+        public string CrmRef { get; set; }
+
+        [JsonProperty(PersisDealFields.ПроцедураЗаключенияДоговора)]
+        public string ПроцедураЗаключенияДоговора { get; set; }
+
+        [JsonProperty(PersisDealFields.СпособОбменаДоговора)]
+        public string СпособОбменаДоговора { get; set; }
+
+        [JsonProperty(PersisDealFields.ТипЗаявки)]
+        public string ТипЗаявки { get; set; }
+
+        [JsonProperty(PersisDealFields.Источник)]
+        public string Источник { get; set; }
+
+        [JsonProperty(PersisDealFields.ОписаниеИсточника)]
+        public string ОписаниеИсточника { get; set; }
+
+        [JsonIgnore]
+        public int? Ценность
+        {
+            get
+            {
+                string str = ЦенностьExt;
+                if (str == "false")
+                    return null;
+
+                return JsonConvert.DeserializeObject<int?>(str);
+            }
+
+            set
+            {
+                ЦенностьExt = JsonConvert.SerializeObject(value);
+            }
+        }
+
+        [JsonProperty(PersisDealFields.Ценность)]
+        public string ЦенностьExt { get; set; }
+
+
+        public List<DealProductRow> ProductRows { get; set; }
     }
 }

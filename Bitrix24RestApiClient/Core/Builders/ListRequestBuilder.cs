@@ -37,6 +37,12 @@ namespace Bitrix24ApiClient.src.Builders
             return this;
         }
 
+        public IListRequestBuilder<TEntity> SetEntityTypeId(int? entityTypeId)
+        {
+            this.entityTypeId = entityTypeId;
+            return this;
+        }
+
         public IListRequestBuilder<TEntity> SetStart(int start)
         {
             this.start = start;

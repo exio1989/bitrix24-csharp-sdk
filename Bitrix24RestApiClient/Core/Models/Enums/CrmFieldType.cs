@@ -28,6 +28,7 @@
         public const string IndexArray = "iarray";
         public const string Variable = "variable";
         public const string Object = "object";
+        public const string Null = "null";
         public const string RecurringParams = "recurring_params";
         public const string AttachedDiskfile = "attached_diskfile";
         public const string CrmEnumFields = "crm_enum_fields";

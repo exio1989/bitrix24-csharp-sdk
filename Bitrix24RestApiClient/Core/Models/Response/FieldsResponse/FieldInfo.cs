@@ -37,6 +37,8 @@ namespace Bitrix24RestApiClient.Models.Core.Response.FieldsResponse
 						return "object?";
 					case CrmFieldType.Object:
 						return "object?";
+					case CrmFieldType.Null:
+						return "object?";
 					case CrmFieldType.CrmEnumFields:
 						return "int?";
 					case CrmFieldType.CrmEnumOwnerType:
@@ -147,6 +149,8 @@ namespace Bitrix24RestApiClient.Models.Core.Response.FieldsResponse
 						return CrmFieldTypeEnum.CrmActivityBinding;
 					case CrmFieldType.Object:
 						return CrmFieldTypeEnum.Object;
+					case CrmFieldType.Null:
+						return CrmFieldTypeEnum.Null;
 					case CrmFieldType.CrmEnumFields:
 						return CrmFieldTypeEnum.CrmEnumFields;
 					case CrmFieldType.CrmEnumOwnerType:
@@ -253,6 +257,9 @@ namespace Bitrix24RestApiClient.Models.Core.Response.FieldsResponse
 						break;
 					case CrmFieldTypeEnum.Object:
 						TypeExt = CrmFieldType.Object;
+						break;
+					case CrmFieldTypeEnum.Null:
+						TypeExt = CrmFieldType.Null;
 						break;
 					case CrmFieldTypeEnum.CrmEnumFields:
 						TypeExt = CrmFieldType.CrmEnumFields;

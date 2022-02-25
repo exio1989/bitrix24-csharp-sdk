@@ -4,6 +4,9 @@ using System.Collections.Generic;
 namespace Bitrix24ApiClient.src.Models
 {
     public class CrmEntityGetRequestArgs {
+        [JsonProperty("entityTypeId")]
+        public int? EntityTypeId { get; set; }
+
         // Идентификатор выбираемой сущности
         [JsonProperty("ID")]
         public int Id { get; set; }

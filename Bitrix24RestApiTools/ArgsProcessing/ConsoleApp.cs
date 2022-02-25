@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Humanizer;
+using Bitrix24RestApiTools.Models;
 
 namespace Bitrix24RestApiTools
 {
@@ -69,7 +71,7 @@ namespace Bitrix24RestApiTools
         [ArgActionMethod, ArgShortcut("-gall"), ArgDescription("Generate all models by fields info")]
         public async Task GenerateAllModelsByFields(GenerateAllModelsArgs args)
         {
-            var models = new List<(string description, string className, string entryPoint, List<string> dirs, string responseClass)>
+            var models = new List<ClassGeneratorArgs>
             {
                 //(description: "Cделки", className: "Deal", entryPoint: "crm.deal.fields", dirs: new List<string> { "Crm", "Deal" }, responseClass: "FieldsResponse" ),
                 //(description: "Контакты", className: "Contact", entryPoint: "crm.contact.fields", dirs: new List<string> { "Crm", "Contact" }, responseClass: "FieldsResponse" ),
@@ -116,10 +118,27 @@ namespace Bitrix24RestApiTools
             //Направления требуют указания entityTypeId
             //(description: "Направления", className: "Category", entryPoint: "crm.category.fields", dirs: new List<string> { "Crm", "Category", "Models" }),
             //EntityTypeIdEnum
+            var client = new Bitrix24Client(args.WebhookUrl, new ConsoleLogger<Bitrix24Client>());
+            var bitrix24 = new Bitrix24(client);
+            SmartProcessTypeListResponse smartProcesses = await bitrix24.Crm.SmartProcessTypes.List(x=>x.SelectAll());
+            foreach(var smartProcess in smartProcesses.Result.Items)
+            {
+                var className = smartProcess.Title.Transform(To.LowerCase, To.TitleCase).Dehumanize();
+                models.Add(new ClassGeneratorArgs {
+                    description= smartProcess.Title,
+                    className= className,
+                    entryPoint= "crm.item.fields",
+                    dirs= new List<string> { "SmartProcesses", className },
+                    responseClass= "FieldsResponse",
+                    entityTypeId= smartProcess.Id
+                });
+            }
+
             foreach (var model in models)
             {
                 await GenerateModelByFields(new GenerateModelArgs
                 {
+                    EntityTypeId = model.entityTypeId,
                     ClassDescription = model.description,
                     ClassName = $"{args.ClassPrefix}{model.className}",
                     FieldsEntryPoint = model.entryPoint,

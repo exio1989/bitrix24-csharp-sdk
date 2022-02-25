@@ -5,6 +5,7 @@
         Char_YesNo = 0,
         String_StatusSemanticIdEnum =1,
         String_InvoiceStatusEnum = 2,
-        Int_EntityTypeIdEnum = 3
+        Int_EntityTypeIdEnum = 3,
+        Int = 4
     }
 }
