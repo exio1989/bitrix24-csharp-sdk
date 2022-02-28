@@ -129,8 +129,8 @@ namespace Bitrix24RestApiTools
                     className= className,
                     entryPoint= "crm.item.fields",
                     dirs= new List<string> { "SmartProcesses", className },
-                    responseClass= "FieldsResponse",
-                    entityTypeId= smartProcess.Id
+                    responseClass= "ExtFieldsResponse",
+                    entityTypeId= smartProcess.EntityTypeId
                 });
             }
 

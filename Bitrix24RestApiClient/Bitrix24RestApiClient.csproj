@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>Bitrix24RestApiClient</PackageId>
-    <Version>1.1.21</Version>
+    <Version>1.1.24</Version>
     <Authors>Rustam Shaikhatarov</Authors>
     <Company>-</Company>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -11,12 +11,12 @@
     <RepositoryUrl>https://github.com/exio1989/bitrix24-csharp-sdk</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageReleaseNotes>Это версия пригодна к использованию в продакшене, но учитывайте, что первое время будут периодически появляться брэйкинг чеинджис. Если Вам понравилась моя идея по созданию библиотеки, но нашли ошибку или не нашли нужную Вам фичу, то напишите, пожалуйста, мне по почте timergalin@gmail.com или в вайбер по номеру +79222404311 и я внесу правки.</PackageReleaseNotes>
-    <AssemblyVersion>1.1.21.0</AssemblyVersion>
-    <FileVersion>1.1.21.0</FileVersion>
+    <AssemblyVersion>1.1.24.0</AssemblyVersion>
+    <FileVersion>1.1.24.0</FileVersion>
     <Description>Библиотека для работы с REST API битрикс24.
 
 Это версия пригодна к использованию в продакшене, но учитывайте, что первое время будут периодически появляться брэйкинг чеинджис. Если Вам понравилась моя идея по созданию библиотеки, но нашли ошибку или не нашли нужную Вам фичу, то напишите, пожалуйста, мне по почте timergalin@gmail.com или в вайбер по номеру +79222404311 и я внесу правки.</Description>
-    <PackageIcon>service-tool-icon-on-white-1189178.jpg</PackageIcon>
+    <PackageIcon>service-tool-icon.jpg</PackageIcon>
     <PackageIconUrl />
   </PropertyGroup>
 
@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\Users\exio\Downloads\service-tool-icon-on-white-1189178.jpg">
+    <None Include="images\service-tool-icon.jpg">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

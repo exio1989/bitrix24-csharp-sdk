@@ -17,8 +17,10 @@ namespace Bitrix24ApiClient.src
             Statuses = new Statuses(client);
             SmartProcessTypes = new SmartProcessTypes(client);
             StageHistories = new StageHistories(client);
+            SmartProcesses = new Items(client);
         }
          
+        public Items SmartProcesses { get; private set; }
         public SmartProcessTypes SmartProcessTypes { get; private set; }
         public Companies Companies { get; private set; }
         public Leads Leads { get; private set; }

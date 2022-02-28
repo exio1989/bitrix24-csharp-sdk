@@ -2,24 +2,24 @@
 {
     public static class SmartProcessTypeFields
     {
-		public const string Id = "ID";
-		public const string Title = "TITLE";
-		public const string Code = "CODE";
-		public const string CreatedBy = "CREATED_BY";
-		public const string EntityTypeId = "ENTITY_TYPE_ID";
-		public const string IsCategoriesEnabled = "IS_CATEGORIES_ENABLED";
-		public const string IsStagesEnabled = "IS_STAGES_ENABLED";
-		public const string IsBeginCloseDatesEnabled = "IS_BEGIN_CLOSE_DATES_ENABLED";
-		public const string IsClientEnabled = "IS_CLIENT_ENABLED";
-		public const string IsUseInUserfieldEnabled = "IS_USE_IN_USERFIELD_ENABLED";
-		public const string IsLinkWithProductsEnabled = "IS_LINK_WITH_PRODUCTS_ENABLED";
-		public const string IsMycompanyEnabled = "IS_MYCOMPANY_ENABLED";
-		public const string IsDocumentsEnabled = "IS_DOCUMENTS_ENABLED";
-		public const string IsSourceEnabled = "IS_SOURCE_ENABLED";
-		public const string IsObserversEnabled = "IS_OBSERVERS_ENABLED";
-		public const string IsRecyclebinEnabled = "IS_RECYCLEBIN_ENABLED";
-		public const string IsAutomationEnabled = "IS_AUTOMATION_ENABLED";
-		public const string IsBizProcEnabled = "IS_BIZ_PROC_ENABLED";
-		public const string IsSetOpenPermissions = "IS_SET_OPEN_PERMISSIONS";
+		public const string Id = "id";
+		public const string Title = "title";
+		public const string Code = "code";
+		public const string CreatedBy = "createdBy";
+		public const string EntityTypeId = "entityTypeId";
+		public const string IsCategoriesEnabled = "isCategoriesEnabled";
+		public const string IsStagesEnabled = "isStagesEnabled";
+		public const string IsBeginCloseDatesEnabled = "isBeginCloseDatesEnabled";
+		public const string IsClientEnabled = "isClientEnabled";
+		public const string IsUseInUserfieldEnabled = "isUseInUserfieldEnabled";
+		public const string IsLinkWithProductsEnabled = "isLinkWithProductsEnabled";
+		public const string IsMycompanyEnabled = "isMycompanyEnabled";
+		public const string IsDocumentsEnabled = "isDocumentsEnabled";
+		public const string IsSourceEnabled = "isSourceEnabled";
+		public const string IsObserversEnabled = "isObserversEnabled";
+		public const string IsRecyclebinEnabled = "isRecyclebinEnabled";
+		public const string IsAutomationEnabled = "isAutomationEnabled";
+		public const string IsBizProcEnabled = "isBizProcEnabled";
+		public const string IsSetOpenPermissions = "isSetOpenPermissions";
 	}
 }
