@@ -1,7 +1,6 @@
-﻿using Bitrix24ApiClient.src.Models;
-using System;
+﻿using System;
 
-namespace Bitrix24ApiClient.src
+namespace Bitrix24RestApiClient.Core.Models
 {
     public class Filter {
         public string Name { get; set; }

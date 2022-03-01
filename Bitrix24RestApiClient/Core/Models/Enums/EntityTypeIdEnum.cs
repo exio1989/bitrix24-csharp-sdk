@@ -1,6 +1,7 @@
 ﻿using System;
+using Bitrix24RestApiClient.Core.Models.Enums;
 
-namespace Bitrix24ApiClient.src.Models
+namespace Bitrix24RestApiClient.Core.Models.Enums
 {
     public class EntityTypeIdEnum
     {

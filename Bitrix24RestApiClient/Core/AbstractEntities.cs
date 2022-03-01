@@ -1,17 +1,21 @@
-﻿using Bitrix24ApiClient.src.Builders;
-using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClient.Core.BatchStrategies;
-using Bitrix24RestApiClient.Core.Models;
-using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
-using Bitrix24RestApiClient.src.Utilities;
-using System;
+﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
+using Bitrix24RestApiClient.Core.Client;
+using Bitrix24RestApiClient.Core.Builders;
+using Bitrix24RestApiClient.Core.Utilities;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Core.BatchStrategies;
+using Bitrix24RestApiClient.Core.Models.Response;
+using Bitrix24RestApiClient.Core.Models.RequestArgs;
+using Bitrix24RestApiClient.Core.Builders.Interfaces;
+using Bitrix24RestApiClient.Core.Models.CrmAbstractEntity;
+using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 
-namespace Bitrix24RestApiClient.src.Core
+namespace Bitrix24RestApiClient.Core
 {
-    public class AbstractEntities<TEntity> where TEntity : AbstractEntity
+    public class AbstractEntities<TEntity> where TEntity : IAbstractEntity
     {
         private IBitrix24Client client;
         private EntryPointPrefix entityTypePrefix;
@@ -22,10 +26,10 @@ namespace Bitrix24RestApiClient.src.Core
             this.client = client;
             this.entityTypePrefix = entityTypePrefix;
             this.entityTypeId = entityTypeId;
-            this.BatchOperations = new BatchOperations(client, entityTypePrefix);
+            this.BatchOperations = new BatchOperationsForListResponse(client, entityTypePrefix);
         }
 
-        public BatchOperations BatchOperations { get; private set; }
+        public BatchOperationsForListResponse BatchOperations { get; private set; }
 
         public async Task<FieldsResponse> Fields()
         {
@@ -47,14 +51,14 @@ namespace Bitrix24RestApiClient.src.Core
             return await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs());
         }
 
-        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>() where TCustomEntity: AbstractEntity
+        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>() where TCustomEntity: IAbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builder.SetEntityTypeId(entityTypeId);
             return await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs());
         }
 
-        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc) where TCustomEntity : AbstractEntity
+        public async Task<ListResponse<TCustomEntity>> List<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc) where TCustomEntity : IAbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builder.SetEntityTypeId(entityTypeId);
@@ -70,7 +74,7 @@ namespace Bitrix24RestApiClient.src.Core
             return (await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs())).Result.FirstOrDefault();
         }
 
-        public async Task<TCustomEntity> First<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc) where TCustomEntity : AbstractEntity
+        public async Task<TCustomEntity> First<TCustomEntity>(Action<IListRequestBuilder<TCustomEntity>> builderFunc) where TCustomEntity : IAbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builder.SetEntityTypeId(entityTypeId);

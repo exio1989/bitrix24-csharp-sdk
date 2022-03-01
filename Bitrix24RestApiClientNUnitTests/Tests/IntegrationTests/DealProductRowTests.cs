@@ -1,11 +1,12 @@
-﻿using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClient.Api.Crm.Invoices.OldInvoices.Models;
+﻿using Bitrix24RestApiClient.Api.Crm.Invoices.OldInvoices.Models;
 using Bitrix24RestApiClientNUnitTests.Utilities;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bitrix24RestApiClient.Core.Models.Response.BatchResponse;
+using Bitrix24RestApiClient.Api.Crm.CrmDeal.ProductRows.Models;
 
 namespace Bitrix24RestApiClientNUnitTests.Tests.IntegrationTests
 {

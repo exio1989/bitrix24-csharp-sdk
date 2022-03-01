@@ -1,6 +1,7 @@
-﻿using Bitrix24ApiClient.src.Models.Crm.Core;
+﻿using Bitrix24RestApiClient.Core.Builders.Interfaces;
+using Bitrix24RestApiClient.Core.Models.Enums;
 
-namespace Bitrix24ApiClient.src.Builders
+namespace Bitrix24RestApiClient.Core.Builders.Interfaces
 {
     public interface IEmailListBuilder
     {

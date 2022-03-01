@@ -1,21 +1,25 @@
-﻿using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClient.Models.Core.Enums;
-using System;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Api.Crm.Invoices.OldInvoices.Enums;
 
-namespace Bitrix24RestApiClient.src.Utilities
+namespace Bitrix24RestApiClient.Core.Utilities
 {
     public static class ExpressionExtensions
     {
-        public static string JsonPropertyName<TEntity>(this Expression<Func<TEntity, object>> self)
+        public static string JsonPropertyNameByExpr<TEntity>(Expression<Func<TEntity, object>> expr)
         {
-            var memberInfo = ReflectionHelper.GetMemberInfo(self);
+            var memberInfo = ReflectionHelper.GetMemberInfo(expr);
 
-            return ReflectionHelper.GetPropertyNameFromJsonPropertyAttribute(memberInfo) 
+            return ReflectionHelper.GetPropertyNameFromJsonPropertyAttribute(memberInfo)
                 ?? ReflectionHelper.GetPropertyNameFromCrmFieldAttribute(memberInfo)
                 ?? memberInfo.Name;
+        }
+
+        public static string JsonPropertyName<TEntity>(this Expression<Func<TEntity, object>> self)
+        {
+            return JsonPropertyNameByExpr(self);
         }
 
         public static object MapValue<TEntity>(this Expression<Func<TEntity, object>> self, object value)

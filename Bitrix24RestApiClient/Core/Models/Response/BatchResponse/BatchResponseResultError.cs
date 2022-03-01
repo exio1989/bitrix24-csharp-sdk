@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Bitrix24ApiClient.src.Models
+namespace Bitrix24RestApiClient.Core.Models.Response.BatchResponse
 {
     public class BatchResponseResultError
     {

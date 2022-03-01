@@ -1,5 +1,5 @@
-﻿using Bitrix24RestApiClient.Models.Core.Response.FieldsResponse;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 
 namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 {

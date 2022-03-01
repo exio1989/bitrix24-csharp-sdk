@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Bitrix24RestApiClient.Models.Core.Response.FieldsResponse
+namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 {
     public class FieldInfoEnumerationItem
     {

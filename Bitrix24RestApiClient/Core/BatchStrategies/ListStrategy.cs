@@ -1,11 +1,16 @@
-﻿using Bitrix24ApiClient.src.Builders;
-using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClient.Core.Models;
-using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Bitrix24RestApiClient.Core.Client;
+using Bitrix24RestApiClient.Core.Models;
+using Bitrix24RestApiClient.Core.Builders;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Core.Models.Response;
+using Bitrix24RestApiClient.Core.Models.RequestArgs;
+using Bitrix24RestApiClient.Core.Builders.Interfaces;
+using Bitrix24RestApiClient.Core.Models.CrmAbstractEntity;
+using Bitrix24RestApiClient.Core.Models.Response.ListItemsResponse;
 
 namespace Bitrix24RestApiClient.Core.BatchStrategies
 {
@@ -27,7 +32,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
         /// </summary>
         /// <param name="builderFunc"></param>
         /// <returns></returns>
-        public async IAsyncEnumerable<TCustomEntity> ListItemsAll<TCustomEntity>(Action<IListAllRequestBuilder<TCustomEntity>> builderFunc, int? limit = null) where TCustomEntity : AbstractEntity
+        public async IAsyncEnumerable<TCustomEntity> ListItemsAll<TCustomEntity>(Action<IListAllRequestBuilder<TCustomEntity>> builderFunc, int? limit = null) where TCustomEntity : IAbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builderFunc(builder);
@@ -71,7 +76,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
         /// </summary>
         /// <param name="builderFunc"></param>
         /// <returns></returns>
-        public async IAsyncEnumerable<TCustomEntity> ListAll<TCustomEntity>(Action<IListAllRequestBuilder<TCustomEntity>> builderFunc, int? limit = null) where TCustomEntity : AbstractEntity
+        public async IAsyncEnumerable<TCustomEntity> ListAll<TCustomEntity>(Action<IListAllRequestBuilder<TCustomEntity>> builderFunc, int? limit = null) where TCustomEntity : IAbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builderFunc(builder);
@@ -108,7 +113,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
             }
         }
 
-        private async Task<ListResponse<TCustomEntity>> FetchNextList<TCustomEntity>(ListRequestBuilder<TCustomEntity> fetchMinIdBuilder, int nextMinId) where TCustomEntity : AbstractEntity
+        private async Task<ListResponse<TCustomEntity>> FetchNextList<TCustomEntity>(ListRequestBuilder<TCustomEntity> fetchMinIdBuilder, int nextMinId) where TCustomEntity : IAbstractEntity
         {
             ListRequestBuilder<TCustomEntity> fetchNextBuilder = fetchMinIdBuilder.Copy();
             fetchNextBuilder
@@ -118,7 +123,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
             return listResponse;
         }
 
-        private async Task<ListItemsResponse<TCustomEntity>> FetchNextListItems<TCustomEntity>(ListRequestBuilder<TCustomEntity> fetchMinIdBuilder, int nextMinId) where TCustomEntity : AbstractEntity
+        private async Task<ListItemsResponse<TCustomEntity>> FetchNextListItems<TCustomEntity>(ListRequestBuilder<TCustomEntity> fetchMinIdBuilder, int nextMinId) where TCustomEntity : IAbstractEntity
         {
             ListRequestBuilder<TCustomEntity> fetchNextBuilder = fetchMinIdBuilder.Copy();
             fetchNextBuilder

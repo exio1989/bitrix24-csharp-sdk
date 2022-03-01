@@ -1,4 +1,4 @@
-﻿namespace Bitrix24ApiClient.src.Models
+﻿namespace Bitrix24RestApiClient.Core.Models
 {
     public enum OrderDirection
     {

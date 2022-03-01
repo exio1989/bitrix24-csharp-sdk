@@ -1,15 +1,17 @@
-﻿using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClient.Core.Models;
-using Bitrix24RestApiClient.src.Utilities;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Collections.Generic;
+using Bitrix24RestApiClient.Core.Models;
+using Bitrix24RestApiClient.Core.Utilities;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Core.Models.RequestArgs;
+using Bitrix24RestApiClient.Core.Builders.Interfaces;
+using Bitrix24RestApiClient.Core.Models.CrmAbstractEntity;
 
-namespace Bitrix24ApiClient.src.Builders
+namespace Bitrix24RestApiClient.Core.Builders
 {
-
-    public class ListRequestBuilder<TEntity> : IListRequestBuilder<TEntity>, IStageHistoriesListRequestBuilder<TEntity>, IListAllRequestBuilder<TEntity> where TEntity : AbstractEntity
+    public class ListRequestBuilder<TEntity> : IListRequestBuilder<TEntity>, IStageHistoriesListRequestBuilder<TEntity>, IListAllRequestBuilder<TEntity>
     {
         private int? entityTypeId;
         private int? start;

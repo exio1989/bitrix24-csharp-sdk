@@ -1,9 +1,9 @@
-﻿using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClientNUnitTests.Utilities;
+﻿using Bitrix24RestApiClientNUnitTests.Utilities;
 using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Bitrix24RestApiClient.Api.Crm.CrmDeal.Models;
 
 namespace Bitrix24RestApiClientNUnitTests.Tests.IntegrationTests
 {

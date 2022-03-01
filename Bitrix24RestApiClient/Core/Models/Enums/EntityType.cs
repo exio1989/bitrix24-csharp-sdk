@@ -1,4 +1,4 @@
-﻿namespace Bitrix24ApiClient.src.Models
+﻿namespace Bitrix24RestApiClient.Core.Models.Enums
 {
     public class EntryPointPrefix
     {
@@ -25,5 +25,10 @@
         public static EntryPointPrefix TimelineComment = new EntryPointPrefix { Value = "crm.timeline.comment" };
         public static EntryPointPrefix User = new EntryPointPrefix { Value = "user" };
         public static EntryPointPrefix Item = new EntryPointPrefix { Value = "crm.item" };
+        public static EntryPointPrefix RequisiteLink = new EntryPointPrefix { Value = "crm.requisite.link" };
+        public static EntryPointPrefix RequisiteBankdetail = new EntryPointPrefix { Value = "crm.requisite.bankdetail" };
+        public static EntryPointPrefix RequisitePresetField = new EntryPointPrefix { Value = "crm.requisite.preset.field" };
+        public static EntryPointPrefix RequisitePreset = new EntryPointPrefix { Value = "crm.requisite.preset" };
+        public static EntryPointPrefix Requisite = new EntryPointPrefix { Value = "crm.requisite" };
     }
 }

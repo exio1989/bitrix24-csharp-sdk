@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Bitrix24ApiClient.src.Models
+namespace Bitrix24RestApiClient.Core.Models.RequestArgs
 {
     public class CrmEntityGetRequestArgs {
         [JsonProperty("entityTypeId")]

@@ -1,10 +1,10 @@
-﻿using Bitrix24ApiClient.src;
-using Bitrix24ApiClient.src.Models;
-using Bitrix24ApiClient.src.Models.Crm.Timeline.Comment;
+﻿using System;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using System;
 using System.Threading.Tasks;
+using Bitrix24RestApiClient.Api;
+using Bitrix24RestApiClient.Core.Models;
+using Bitrix24RestApiClient.Api.Crm.Timeline.Comment.Models;
 
 namespace Bitrix24RestApiClientNUnitTests
 {

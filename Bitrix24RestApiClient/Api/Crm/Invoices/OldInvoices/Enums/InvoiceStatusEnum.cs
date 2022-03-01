@@ -1,4 +1,4 @@
-﻿namespace Bitrix24ApiClient.src.Models
+﻿namespace Bitrix24RestApiClient.Api.Crm.Invoices.OldInvoices.Enums
 {
     public class InvoiceStatusEnum
     {

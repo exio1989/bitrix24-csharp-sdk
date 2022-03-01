@@ -1,10 +1,13 @@
-﻿using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClient.src.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Bitrix24RestApiClient.Core.Builders.Interfaces;
+using Bitrix24RestApiClient.Core.Builders;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Core.Models.RequestArgs;
+using Bitrix24RestApiClient.Core.Utilities;
 
-namespace Bitrix24ApiClient.src.Builders
+namespace Bitrix24RestApiClient.Core.Builders
 {
 
     public class UpdateRequestBuilder<TEntity>: IUpdateRequestBuilder<TEntity>

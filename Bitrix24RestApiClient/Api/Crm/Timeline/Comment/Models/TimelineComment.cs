@@ -1,11 +1,19 @@
-﻿using Bitrix24RestApiClient.Core.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Bitrix24RestApiClient.Core.Models.CrmAbstractEntity;
 
-namespace Bitrix24ApiClient.src.Models.Crm.Timeline.Comment
+namespace Bitrix24RestApiClient.Api.Crm.Timeline.Comment.Models
 {
     //TODO
-    public class TimelineComment: AbstractEntity
+    public class TimelineComment: IAbstractEntity
     {
+        /// <summary>
+        /// Идентификатор			
+        /// Тип: integer	
+        /// Только для чтения
+        /// </summary>
+        [JsonProperty(AbstractEntityFields.Id)]
+        public int? Id { get; set; }
+
         [JsonProperty(TimelineCommentFields.EntityType)]
         public string EntityType { get; set; }
 

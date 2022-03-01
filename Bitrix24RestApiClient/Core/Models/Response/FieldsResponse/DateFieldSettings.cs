@@ -1,4 +1,5 @@
-﻿namespace Bitrix24RestApiClient.Models.Core.Response.FieldsResponse
+﻿using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
+namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 {
     public class DateFieldSettings
 	{

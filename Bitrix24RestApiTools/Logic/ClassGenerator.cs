@@ -1,8 +1,8 @@
-﻿using Bitrix24RestApiClient.Models.Core.Response.FieldsResponse;
-using Humanizer;
+﻿using Humanizer;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 
 namespace Bitrix24RestApiTools
 {

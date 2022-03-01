@@ -1,12 +1,20 @@
-﻿using Bitrix24RestApiClient.Core.Models;
-using Bitrix24RestApiClient.Models.Core.Attributes;
-using Bitrix24RestApiClient.Models.Core.Enums;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Bitrix24RestApiClient.Core.Attributes;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Core.Models.CrmAbstractEntity;
 
 namespace Bitrix24RestApiClient.Api.Crm.Invoices.OldInvoices.Models
 {
-    public class ProductRow: AbstractEntity
+    public class ProductRow: IAbstractEntity
     {
+        /// <summary>
+        /// Идентификатор			
+        /// Тип: integer	
+        /// Только для чтения
+        /// </summary>
+        [JsonProperty(AbstractEntityFields.Id)]
+        public int? Id { get; set; }
+
         /// <summary>
         /// Цена			
         /// Тип: double

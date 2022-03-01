@@ -1,8 +1,9 @@
 #nullable enable
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Bitrix24RestApiClient.Api.User.Models;
 
-namespace Bitrix24ApiClient.Api.User.Models
+namespace Bitrix24RestApiClient.Api.User.Models
 {
 	/// <summary>
 	/// Пользователи

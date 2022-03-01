@@ -1,7 +1,8 @@
-﻿using Bitrix24ApiClient.src;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
+using Bitrix24RestApiClient.Api;
+using System.Collections.Generic;
+using Bitrix24RestApiClient.Core.Client;
 
 namespace Bitrix24RestApiClientNUnitTests.Utilities
 {
@@ -13,6 +14,7 @@ namespace Bitrix24RestApiClientNUnitTests.Utilities
         protected List<int> AllocatedContacts = new List<int>();
         protected List<int> AllocatedLeads = new List<int>();
         protected List<int> AllocatedCompanies = new List<int>();
+        protected List<int> AllocatedRequisites = new List<int>();
         protected List<int> AllocatedOldInvoices = new List<int>();
         protected List<int> AllocatedTimelineComments = new List<int>();
 
@@ -46,6 +48,9 @@ namespace Bitrix24RestApiClientNUnitTests.Utilities
 
             foreach (var id in AllocatedProducts)
                 tasks.Add(bitrix24.Crm.Products.Delete(id));
+
+            foreach (var id in AllocatedRequisites)
+                tasks.Add(bitrix24.Crm.Requisites.Delete(id));
 
             Task.WaitAll(tasks.ToArray());
         }

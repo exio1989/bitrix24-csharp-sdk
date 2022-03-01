@@ -1,8 +1,9 @@
-﻿using Bitrix24ApiClient.src.Models;
-using System;
+﻿using System;
 using System.Linq.Expressions;
+using Bitrix24RestApiClient.Core.Models;
+using Bitrix24RestApiClient.Core.Builders.Interfaces;
 
-namespace Bitrix24ApiClient.src.Builders
+namespace Bitrix24RestApiClient.Core.Builders.Interfaces
 {
     public interface ISearchRequestBuilder<TEntity>
     {

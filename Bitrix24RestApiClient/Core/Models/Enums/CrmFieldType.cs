@@ -1,4 +1,4 @@
-﻿namespace Bitrix24RestApiClient.Models.Core.Enums
+﻿namespace Bitrix24RestApiClient.Core.Models.Enums
 {
     public static class CrmFieldType
     {

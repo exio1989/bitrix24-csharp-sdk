@@ -1,11 +1,12 @@
-﻿using Bitrix24ApiClient.src;
-using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClient.Api.Crm.Deal.Contact.Models;
-using Bitrix24RestApiClientNUnitTests.Utilities;
+﻿using Bitrix24RestApiClientNUnitTests.Utilities;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bitrix24RestApiClient.Api;
+using Bitrix24RestApiClient.Core.Client;
+using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
+using Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact.Items.Models;
 
 namespace Bitrix24RestApiClientNUnitTests.Tests.IntegrationTests
 {

@@ -1,13 +1,16 @@
-﻿using Bitrix24ApiClient.src.Builders;
-using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
-using Bitrix24RestApiClient.src.Utilities;
-using System;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Bitrix24RestApiClient.Core.Builders.Interfaces;
+using Bitrix24RestApiClient.Core.Builders;
+using Bitrix24RestApiClient.Core.Client;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Core.Models.RequestArgs;
+using Bitrix24RestApiClient.Core.Models.Response;
+using Bitrix24RestApiClient.Core.Utilities;
 
-namespace Bitrix24ApiClient.Api.User
+namespace Bitrix24RestApiClient.Api.User
 {
     //TODO Не проверено 
     public class Users

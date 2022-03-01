@@ -1,12 +1,11 @@
-﻿using Bitrix24ApiClient.src.Models.Crm.Core;
-using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
-using Bitrix24RestApiClient.Models.Core.Enums;
+﻿using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Bitrix24RestApiClient.Core.Models.Enums;
 
-namespace Bitrix24RestApiClient.Models.Core.Response.FieldsResponse
+namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 {
     public class FieldInfo
 	{
@@ -420,7 +419,7 @@ namespace Bitrix24RestApiClient.Models.Core.Response.FieldsResponse
 
 				return new StringFieldSettings
 				{
-					DefaultValue = Settings.DefaultValue,
+					//DefaultValue = Settings.DefaultValue,
 					MaxLength = Settings.MaxLength,
 					MinLength = Settings.MinLength,
 					RegExp = Settings.RegExp,
@@ -468,7 +467,7 @@ namespace Bitrix24RestApiClient.Models.Core.Response.FieldsResponse
 
 				return new DateFieldSettings
 				{
-					DefaultValue = Settings.DefaultValue
+					//DefaultValue = Settings.DefaultValue
 				};
 			}
 

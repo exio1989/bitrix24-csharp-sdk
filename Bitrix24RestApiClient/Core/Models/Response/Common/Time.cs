@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Bitrix24RestApiClient.src.Models.Crm.Core.Response
+namespace Bitrix24RestApiClient.Core.Models.Response.Common
 {
     public class Time
 	{

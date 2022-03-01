@@ -1,20 +1,36 @@
-﻿using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClientNUnitTests.Utilities;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Bitrix24RestApiClient.Core.Models;
+using Bitrix24RestApiClientNUnitTests.Models;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClientNUnitTests.Utilities;
+using Bitrix24RestApiClient.Api.Crm.CrmDeal.Models;
+using Bitrix24RestApiClient.Api.Crm.CrmProduct.Models;
+using Bitrix24RestApiClient.Api.Crm.CrmDeal.ProductRows.Models;
+using Bitrix24RestApiClient.Api.Crm.CrmStageHistory.Deal.Models;
 
 namespace Bitrix24RestApiClientNUnitTests.Tests.IntegrationTests
 {
     public class BatchOperationsTests : AbstractTest
     {
         [Test]
+        public async Task SmartProcessListGetStrategyTest()
+        {
+            IAsyncEnumerable<TestDeal> items = bitrix24.Crm.SmartProcesses.ByEntityId(EntityTypeIdEnum.Deal.EntityTypeId).BatchOperations.ListGetStrategy.ListAll<TestDeal>(x=>x.Id, x => x
+                .AddFilter(y => y.Id, 1, FilterOperator.GreateThan)
+                .AddFilter(y => y.Id, 100, FilterOperator.LessThan));
+
+            List<TestDeal> deals = new List<TestDeal>();
+            await foreach (var item in items) 
+                deals.Add(item);
+        }
+
+        [Test]
         public async Task ListGetStrategyTest()
         {
-            IAsyncEnumerable<Deal> items = bitrix24.Crm.Deals.BatchOperations.ListGetStrategy.ListAll<Deal>(x=>x
+            IAsyncEnumerable<Deal> items = bitrix24.Crm.Deals.BatchOperations.ListGetStrategy.ListAll<Deal>(x=>x.Id, x=>x
                 .AddFilter(y=>y.DateModify, "2022-02-01", FilterOperator.GreateThanOrEqual)
                 .AddFilter(y => y.DateModify, "2022-02-02", FilterOperator.LessThan));
 
@@ -49,7 +65,7 @@ namespace Bitrix24RestApiClientNUnitTests.Tests.IntegrationTests
         [Test]
         public async Task T1()
         {
-            var itemsIterator = bitrix24.Crm.Deals.BatchOperations.ListGetStrategy.ListAll<PersisDeal>(x => x
+            var itemsIterator = bitrix24.Crm.Deals.BatchOperations.ListGetStrategy.ListAll<PersisDeal>(x=>x.Id, x => x
                                .AddFilter(y => y.DateModify, "2022-01-23T21:17:37+05:00", FilterOperator.GreateThanOrEqual)
                                .AddFilter(y => y.DateModify, "2022-01-23T17:17:37+00:00", FilterOperator.LessThanOrEqual));
 

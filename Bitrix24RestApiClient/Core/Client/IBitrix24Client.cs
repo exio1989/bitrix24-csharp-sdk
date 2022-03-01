@@ -1,7 +1,7 @@
-﻿using Bitrix24ApiClient.src.Models;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Bitrix24RestApiClient.Core.Models.Enums;
 
-namespace Bitrix24RestApiClient.src.Models.Crm.Core.Client
+namespace Bitrix24RestApiClient.Core.Client
 {
     public interface IBitrix24Client
     {

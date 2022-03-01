@@ -1,4 +1,4 @@
-﻿namespace Bitrix24ApiClient.src.Models
+﻿namespace Bitrix24RestApiClient.Api.Crm.SmartProcessTypes.Models
 {
     public static class SmartProcessTypeFields
     {

@@ -1,13 +1,22 @@
-﻿using Bitrix24RestApiClient.Core.Models;
+﻿#nullable enable
 using Newtonsoft.Json;
+using Bitrix24RestApiClient.Core.Models.CrmAbstractEntity;
 
-namespace Bitrix24ApiClient.src.Models
+namespace Bitrix24RestApiClient.Api.Crm.SmartProcessTypes.Models
 {
 	/// <summary>
 	/// Типы смарт-процессов
 	/// </summary>
-	public class SmartProcessType:AbstractEntity
+	public class SmartProcessType:IAbstractEntity
 	{
+		/// <summary>
+		/// Идентификатор			
+		/// Тип: integer	
+		/// Только для чтения
+		/// </summary>
+		[JsonProperty(AbstractEntityFields.Id)]
+		public int? Id { get; set; }
+
 		/// <summary>
 		/// Название
 		/// Тип: string

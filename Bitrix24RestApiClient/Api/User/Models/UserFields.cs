@@ -1,4 +1,4 @@
-namespace Bitrix24ApiClient.Api.User.Models
+namespace Bitrix24RestApiClient.Api.User.Models
 {
 	public static class UserFields
 	{

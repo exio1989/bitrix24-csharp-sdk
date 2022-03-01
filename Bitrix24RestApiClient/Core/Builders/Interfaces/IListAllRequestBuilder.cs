@@ -1,11 +1,12 @@
-﻿using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClient.Core.Models;
-using System;
+﻿using System;
 using System.Linq.Expressions;
+using Bitrix24RestApiClient.Core.Models;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Core.Models.CrmAbstractEntity;
 
-namespace Bitrix24ApiClient.src.Builders
+namespace Bitrix24RestApiClient.Core.Builders.Interfaces
 {
-    public interface IListAllRequestBuilder<TEntity> where TEntity : AbstractEntity
+    public interface IListAllRequestBuilder<TEntity>
     {
         IListRequestBuilder<TEntity> SetEntityTypeId(EntityTypeIdEnum entityTypeId);
         IListAllRequestBuilder<TEntity> AddFilter(Expression<Func<TEntity, object>> nameExpr, object value, FilterOperator op = FilterOperator.Equal);

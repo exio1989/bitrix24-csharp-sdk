@@ -1,4 +1,4 @@
-﻿namespace Bitrix24ApiClient.src.Models.Crm.Timeline.Comment
+﻿namespace Bitrix24RestApiClient.Api.Crm.Timeline.Comment.Models
 {
     public class TimelineCommentFields
     {

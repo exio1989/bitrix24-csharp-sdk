@@ -1,9 +1,9 @@
-﻿using Bitrix24ApiClient.src.Models;
-using Bitrix24ApiClient.src.Models.Crm.Timeline.Comment;
-using Bitrix24RestApiClient.src.Core;
-using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
+﻿using Bitrix24RestApiClient.Api.Crm.Timeline.Comment.Models;
+using Bitrix24RestApiClient.Core.Client;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Core;
 
-namespace Bitrix24ApiClient.src
+namespace Bitrix24RestApiClient.Api.Crm.Timeline.Comment
 {
     public class TimelineComments:AbstractEntities<TimelineComment>
     {

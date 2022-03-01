@@ -1,9 +1,9 @@
-﻿using Bitrix24RestApiClient.Models.Core.Attributes;
-using Bitrix24RestApiClient.Models.Core.Enums;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
+using Bitrix24RestApiClient.Core.Attributes;
+using Bitrix24RestApiClient.Core.Models.Enums;
 
-namespace Bitrix24RestApiClient.Models.Core.Response.FieldsResponse
+namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 {
     public class FieldInfoSettings
 	{
@@ -52,7 +52,8 @@ namespace Bitrix24RestApiClient.Models.Core.Response.FieldsResponse
         [JsonProperty("MAX_LENGTH")]
         public int? MaxLength { get; set; }
 
-        [JsonProperty("DEFAULT_VALUE")]
-        public DefaultValue DefaultValue { get; set; } 
+        //TODO обработать три вариант null, 0, object
+        //[JsonProperty("DEFAULT_VALUE")]
+        //public DefaultValue DefaultValue { get; set; } 
     }
 }

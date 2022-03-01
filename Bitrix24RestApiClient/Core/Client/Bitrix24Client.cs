@@ -1,15 +1,15 @@
-﻿using Bitrix24ApiClient.src.Models;
-using System;
+﻿using System;
 using Flurl;
 using Flurl.Http;
 using System.Threading.Tasks;
-using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Logging;
 using System.Web;
 using System.Text.RegularExpressions;
+using Bitrix24RestApiClient.Core.Client;
+using Bitrix24RestApiClient.Core.Models.Enums;
 
-namespace Bitrix24ApiClient.src
+namespace Bitrix24RestApiClient.Core.Client
 {
     public class Bitrix24Client: IBitrix24Client
     {

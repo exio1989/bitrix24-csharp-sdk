@@ -1,7 +1,8 @@
-﻿using Bitrix24RestApiClient.src.Models.Crm.Core.Response;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Bitrix24RestApiClient.Core.Models.Response.Common;
+using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 
-namespace Bitrix24ApiClient.src.Models
+namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 {
     public class ExtFieldsResponse
     {

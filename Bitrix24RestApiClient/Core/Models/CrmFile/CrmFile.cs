@@ -1,10 +1,18 @@
-﻿using Bitrix24RestApiClient.Core.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Bitrix24RestApiClient.Core.Models.CrmAbstractEntity;
 
-namespace Bitrix24ApiClient.src.Models
+namespace Bitrix24RestApiClient.Core.Models.CrmFile
 {
-    public class CrmFile: AbstractEntity
+    public class CrmFile: IAbstractEntity
     {
+        /// <summary>
+        /// Идентификатор			
+        /// Тип: integer	
+        /// Только для чтения
+        /// </summary>
+        [JsonProperty(AbstractEntityFields.Id)]
+        public int? Id { get; set; }
+
         [JsonProperty(CrmFileFields.ShowUrl)]
         public string ShowUrl { get; set; }
 

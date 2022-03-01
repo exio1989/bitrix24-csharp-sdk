@@ -1,7 +1,7 @@
-﻿using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Bitrix24RestApiClient.Core.Client;
+using Bitrix24RestApiClient.Core.Models.Enums;
 
 namespace Bitrix24RestApiClientNUnitTests
 {

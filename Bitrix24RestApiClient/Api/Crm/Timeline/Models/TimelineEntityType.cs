@@ -1,4 +1,4 @@
-﻿namespace Bitrix24ApiClient.src.Models.Crm.Core
+﻿namespace Bitrix24RestApiClient.Api.Crm.Timeline.Models
 {
     public static class TimelineEntityType
     {

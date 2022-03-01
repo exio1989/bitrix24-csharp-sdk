@@ -1,8 +1,9 @@
 ﻿using Bitrix24RestApiClient.Core.Models.Response.ListItemsResponse;
-using Bitrix24RestApiClient.src.Models.Crm.Core.Response;
 using Newtonsoft.Json;
+using Bitrix24RestApiClient.Core.Models.Response.Common;
+using Bitrix24RestApiClient.Core.Models.Response.SmartProcessResponse;
 
-namespace Bitrix24ApiClient.src.Models
+namespace Bitrix24RestApiClient.Core.Models.Response.SmartProcessResponse
 {
     public class SmartProcessTypeListResponse
     {

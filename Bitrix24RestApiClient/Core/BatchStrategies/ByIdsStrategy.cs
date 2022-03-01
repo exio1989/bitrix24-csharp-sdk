@@ -1,11 +1,11 @@
-﻿using Bitrix24ApiClient.src.Builders;
-using Bitrix24ApiClient.src.Models;
-using Bitrix24RestApiClient.Core.Models;
-using Bitrix24RestApiClient.src.Models.Crm.Core.Client;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bitrix24RestApiClient.Core.Client;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Core.Models.RequestArgs;
+using Bitrix24RestApiClient.Core.Models.Response.BatchResponse;
 
 namespace Bitrix24RestApiClient.Core.BatchStrategies
 {

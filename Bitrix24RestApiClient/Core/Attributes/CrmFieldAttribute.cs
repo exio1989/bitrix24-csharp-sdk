@@ -1,7 +1,7 @@
-﻿using Bitrix24RestApiClient.Models.Core.Enums;
-using System;
+﻿using System;
+using Bitrix24RestApiClient.Core.Models.Enums;
 
-namespace Bitrix24RestApiClient.Models.Core.Attributes
+namespace Bitrix24RestApiClient.Core.Attributes
 {
     public class CrmFieldAttribute : Attribute
     {

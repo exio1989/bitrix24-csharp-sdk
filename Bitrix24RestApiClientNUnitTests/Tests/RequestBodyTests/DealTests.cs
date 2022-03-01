@@ -1,11 +1,14 @@
-﻿using Bitrix24ApiClient.src;
-using Bitrix24ApiClient.src.Models;
-using Bitrix24ApiClient.src.Models.Crm.Core;
-using Bitrix24RestApiClientNUnitTests.Utilities;
+﻿using System;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using System;
 using System.Threading.Tasks;
+using Bitrix24RestApiClient.Api;
+using Bitrix24RestApiClient.Core.Client;
+using Bitrix24RestApiClient.Core.Models;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClientNUnitTests.Utilities;
+using Bitrix24RestApiClient.Api.Crm.CrmDeal.Models;
+using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 
 namespace Bitrix24RestApiClientNUnitTests
 {

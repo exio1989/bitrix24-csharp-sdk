@@ -1,0 +1,71 @@
+namespace Bitrix24RestApiClient.Api.Crm.Requisite.Models
+{
+	public static class CrmRequisiteFields
+	{
+		public const string Id = "ID";
+		public const string EntityTypeId = "ENTITY_TYPE_ID";
+		public const string EntityId = "ENTITY_ID";
+		public const string PresetId = "PRESET_ID";
+		public const string DateCreate = "DATE_CREATE";
+		public const string DateModify = "DATE_MODIFY";
+		public const string CreatedById = "CREATED_BY_ID";
+		public const string ModifyById = "MODIFY_BY_ID";
+		public const string Name = "NAME";
+		public const string Code = "CODE";
+		public const string XmlId = "XML_ID";
+		public const string OriginatorId = "ORIGINATOR_ID";
+		public const string Active = "ACTIVE";
+		public const string AddressOnly = "ADDRESS_ONLY";
+		public const string Sort = "SORT";
+		public const string RqName = "RQ_NAME";
+		public const string RqFirstName = "RQ_FIRST_NAME";
+		public const string RqLastName = "RQ_LAST_NAME";
+		public const string RqSecondName = "RQ_SECOND_NAME";
+		public const string RqCompanyName = "RQ_COMPANY_NAME";
+		public const string RqCompanyFullName = "RQ_COMPANY_FULL_NAME";
+		public const string RqCompanyRegDate = "RQ_COMPANY_REG_DATE";
+		public const string RqDirector = "RQ_DIRECTOR";
+		public const string RqAccountant = "RQ_ACCOUNTANT";
+		public const string RqCeoName = "RQ_CEO_NAME";
+		public const string RqCeoWorkPos = "RQ_CEO_WORK_POS";
+		public const string RqContact = "RQ_CONTACT";
+		public const string RqEmail = "RQ_EMAIL";
+		public const string RqPhone = "RQ_PHONE";
+		public const string RqFax = "RQ_FAX";
+		public const string RqIdentType = "RQ_IDENT_TYPE";
+		public const string RqIdentDoc = "RQ_IDENT_DOC";
+		public const string RqIdentDocSer = "RQ_IDENT_DOC_SER";
+		public const string RqIdentDocNum = "RQ_IDENT_DOC_NUM";
+		public const string RqIdentDocPersNum = "RQ_IDENT_DOC_PERS_NUM";
+		public const string RqIdentDocDate = "RQ_IDENT_DOC_DATE";
+		public const string RqIdentDocIssuedBy = "RQ_IDENT_DOC_ISSUED_BY";
+		public const string RqIdentDocDepCode = "RQ_IDENT_DOC_DEP_CODE";
+		public const string RqInn = "RQ_INN";
+		public const string RqKpp = "RQ_KPP";
+		public const string RqUsrle = "RQ_USRLE";
+		public const string RqIfns = "RQ_IFNS";
+		public const string RqOgrn = "RQ_OGRN";
+		public const string RqOgrnip = "RQ_OGRNIP";
+		public const string RqOkpo = "RQ_OKPO";
+		public const string RqOktmo = "RQ_OKTMO";
+		public const string RqOkved = "RQ_OKVED";
+		public const string RqEdrpou = "RQ_EDRPOU";
+		public const string RqDrfo = "RQ_DRFO";
+		public const string RqKbe = "RQ_KBE";
+		public const string RqIin = "RQ_IIN";
+		public const string RqBin = "RQ_BIN";
+		public const string RqStCertSer = "RQ_ST_CERT_SER";
+		public const string RqStCertNum = "RQ_ST_CERT_NUM";
+		public const string RqStCertDate = "RQ_ST_CERT_DATE";
+		public const string RqVatPayer = "RQ_VAT_PAYER";
+		public const string RqVatId = "RQ_VAT_ID";
+		public const string RqVatCertSer = "RQ_VAT_CERT_SER";
+		public const string RqVatCertNum = "RQ_VAT_CERT_NUM";
+		public const string RqVatCertDate = "RQ_VAT_CERT_DATE";
+		public const string RqResidenceCountry = "RQ_RESIDENCE_COUNTRY";
+		public const string RqBaseDoc = "RQ_BASE_DOC";
+		public const string RqRegon = "RQ_REGON";
+		public const string RqKrs = "RQ_KRS";
+		public const string RqPesel = "RQ_PESEL";
+	}
+}
