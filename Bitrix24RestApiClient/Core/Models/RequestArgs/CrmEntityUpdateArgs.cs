@@ -5,7 +5,7 @@ namespace Bitrix24RestApiClient.Core.Models.RequestArgs
 {
     public class CrmEntityUpdateArgs
     {
-        [JsonProperty("entityTypeId")]
+        [JsonProperty("entityTypeId", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int? EntityTypeId { get; set; }
 
         [JsonProperty("ID")]

@@ -1,0 +1,62 @@
+﻿{
+  "ListTest": [
+    [
+      {
+        "select": [
+          "ENTITY_ID",
+          "ENTITY_TYPE",
+          "COMMENT"
+        ],
+        "order": {
+          "ID": "ASC"
+        },
+        "filter": {
+          ">ID": "100"
+        },
+        "start": null
+      }
+    ]
+  ],
+  "GetTest": [
+    [
+      {
+        "ID": 100,
+        "fields": [
+          "ENTITY_ID",
+          "ENTITY_TYPE",
+          "COMMENT"
+        ]
+      }
+    ]
+  ],
+  "DeleteTest": [
+    [
+      {
+        "ID": 100
+      }
+    ]
+  ],
+  "UpdateTest": [
+    [
+      {
+        "ID": 100,
+        "fields": {
+          "ENTITY_ID": "1",
+          "ENTITY_TYPE": "deal",
+          "COMMENT": "2"
+        }
+      }
+    ]
+  ],
+  "AddTest": [
+    [
+      {
+        "fields": {
+          "ENTITY_ID": "1",
+          "ENTITY_TYPE": "deal",
+          "COMMENT": "2"
+        }
+      }
+    ]
+  ]
+}

@@ -1,0 +1,107 @@
+﻿{
+  "ListTest": [
+    [
+      {
+        "select": [
+          "ID",
+          "CATEGORY_ID"
+        ],
+        "order": {
+          "ID": "ASC"
+        },
+        "filter": {
+          ">ID": 100
+        },
+        "start": null
+      }
+    ]
+  ],
+  "GetTest": [
+    [
+      {
+        "ID": 100,
+        "fields": [
+          "ID",
+          "CATEGORY_ID"
+        ]
+      }
+    ]
+  ],
+  "DeleteTest": [
+    [
+      {
+        "ID": 100
+      }
+    ]
+  ],
+  "UpdateTest": [
+    [
+      {
+        "ID": 100,
+        "fields": {
+          "CATEGORY_ID": "12"
+        }
+      }
+    ]
+  ],
+  "AddTest": [
+    [
+      {
+        "fields": {
+          "CATEGORY_ID": "12"
+        }
+      }
+    ]
+  ],
+  "AddWithPhonesAndEmailsTest": [
+    [
+      {
+        "fields": {
+          "CATEGORY_ID": "12",
+          "EMAIL": [
+            {
+              "ID": null,
+              "VALUE_TYPE": "WORK",
+              "VALUE": "test@test.ru",
+              "TYPE_ID": "EMAIL"
+            }
+          ],
+          "PHONE": [
+            {
+              "ID": null,
+              "VALUE_TYPE": "WORK",
+              "VALUE": "+79222222222",
+              "TYPE_ID": "PHONE"
+            }
+          ]
+        }
+      }
+    ]
+  ],
+  "UpdateWithPhonesAndEmailsTest": [
+    [
+      {
+        "ID": 100,
+        "fields": {
+          "CATEGORY_ID": "12",
+          "EMAIL": [
+            {
+              "ID": null,
+              "VALUE_TYPE": "WORK",
+              "VALUE": "test@test.ru",
+              "TYPE_ID": "EMAIL"
+            }
+          ],
+          "PHONE": [
+            {
+              "ID": null,
+              "VALUE_TYPE": "WORK",
+              "VALUE": "+79222222222",
+              "TYPE_ID": "PHONE"
+            }
+          ]
+        }
+      }
+    ]
+  ]
+}

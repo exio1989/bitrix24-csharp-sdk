@@ -3,11 +3,11 @@
 namespace Bitrix24RestApiClient.Core.Models.RequestArgs
 {
     public class CrmEntityDeleteRequestArgs {
-        [JsonProperty("entityTypeId")]
+        [JsonProperty("entityTypeId", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int? EntityTypeId { get; set; }
 
         // Идентификатор удаляемой сущности
-        [JsonProperty("id")]
+        [JsonProperty("ID")]
         public int Id { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Bitrix24RestApiClient.Core.Models.CrmMultiField.implementations
+﻿using Newtonsoft.Json;
+
+namespace Bitrix24RestApiClient.Core.Models.CrmMultiField.implementations
 {
     public class CrmMultiFieldEmail: CrmMultiField
     {
@@ -9,6 +11,8 @@
             Value = email;
             ValueType = emailType;
         }
+
+        [JsonIgnore]
         public string Email
         {
             get
