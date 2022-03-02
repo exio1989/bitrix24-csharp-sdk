@@ -82,7 +82,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
             {
                 Halt = 0,
                 Commands = items
-                    .Select(x => new { Id = x.Id, Cmd = $"{entityTypePrefix.Value}.{EntityMethod.Get.Value}?{ExpressionExtensions.JsonPropertyNameByExpr<TCustomEntity>(idNameExpr)}={x.Id}" })
+                    .Select(x => new { Id = x.Id, Cmd = $"{entityTypePrefix.Value}.{EntityMethod.Get.Value}?{ExpressionExtensions.JsonPropertyNameByExpr(idNameExpr)}={x.Id}" })
                     .ToDictionary(x => x.Id.Value.ToString(), x => x.Cmd)
             };
 

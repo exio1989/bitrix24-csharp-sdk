@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using Newtonsoft.Json;
 using System.Reflection;
 using System.Linq.Expressions;
+using Bitrix24RestApiClient.Core.Attributes;
 
 namespace Bitrix24RestApiClient.Core.Utilities
 {
@@ -10,7 +12,7 @@ namespace Bitrix24RestApiClient.Core.Utilities
         public static string GetPropertyNameFromJsonPropertyAttribute(MemberInfo memberInfo)
         {
             CustomAttributeTypedArgument? propertyNameArgument = memberInfo.CustomAttributes
-                .FirstOrDefault(x => x.AttributeType.FullName == "Newtonsoft.Json.JsonPropertyAttribute")
+                .FirstOrDefault(x => x.AttributeType.FullName == typeof(JsonPropertyAttribute).FullName)
                 ?.ConstructorArguments.FirstOrDefault();
 
             if (propertyNameArgument == null)
@@ -22,7 +24,7 @@ namespace Bitrix24RestApiClient.Core.Utilities
         public static string GetPropertyNameFromCrmFieldAttribute(MemberInfo memberInfo)
         {
             CustomAttributeTypedArgument? propertyNameArgument = memberInfo.CustomAttributes
-                .FirstOrDefault(x => x.AttributeType.FullName == "Bitrix24RestApiClient.Models.Core.Attributes.CrmFieldAttribute")
+                .FirstOrDefault(x => x.AttributeType.FullName == typeof(CrmFieldAttribute).FullName)
                 ?.ConstructorArguments.FirstOrDefault();
 
             if (propertyNameArgument == null)

@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Bitrix24RestApiClient.Core.Models.CrmAbstractEntity;
-using Bitrix24RestApiClient.Api.Crm.CrmStageHistory.Models.StageHistory;
 
 namespace Bitrix24RestApiClient.Api.Crm.CrmStageHistory.Models.StageHistory
 {

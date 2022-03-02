@@ -2,8 +2,8 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Bitrix24RestApiClient.Api.Crm.CrmDeal.Models;
 using Bitrix24RestApiClient.Test.Utilities;
+using Bitrix24RestApiClient.Api.Crm.CrmDeal.Models;
 
 namespace Bitrix24RestApiClient.Test.Tests.IntegrationTests
 {

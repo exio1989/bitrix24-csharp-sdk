@@ -1,12 +1,12 @@
-﻿using Bitrix24RestApiClient.Api.Crm.Invoices.OldInvoices.Models;
-using Bitrix24RestApiClient.Core.BatchStrategies;
+﻿using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Bitrix24RestApiClient.Core.Client;
 using Bitrix24RestApiClient.Core.Models.Enums;
-using Bitrix24RestApiClient.Core.Models.Response.BatchResponse;
+using Bitrix24RestApiClient.Core.BatchStrategies;
 using Bitrix24RestApiClient.Core.Models.Response;
+using Bitrix24RestApiClient.Core.Models.Response.BatchResponse;
 using Bitrix24RestApiClient.Api.Crm.CrmDeal.ProductRows.Models;
+using Bitrix24RestApiClient.Api.Crm.Invoices.OldInvoices.Models;
 
 namespace Bitrix24RestApiClient.Api.Crm.CrmDeal.ProductRows
 {
@@ -24,7 +24,7 @@ namespace Bitrix24RestApiClient.Api.Crm.CrmDeal.ProductRows
 
         public IAsyncEnumerable<ByIdBatchResponseItem<List<DealProductRow>>> GetByDealIds(List<int> dealIds)
         {
-            return byIdsStrategy.Get<List<DealProductRow>>(EntryPointPrefix.DealProductRows, dealIds);
+            return byIdsStrategy.Get<DealProductRow>(x=>x.Id, EntryPointPrefix.DealProductRows, dealIds);
         } 
 
         public async Task<ListResponse<DealProductRow>> Get(int dealId)

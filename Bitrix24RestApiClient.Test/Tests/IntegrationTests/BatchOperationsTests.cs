@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
-using Xunit;
+﻿using Xunit;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Bitrix24RestApiClient.Core.Models;
+using Bitrix24RestApiClient.Test.Models;
+using Bitrix24RestApiClient.Test.Utilities;
 using Bitrix24RestApiClient.Core.Models.Enums;
 using Bitrix24RestApiClient.Api.Crm.CrmDeal.Models;
 using Bitrix24RestApiClient.Api.Crm.CrmProduct.Models;
+using Bitrix24RestApiClient.Test.Tests.IntegrationTests;
 using Bitrix24RestApiClient.Api.Crm.CrmDeal.ProductRows.Models;
 using Bitrix24RestApiClient.Api.Crm.CrmStageHistory.Deal.Models;
-using Bitrix24RestApiClient.Test.Models;
-using Bitrix24RestApiClient.Test.Tests.IntegrationTests;
-using Bitrix24RestApiClient.Test.Utilities;
 
 namespace Bitrix24RestApiClient.Test.Tests.IntegrationTests
 {
@@ -43,7 +43,7 @@ namespace Bitrix24RestApiClient.Test.Tests.IntegrationTests
         [Fact]
         public async Task ListItemsStrategyTest()
         {
-            IAsyncEnumerable<DealStageHistory> items = bitrix24.Crm.StageHistories.Deals.BatchOperations.ListStrategy.ListItemsAll<DealStageHistory>(x => x
+            IAsyncEnumerable<DealStageHistory> items = bitrix24.Crm.StageHistories.Deals.BatchOperations.ListStrategy.ListItemsAll<DealStageHistory>(x=>x.Id, x => x
                 .SetEntityTypeId(EntityTypeIdEnum.Deal)
                 .AddFilter(y => y.Id, 132700, FilterOperator.GreateThan));
 
@@ -52,10 +52,11 @@ namespace Bitrix24RestApiClient.Test.Tests.IntegrationTests
                 dealStageHistory.Add(item);
         }
 
+
         [Fact]
         public async Task ListStrategyTest()
         {
-            IAsyncEnumerable<Product> items = bitrix24.Crm.Products.BatchOperations.ListStrategy.ListAll<Product>(x => x
+            IAsyncEnumerable<Product> items = bitrix24.Crm.Products.BatchOperations.ListStrategy.ListAll<Product>(x => x.Id, x => x
                 .AddFilter(y => y.Id, 0, FilterOperator.GreateThan));
 
             List<Product> products = new List<Product>();

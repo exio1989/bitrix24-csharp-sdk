@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="TestData\company.json" />
+    <None Remove="TestData\crm-field-attribute.json" />
     <None Remove="TestData\deal.json" />
     <None Remove="TestData\timeline-comment.json" />
     <None Remove="TestData\сontact.json" />
@@ -16,6 +17,9 @@
 
   <ItemGroup>
     <Content Include="TestData\company.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\crm-field-attribute.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TestData\deal.json">

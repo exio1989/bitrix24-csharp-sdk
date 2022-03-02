@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 using System.Collections.Generic;
 using Bitrix24RestApiClient.Core.Client;
 using Bitrix24RestApiClient.Core.Models;
@@ -32,7 +33,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
         /// </summary>
         /// <param name="builderFunc"></param>
         /// <returns></returns>
-        public async IAsyncEnumerable<TCustomEntity> ListItemsAll<TCustomEntity>(Action<IListAllRequestBuilder<TCustomEntity>> builderFunc, int? limit = null) where TCustomEntity : IAbstractEntity
+        public async IAsyncEnumerable<TCustomEntity> ListItemsAll<TCustomEntity>(Expression<Func<TCustomEntity, object>> idNameExpr, Action<IListAllRequestBuilder<TCustomEntity>> builderFunc, int? limit = null) where TCustomEntity : IAbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builderFunc(builder);
@@ -41,7 +42,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
             fetchMinIdBuilder
                 .ClearOrderBy()
                 .ClearSelect()
-                .AddOrderBy(x => x.Id);
+                .AddOrderBy(idNameExpr);
 
             ListItemsResponse<TCustomEntity> firstListResponse = await client.SendPostRequest<CrmEntityListRequestArgs, ListItemsResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, fetchMinIdBuilder.BuildArgs());
             if (firstListResponse.Total == 0)
@@ -54,7 +55,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
 
             for (int i = 0; i < firstListResponse.Total; i += 50)
             {
-                var nextListResponse = await FetchNextListItems(fetchMinIdBuilder, nextMinId);
+                var nextListResponse = await FetchNextListItems(idNameExpr, fetchMinIdBuilder, nextMinId);
 
                 if (nextListResponse.Result.Items.Count == 0)
                     yield break;
@@ -76,7 +77,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
         /// </summary>
         /// <param name="builderFunc"></param>
         /// <returns></returns>
-        public async IAsyncEnumerable<TCustomEntity> ListAll<TCustomEntity>(Action<IListAllRequestBuilder<TCustomEntity>> builderFunc, int? limit = null) where TCustomEntity : IAbstractEntity
+        public async IAsyncEnumerable<TCustomEntity> ListAll<TCustomEntity>(Expression<Func<TCustomEntity, object>> idNameExpr, Action<IListAllRequestBuilder<TCustomEntity>> builderFunc, int? limit = null) where TCustomEntity : IAbstractEntity
         {
             var builder = new ListRequestBuilder<TCustomEntity>();
             builderFunc(builder);
@@ -85,7 +86,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
             fetchMinIdBuilder
                 .ClearOrderBy()
                 .ClearSelect()
-                .AddOrderBy(x => x.Id);
+                .AddOrderBy(idNameExpr);
 
             ListResponse<TCustomEntity> firstListResponse = await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, fetchMinIdBuilder.BuildArgs());
             if (firstListResponse.Total == 0)
@@ -98,7 +99,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
 
             for (int i = 0; i < firstListResponse.Total; i += 50)
             {
-                var nextListResponse = await FetchNextList(fetchMinIdBuilder, nextMinId);
+                var nextListResponse = await FetchNextList(idNameExpr, fetchMinIdBuilder, nextMinId);
 
                 if (nextListResponse.Result.Count == 0)
                     yield break;
@@ -113,21 +114,21 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
             }
         }
 
-        private async Task<ListResponse<TCustomEntity>> FetchNextList<TCustomEntity>(ListRequestBuilder<TCustomEntity> fetchMinIdBuilder, int nextMinId) where TCustomEntity : IAbstractEntity
+        private async Task<ListResponse<TCustomEntity>> FetchNextList<TCustomEntity>(Expression<Func<TCustomEntity, object>> idNameExpr, ListRequestBuilder<TCustomEntity> fetchMinIdBuilder, int nextMinId) where TCustomEntity : IAbstractEntity
         {
             ListRequestBuilder<TCustomEntity> fetchNextBuilder = fetchMinIdBuilder.Copy();
             fetchNextBuilder
-                .AddFilter(x => x.Id, nextMinId, FilterOperator.GreateThan);
+                .AddFilter(idNameExpr, nextMinId, FilterOperator.GreateThan);
 
             ListResponse<TCustomEntity> listResponse = await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, fetchNextBuilder.BuildArgs());
             return listResponse;
         }
 
-        private async Task<ListItemsResponse<TCustomEntity>> FetchNextListItems<TCustomEntity>(ListRequestBuilder<TCustomEntity> fetchMinIdBuilder, int nextMinId) where TCustomEntity : IAbstractEntity
+        private async Task<ListItemsResponse<TCustomEntity>> FetchNextListItems<TCustomEntity>(Expression<Func<TCustomEntity, object>> idNameExpr, ListRequestBuilder<TCustomEntity> fetchMinIdBuilder, int nextMinId) where TCustomEntity : IAbstractEntity
         {
             ListRequestBuilder<TCustomEntity> fetchNextBuilder = fetchMinIdBuilder.Copy();
             fetchNextBuilder
-                .AddFilter(x => x.Id, nextMinId, FilterOperator.GreateThan);
+                .AddFilter(idNameExpr, nextMinId, FilterOperator.GreateThan);
 
             ListItemsResponse<TCustomEntity> listResponse = await client.SendPostRequest<CrmEntityListRequestArgs, ListItemsResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, fetchNextBuilder.BuildArgs());
             return listResponse;

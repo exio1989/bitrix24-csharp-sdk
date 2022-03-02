@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using Bitrix24RestApiClient.Core.Attributes;
 using Bitrix24RestApiClient.Core.Models.Enums;
 using Bitrix24RestApiClient.Api.Crm.Invoices.OldInvoices.Enums;
 
@@ -27,7 +28,7 @@ namespace Bitrix24RestApiClient.Core.Utilities
             var memberInfo = ReflectionHelper.GetMemberInfo(self);
 
             var crmField = memberInfo.CustomAttributes
-                .FirstOrDefault(x => x.AttributeType.FullName == "Bitrix24RestApiClient.Models.Core.Attributes.CrmFieldAttribute");
+                .FirstOrDefault(x => x.AttributeType.FullName == typeof(CrmFieldAttribute).FullName);
 
             if (crmField != null)
             {

@@ -1,0 +1,16 @@
+﻿{
+  "YesNoTypeTest": [
+    [
+      {
+        "select": [
+        ],
+        "order": {
+        },
+        "filter": {
+          "CLOSED": "Y"
+        },
+        "start": null
+      }
+    ]
+  ]
+}

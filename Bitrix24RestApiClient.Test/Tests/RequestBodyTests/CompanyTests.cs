@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Xunit;
+using System;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Bitrix24RestApiClient.Api;
 using Bitrix24RestApiClient.Core.Models;
-using Bitrix24RestApiClient.Core.Models.Enums;
-using Bitrix24RestApiClient.Api.Crm.CrmCompany.Models;
-using Xunit;
 using Bitrix24RestApiClient.Test.Utilities;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Core.Models.RequestArgs;
+using Bitrix24RestApiClient.Api.Crm.CrmCompany.Models;
 
 namespace Bitrix24RestApiClient.Test.Tests.RequestBodyTests
 {
@@ -14,8 +15,8 @@ namespace Bitrix24RestApiClient.Test.Tests.RequestBodyTests
     {
 
         [Theory]
-        [JsonFileData("TestData\\company.json", "ListTest")]
-        public async Task ListTest(object expectedObj)
+        [JsonFileData("TestData\\company.json", nameof(ListTest))]
+        public async Task ListTest(CrmEntityListRequestArgs expectedObj)
         {
             Bitrix24DummyClient client = new Bitrix24DummyClient();
 
