@@ -62,21 +62,6 @@ namespace Bitrix24RestApiClient.Test.Tests.IntegrationTests
             await foreach (var item in items)
                 products.Add(item);
         }
-
-        [Fact]
-        public async Task T1()
-        {
-            var itemsIterator = bitrix24.Crm.Deals.BatchOperations.ListGetStrategy.ListAll<PersisDeal>(x=>x.Id, x => x
-                               .AddFilter(y => y.DateModify, "2022-01-23T21:17:37+05:00", FilterOperator.GreateThanOrEqual)
-                               .AddFilter(y => y.DateModify, "2022-01-23T17:17:37+00:00", FilterOperator.LessThanOrEqual));
-
-            List<PersisDeal> items = new List<PersisDeal>();
-
-            await foreach (PersisDeal item in itemsIterator)
-            {
-                items.Add(item);
-            }
-        }
     }
 
     public static class PersisDealFields

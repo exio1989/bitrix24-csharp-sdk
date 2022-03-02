@@ -1,0 +1,9 @@
+﻿<!-- File name extension must be .runsettings -->
+<RunSettings>
+  <RunConfiguration>
+      <EnvironmentVariables>
+          <!-- List of environment variables we want to set-->
+		  <WebhookUrl>https://bitrix.persis.ru/rest/17/lkyun3zvykg9e8n1/</WebhookUrl>
+      </EnvironmentVariables>
+  </RunConfiguration>
+</RunSettings>

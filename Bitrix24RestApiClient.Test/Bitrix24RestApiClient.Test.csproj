@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+	<RunSettingsFilePath>$(MSBuildProjectDirectory)\test.runsettings</RunSettingsFilePath>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -43,6 +44,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bitrix24RestApiClient\Bitrix24RestApiClient.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="test.runsettings">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
