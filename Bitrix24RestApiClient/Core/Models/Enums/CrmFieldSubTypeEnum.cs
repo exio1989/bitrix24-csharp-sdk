@@ -6,6 +6,7 @@
         String_StatusSemanticIdEnum =1,
         String_InvoiceStatusEnum = 2,
         Int_EntityTypeIdEnum = 3,
-        Int = 4
+        Int = 4,
+        DateTimeWithFormatDdMmYyyy_HhMmSs = 5
     }
 }

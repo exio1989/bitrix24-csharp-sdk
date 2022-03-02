@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Globalization;
 using System.Linq.Expressions;
 using Bitrix24RestApiClient.Core.Attributes;
 using Bitrix24RestApiClient.Core.Models.Enums;
@@ -39,12 +40,24 @@ namespace Bitrix24RestApiClient.Core.Utilities
                 CrmFieldSubTypeEnum fieldType = (CrmFieldSubTypeEnum)fieldTypeObj;
                 switch (fieldType)
                 {
+                    case CrmFieldSubTypeEnum.DateTimeWithFormatDdMmYyyy_HhMmSs:
+                        string format = "dd.MM.yyyy HH:mm:ss";
+
+                        if (value is DateTimeOffset)
+                            return ((DateTimeOffset)value).ToUniversalTime().ToString(format);
+
+                        if (value is DateTime)
+                            return ((DateTime)value).ToString(format);
+
+                        return value;
+
                     case CrmFieldSubTypeEnum.Char_YesNo:
                         bool boolValue = (value as bool?) ?? throw new NullReferenceException("Для свойства, которое принимает Y или N нул недопустим");
 
                         return boolValue
                             ? YesNoEnum.Y.ToString("F")
                             : YesNoEnum.N.ToString("F");
+
                     case CrmFieldSubTypeEnum.String_StatusSemanticIdEnum:
                         StatusSemanticIdEnum enumValue = (value as StatusSemanticIdEnum?) ?? throw new NullReferenceException("Для свойства, которое принимает F, S или P нул недопустим");
 
@@ -68,6 +81,7 @@ namespace Bitrix24RestApiClient.Core.Utilities
 
                     case CrmFieldSubTypeEnum.Int:
                         return (int?)value;
+
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
