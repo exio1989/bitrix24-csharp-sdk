@@ -8,27 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="TestData\company.json" />
-    <None Remove="TestData\crm-field-attribute.json" />
-    <None Remove="TestData\deal.json" />
-    <None Remove="TestData\timeline-comment.json" />
-    <None Remove="TestData\сontact.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="TestData\company.json">
+    <Content Include="Tests\RequestBodyTests\SmartProcessTests\SmartProcessTests.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\crm-field-attribute.json">
+    <Content Include="Tests\RequestBodyTests\CompanyTests\company.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\deal.json">
+    <Content Include="Tests\RequestBodyTests\CrmFieldAttributeTests\crm-field-attribute.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\timeline-comment.json">
+    <Content Include="Tests\RequestBodyTests\DealTests\deal.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\сontact.json">
+    <Content Include="Tests\RequestBodyTests\TimelineCommentTests\timeline-comment.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tests\RequestBodyTests\ContactTests\сontact.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

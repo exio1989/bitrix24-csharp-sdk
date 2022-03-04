@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using Bitrix24RestApiClient.Core.Builders.Interfaces;
+using System.Collections.Generic;
 using Bitrix24RestApiClient.Core.Builders;
+using Bitrix24RestApiClient.Core.Utilities;
 using Bitrix24RestApiClient.Core.Models.Enums;
 using Bitrix24RestApiClient.Core.Models.RequestArgs;
-using Bitrix24RestApiClient.Core.Utilities;
+using Bitrix24RestApiClient.Core.Builders.Interfaces;
 
 namespace Bitrix24RestApiClient.Core.Builders
 {
-
     public class UpdateRequestBuilder<TEntity>: IUpdateRequestBuilder<TEntity>
     {
         private int? entityTypeId;
@@ -54,7 +53,7 @@ namespace Bitrix24RestApiClient.Core.Builders
             return this;
         }
 
-        public CrmEntityUpdateArgs BuildArgs()
+        public object BuildArgs(EntryPointPrefix entityTypePrefix)
         {
             var phones = phonesBuilder.Build();
             if (phones.Count > 0)
@@ -63,6 +62,17 @@ namespace Bitrix24RestApiClient.Core.Builders
             var emails = emailsBuilder.Build();
             if (emails.Count > 0)
                 fields["EMAIL"] = emails;
+
+            // Так люто, потому что для разных сущностей Id нужно передавать в разном регистре
+            if (entityTypePrefix.Value == EntryPointPrefix.Item.Value)
+            {
+                return new CrmEntityUpdateArgsForItem
+                {
+                    EntityTypeId = entityTypeId,
+                    Id = id,
+                    Fields = fields
+                };
+            }
 
             return new CrmEntityUpdateArgs
             {

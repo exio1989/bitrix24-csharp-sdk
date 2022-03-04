@@ -10,7 +10,7 @@ namespace Bitrix24RestApiClient.Test.Tests.RequestBodyTests
     public class CrmFieldAttributeTests:IDisposable
     {
         [Theory]
-        [JsonFileData("TestData\\crm-field-attribute.json", "YesNoTypeTest")]
+        [JsonFileData("Tests\\RequestBodyTests\\CrmFieldAttributeTests\\crm-field-attribute.json", "YesNoTypeTest")]
         public async Task YesNoTypeTest(object expectedObj)
         {
             Bitrix24DummyClient client = new Bitrix24DummyClient();

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Bitrix24RestApiClient.Core.Builders.Interfaces;
-using Bitrix24RestApiClient.Core.Builders;
+using System.Linq.Expressions;
 using Bitrix24RestApiClient.Core.Client;
-using Bitrix24RestApiClient.Core.Models.Enums;
-using Bitrix24RestApiClient.Core.Models.RequestArgs;
-using Bitrix24RestApiClient.Core.Models.Response;
+using Bitrix24RestApiClient.Core.Builders;
 using Bitrix24RestApiClient.Core.Utilities;
+using Bitrix24RestApiClient.Core.Models.Enums;
+using Bitrix24RestApiClient.Core.Models.Response;
+using Bitrix24RestApiClient.Core.Models.RequestArgs;
+using Bitrix24RestApiClient.Core.Builders.Interfaces;
 
 namespace Bitrix24RestApiClient.Api.User
 {
@@ -65,7 +65,7 @@ namespace Bitrix24RestApiClient.Api.User
             var builder = new UpdateRequestBuilder<TEntity>();
             builder.SetId(id);
             builderFunc(builder);
-            return await client.SendPostRequest<CrmEntityUpdateArgs, UpdateResponse>(entityTypePrefix, EntityMethod.Update, builder.BuildArgs());
+            return await client.SendPostRequest<object, UpdateResponse>(entityTypePrefix, EntityMethod.Update, builder.BuildArgs(entityTypePrefix));
         }
 
         public async Task<AddResponse> Add<TEntity>(Action<IAddRequestBuilder<TEntity>> builderFunc)

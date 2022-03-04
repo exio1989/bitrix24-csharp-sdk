@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Bitrix24RestApiClient.Core.Builders.Interfaces;
-using Bitrix24RestApiClient.Core.Builders;
 using Bitrix24RestApiClient.Core.Client;
+using Bitrix24RestApiClient.Core.Builders;
 using Bitrix24RestApiClient.Core.Models.Enums;
-using Bitrix24RestApiClient.Core.Models.RequestArgs;
-using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 using Bitrix24RestApiClient.Core.Models.Response;
+using Bitrix24RestApiClient.Core.Models.RequestArgs;
+using Bitrix24RestApiClient.Core.Builders.Interfaces;
 using Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact.Items;
 using Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact.Models;
+using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 
 namespace Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact
 {
@@ -34,7 +34,7 @@ namespace Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact
             var builder = new UpdateRequestBuilder<DealContact>();
             builder.SetId(dealId);
             builder.SetField(x => x.ContactId, contactId);
-            return await client.SendPostRequest<CrmEntityUpdateArgs, DeleteResponse>(entityTypePrefix, EntityMethod.Delete, builder.BuildArgs());
+            return await client.SendPostRequest<object, DeleteResponse>(entityTypePrefix, EntityMethod.Delete, builder.BuildArgs(entityTypePrefix));
         } 
 
         public async Task<UpdateResponse> Add(int dealId, Action<IUpdateRequestBuilder<DealContact>> builderFunc)
@@ -42,7 +42,7 @@ namespace Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact
             var builder = new UpdateRequestBuilder<DealContact>();
             builder.SetId(dealId);
             builderFunc(builder);
-            return await client.SendPostRequest<CrmEntityUpdateArgs, UpdateResponse>(entityTypePrefix, EntityMethod.Add, builder.BuildArgs());
+            return await client.SendPostRequest<object, UpdateResponse>(entityTypePrefix, EntityMethod.Add, builder.BuildArgs(entityTypePrefix));
         }
     }
 }

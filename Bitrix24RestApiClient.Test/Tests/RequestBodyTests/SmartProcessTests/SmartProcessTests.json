@@ -1,0 +1,61 @@
+﻿{
+  "ListTest": [
+    [
+      {
+        "entityTypeId": 4,
+        "select": [
+          "id",
+          "TITLE"
+        ],
+        "order": {
+          "id": "ASC"
+        },
+        "filter": {
+          ">id": 100
+        },
+        "start": null
+      }
+    ]
+  ],
+  "GetTest": [
+    [
+      {
+        "id": 100,
+        "entityTypeId": 4,
+        "fields": [
+          "id",
+          "TITLE"
+        ]
+      }
+    ]
+  ],
+  "DeleteTest": [
+    [
+      {
+        "id": 100,
+        "entityTypeId": 4
+      }
+    ]
+  ],
+  "UpdateTest": [
+    [
+      {
+        "id": 100,
+        "entityTypeId": 4,
+        "fields": {
+          "TITLE": "12"
+        }
+      }
+    ]
+  ],
+  "AddTest": [
+    [
+      {
+        "entityTypeId": 4,
+        "fields": {
+          "TITLE": "12"
+        }
+      }
+    ]
+  ]
+}

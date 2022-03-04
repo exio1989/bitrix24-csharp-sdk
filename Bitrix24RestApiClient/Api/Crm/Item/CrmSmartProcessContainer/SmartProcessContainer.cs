@@ -79,13 +79,13 @@ namespace Bitrix24RestApiClient.Api.Crm.Item.CrmSmartProcessContainer
             });
         } 
 
-        public async Task<UpdateResponse> Update<TCustomEntity>(int id, Action<IUpdateRequestBuilder<TCustomEntity>> builderFunc)
+        public async Task<UpdateItemResponse<TCustomEntity>> Update<TCustomEntity>(int id, Action<IUpdateRequestBuilder<TCustomEntity>> builderFunc)
         {
             var builder = new UpdateRequestBuilder<TCustomEntity>();
             builder.SetEntityTypeId(entityTypeId);
             builder.SetId(id);
             builderFunc(builder);
-            return await client.SendPostRequest<CrmEntityUpdateArgs, UpdateResponse>(entityTypePrefix, EntityMethod.Update, builder.BuildArgs());
+            return await client.SendPostRequest<object, UpdateItemResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.Update, builder.BuildArgs(entityTypePrefix));
         }
 
         public async Task<AddItemResponse<TCustomEntity>> Add<TCustomEntity>()

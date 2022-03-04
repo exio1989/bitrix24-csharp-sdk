@@ -117,7 +117,7 @@ namespace Bitrix24RestApiClient.Core
             builder.SetEntityTypeId(entityTypeId);
             builder.SetId(id);
             builderFunc(builder);
-            return await client.SendPostRequest<CrmEntityUpdateArgs, UpdateResponse>(entityTypePrefix, EntityMethod.Update, builder.BuildArgs());
+            return await client.SendPostRequest<object, UpdateResponse>(entityTypePrefix, EntityMethod.Update, builder.BuildArgs(entityTypePrefix));
         }
 
         public async Task<UpdateResponse> Update<TCustomEntity>(int id, Action<IUpdateRequestBuilder<TCustomEntity>> builderFunc)
@@ -126,7 +126,7 @@ namespace Bitrix24RestApiClient.Core
             builder.SetEntityTypeId(entityTypeId);
             builder.SetId(id);
             builderFunc(builder);
-            return await client.SendPostRequest<CrmEntityUpdateArgs, UpdateResponse>(entityTypePrefix, EntityMethod.Update, builder.BuildArgs());
+            return await client.SendPostRequest<object, UpdateResponse>(entityTypePrefix, EntityMethod.Update, builder.BuildArgs(entityTypePrefix));
         }
 
         public async Task<AddResponse> Add()

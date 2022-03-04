@@ -1,11 +1,11 @@
 ﻿using PowerArgs;
-using System.Collections.Generic;
 using System.IO;
+using Humanizer;
 using System.Linq;
 using System.Threading.Tasks;
-using Humanizer;
-using Bitrix24RestApiTools.Models;
 using Bitrix24RestApiClient.Api;
+using System.Collections.Generic;
+using Bitrix24RestApiTools.Models;
 using Bitrix24RestApiClient.Core.Client;
 using Bitrix24RestApiClient.Core.Models.Enums;
 using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
@@ -78,10 +78,10 @@ namespace Bitrix24RestApiTools
         {
             var models = new List<ClassGeneratorArgs>
             {
-                new ClassGeneratorArgs {description= "Cделки", className= "Deal", entryPoint= "crm.deal.fields", dirs= new List<string> { "Crm", "Deal" }, responseClass= "FieldsResponse" }
+                new ClassGeneratorArgs {description= "Cделки", className= "Deal", entryPoint= "crm.deal.fields", dirs= new List<string> { "Crm", "Deal" }, responseClass= "FieldsResponse" },
                 //(description: "Контакты", className: "Contact", entryPoint: "crm.contact.fields", dirs: new List<string> { "Crm", "Contact" }, responseClass: "FieldsResponse" ),
                 //(description: "Лиды", className: "Lead", entryPoint: "crm.lead.fields", dirs: new List<string> { "Crm", "Lead" }, responseClass: "FieldsResponse" ),
-                //(description: "Компании", className: "Company", entryPoint: "crm.company.fields", dirs: new List<string> { "Crm", "Company" }, responseClass: "FieldsResponse" ),
+                 new ClassGeneratorArgs {description= "Компании", className= "Company", entryPoint= "crm.company.fields", dirs= new List<string> { "Crm", "Company" }, responseClass= "FieldsResponse" }
                 //(description: "Контакыт компаний", className: "CompanyContact", entryPoint: "crm.company.contact.fields", dirs: new List<string> { "Crm", "Company", "Contact" }, responseClass: "FieldsResponse" ),
                 //(description: "Компании контактов", className: "ContactCompany", entryPoint: "crm.contact.company.fields", dirs: new List<string> { "Crm", "Contact", "Company" }, responseClass: "FieldsResponse" ),
                 //(description: "Направления сделок, устаревшее", className: "DealCategory", entryPoint: "crm.dealcategory.fields", dirs: new List<string> { "Crm", "DealCategory" }, responseClass: "FieldsResponse" ),
