@@ -45,11 +45,12 @@ namespace Bitrix24RestApiClient.Api.User
 
         public async Task<TEntity> Get<TEntity>(int id, params Expression<Func<TEntity, object>>[] fieldsExpr) where TEntity : class
         {
-            return await client.SendPostRequest<CrmEntityGetRequestArgs, TEntity>(entityTypePrefix, EntityMethod.Get, new CrmEntityGetRequestArgs
+            var response = await client.SendPostRequest<CrmEntityGetRequestArgs, ListResponse<TEntity>>(entityTypePrefix, EntityMethod.Get, new CrmEntityGetRequestArgs
             {
                 Id = id,
                 Fields = fieldsExpr.Select(x => x.JsonPropertyName()).ToList()
             });
+            return response.Result.FirstOrDefault();
         }
 
         public async Task<DeleteResponse> Delete(int id)
