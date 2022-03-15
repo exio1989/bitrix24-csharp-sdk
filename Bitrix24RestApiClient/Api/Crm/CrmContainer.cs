@@ -32,8 +32,10 @@ namespace Bitrix24RestApiClient.Api.Crm
             StageHistories = new StageHistories(client);
             SmartProcesses = new ItemContainer(client);
             Requisites = new RequisitesContainer(client);
+            ProductSections = new ProductSectionContainer(client);
         }
          
+        public ProductSectionContainer ProductSections { get; private set; }
         public RequisitesContainer Requisites { get; private set; }
         public ItemContainer SmartProcesses { get; private set; }
         public SmartProcessTypeContainer SmartProcessTypes { get; private set; }

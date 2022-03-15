@@ -15,6 +15,7 @@
         public static EntryPointPrefix PaySystem = new EntryPointPrefix { Value = "crm.paysystem" };
         public static EntryPointPrefix Invoice = new EntryPointPrefix { Value = "crm.invoice" };
         public static EntryPointPrefix Product = new EntryPointPrefix { Value = "crm.product" };
+        public static EntryPointPrefix ProductSection = new EntryPointPrefix { Value = "crm.productsection" };
         public static EntryPointPrefix Company = new EntryPointPrefix { Value = "crm.company" };
         public static EntryPointPrefix Deal = new EntryPointPrefix { Value = "crm.deal" };
         public static EntryPointPrefix DealContact = new EntryPointPrefix { Value = "crm.deal.contact" };
