@@ -7,11 +7,44 @@ using Bitrix24RestApiClient.Core.Client;
 using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 using Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact.Items.Models;
 using Bitrix24RestApiClient.Test.Utilities;
+using Bitrix24RestApiClient.Core.Models.Response.BatchResponse;
 
 namespace Bitrix24RestApiClient.Test.Tests.IntegrationTests
 {
     public class DealContactTests: AbstractTest
     {
+
+
+        [Fact]
+        public async Task GetBatchTest()
+        {
+            int? dealId = (await bitrix24.Crm.Deals.Add(x => x.SetField(x => x.Title, "test"))).Result;
+            AllocatedDeals.Add(dealId.Value);
+
+            int? contactId1 = (await bitrix24.Crm.Contacts.Add(x => x.SetField(x => x.Name, "test1"))).Result;
+            AllocatedContacts.Add(contactId1.Value);
+
+            int? contactId2 = (await bitrix24.Crm.Contacts.Add(x => x.SetField(x => x.Name, "test2"))).Result;
+            AllocatedContacts.Add(contactId2.Value);
+
+            await bitrix24.Crm.Deals.Contacts.Items.Set(dealId.Value, new List<DealContactItem>
+            {
+                new DealContactItem
+                {
+                    ContactId = contactId1
+                },
+                new DealContactItem
+                {
+                    ContactId = contactId2
+                }
+            });
+
+            IAsyncEnumerable<ByIdBatchResponseItem<List<DealContactItem>>> contactItemsIterator = bitrix24.Crm.Deals.Contacts.GetByDealIds(new List<int> { dealId.Value });
+            var contactItems = new List<ByIdBatchResponseItem<List<DealContactItem>>>();
+            await foreach (var contactItem in contactItemsIterator)
+                contactItems.Add(contactItem);
+        }
+
         [Fact]
         public async Task GetFieldsTest()
         {            

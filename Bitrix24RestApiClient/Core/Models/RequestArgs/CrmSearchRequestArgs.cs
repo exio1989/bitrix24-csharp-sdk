@@ -8,6 +8,9 @@ namespace Bitrix24RestApiClient.Core.Models.RequestArgs
         [JsonProperty("filter")]
         public Dictionary<string, object> Filter { get; set; } = new Dictionary<string, object>();
 
+        [JsonProperty("ADMIN_MODE")]
+        public bool? AdminMode { get; set; }
+
         public CrmSearchRequestArgs(List<Filter> filters)
         {
             foreach (var filter in filters)

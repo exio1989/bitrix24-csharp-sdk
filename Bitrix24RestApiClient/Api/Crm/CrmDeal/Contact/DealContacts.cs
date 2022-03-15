@@ -9,6 +9,10 @@ using Bitrix24RestApiClient.Core.Builders.Interfaces;
 using Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact.Items;
 using Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact.Models;
 using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
+using System.Collections.Generic;
+using Bitrix24RestApiClient.Core.Models.Response.BatchResponse;
+using Bitrix24RestApiClient.Core.BatchStrategies;
+using Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact.Items.Models;
 
 namespace Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact
 {
@@ -16,13 +20,20 @@ namespace Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact
     {
         private EntryPointPrefix entityTypePrefix = EntryPointPrefix.DealContact;
         private IBitrix24Client client;
+        private ByIdsStrategy byIdsStrategy;
 
         public DealContacts(IBitrix24Client client)
         {
             this.client = client;
             this.Items = new DealContactItems(client);
+            byIdsStrategy = new ByIdsStrategy(client);
         }
         public DealContactItems Items { get; private set; }
+
+        public IAsyncEnumerable<ByIdBatchResponseItem<List<DealContactItem>>> GetByDealIds(List<int> dealIds)
+        {
+            return byIdsStrategy.Get<DealContactItem>(x => x.Id, EntryPointPrefix.DealContactItems, dealIds);
+        }
 
         public async Task<FieldsResponse> Fields()
         {

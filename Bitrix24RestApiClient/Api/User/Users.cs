@@ -72,7 +72,7 @@ namespace Bitrix24RestApiClient.Api.User
         {
             var builder = new AddRequestBuilder<TEntity>();
             builderFunc(builder);
-            return await client.SendPostRequest<CrmEntityAddArgs, AddResponse>(entityTypePrefix, EntityMethod.Add, builder.BuildArgs());
+            return await client.SendPostRequest<object, AddResponse>(entityTypePrefix, EntityMethod.Add, builder.BuildArgs().Fields);
         }
     }
 }

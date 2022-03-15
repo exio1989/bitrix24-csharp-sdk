@@ -112,17 +112,6 @@ namespace Bitrix24RestApiClient.Api.Crm.CrmDeal.Models
         public int? ContactId { get; set; }
 
         /// <summary>
-        /// Идентификатор привязанного контакта			
-        /// Тип: crm_contact	
-        /// Множественный.
-        /// При использовании crm.deal.update и crm.deal.add можно подать массив контактов. В методах crm.deal.list и crm.deal.get поля нет и необходимо использовать crm.deal.contact.items.get для получения списка контактов.
-        /// Для очистки поля используйте crm.deal.contact.items.delete, для замены значения используйте crm.deal.contact.items.set.
-        /// </summary>
-
-        [JsonProperty(DealFields.ContactIds)]
-        public int? ContactIds { get; set; }
-
-        /// <summary>
         /// Создано пользователем			
         /// Тип: user	
         /// Только для чтения

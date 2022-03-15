@@ -1,12 +1,18 @@
 ﻿using Newtonsoft.Json;
 using Bitrix24RestApiClient.Core.Attributes;
 using Bitrix24RestApiClient.Core.Models.Enums;
-using Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact.Models;
 
 namespace Bitrix24RestApiClient.Api.Crm.CrmDeal.Contact.Models
 {
     public class DealContact
     {
+        /// <summary>
+        /// Идентификатор сделки(обязательное поле)
+        /// Тип: integer	
+        /// </summary>
+        [JsonProperty(DealContactFields.Id)]
+        public int? Id { get; set; }
+
         /// <summary>
         /// Идентификатор контакта(обязательное поле)
         /// Тип: integer	
