@@ -19,13 +19,16 @@
         public static EntryPointPrefix Company = new EntryPointPrefix { Value = "crm.company" };
         public static EntryPointPrefix Deal = new EntryPointPrefix { Value = "crm.deal" };
         public static EntryPointPrefix DealContact = new EntryPointPrefix { Value = "crm.deal.contact" };
+        public static EntryPointPrefix CompanyContact = new EntryPointPrefix { Value = "crm.company.contact" };
         public static EntryPointPrefix DealContactItems = new EntryPointPrefix { Value = "crm.deal.contact.items" };
+        public static EntryPointPrefix CompanyContactItems = new EntryPointPrefix { Value = "crm.company.contact.items" };
         public static EntryPointPrefix Lead = new EntryPointPrefix { Value = "crm.lead" };
         public static EntryPointPrefix DealUserFields = new EntryPointPrefix { Value = "crm.deal.userfield" };
         public static EntryPointPrefix Contact = new EntryPointPrefix { Value = "crm.contact" };
         public static EntryPointPrefix TimelineComment = new EntryPointPrefix { Value = "crm.timeline.comment" };
         public static EntryPointPrefix User = new EntryPointPrefix { Value = "user" };
         public static EntryPointPrefix Item = new EntryPointPrefix { Value = "crm.item" };
+        public static EntryPointPrefix CrmProductRow = new EntryPointPrefix { Value = "crm.item.productrow" };
         public static EntryPointPrefix RequisiteLink = new EntryPointPrefix { Value = "crm.requisite.link" };
         public static EntryPointPrefix RequisiteBankdetail = new EntryPointPrefix { Value = "crm.requisite.bankdetail" };
         public static EntryPointPrefix RequisitePresetField = new EntryPointPrefix { Value = "crm.requisite.preset.field" };

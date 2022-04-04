@@ -5,7 +5,7 @@ namespace Bitrix24RestApiClient.Core.Models
     public class Filter {
         public string Name { get; set; }
         public object Value { get; set; }
-        public FilterOperator Operator { get; set; } = FilterOperator.Equal;
+        public FilterOperator Operator { get; set; } = FilterOperator.Default;
 
         public string NameWithOperatorPrefix {
             get{
@@ -40,6 +40,8 @@ namespace Bitrix24RestApiClient.Core.Models
                     case FilterOperator.Like:
                         return "=%";
                     case FilterOperator.Equal:
+                        return "=";
+                    case FilterOperator.Default:
                         return "";
                     default:
                         throw new ArgumentOutOfRangeException();

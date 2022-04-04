@@ -5,7 +5,8 @@
     /// </summary>
     public enum FilterOperator
     {
-        Equal = 0,
+        Default = 0,
+        Equal,
         GreateThan,
         LessThan,
         GreateThanOrEqual,

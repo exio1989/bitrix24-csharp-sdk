@@ -1,4 +1,5 @@
 ﻿using Bitrix24RestApiClient.Core.Client;
+using Bitrix24RestApiClient.Api.Crm.Item.CrmProductRow;
 using Bitrix24RestApiClient.Api.Crm.Item.CrmSmartProcessContainer;
 
 namespace Bitrix24RestApiClient.Api.Crm.Item
@@ -13,7 +14,9 @@ namespace Bitrix24RestApiClient.Api.Crm.Item
         public ItemContainer(IBitrix24Client client)
         {
             this.client = client;
+            ProductRows = new ProductRows(client);
         }
+        public ProductRows ProductRows { get; private set; }
         public SmartProcessContainer ByEntityId(int entityId)
         {
             return new SmartProcessContainer(client, entityId);
