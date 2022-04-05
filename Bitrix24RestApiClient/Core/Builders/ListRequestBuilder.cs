@@ -81,7 +81,7 @@ namespace Bitrix24RestApiClient.Core.Builders
             return this;
         }
 
-        public IListRequestBuilder<TEntity> AddFilter(Expression<Func<TEntity, object>> nameExpr, object value, FilterOperator op = FilterOperator.Equal)
+        public IListRequestBuilder<TEntity> AddFilter(Expression<Func<TEntity, object>> nameExpr, object value, FilterOperator op = FilterOperator.Default)
         {
             AddFilterInternal(nameExpr, value, op);
             return this;
@@ -93,7 +93,7 @@ namespace Bitrix24RestApiClient.Core.Builders
             return this;
         }
 
-        public IListRequestBuilder<TEntity> AddPhoneFilter(string phone, FilterOperator op = FilterOperator.Equal)
+        public IListRequestBuilder<TEntity> AddPhoneFilter(string phone, FilterOperator op = FilterOperator.Default)
         {
             AddPhoneFilterInternal(phone, op);
             return this;
@@ -105,7 +105,7 @@ namespace Bitrix24RestApiClient.Core.Builders
             return this;
         }
 
-        public IListRequestBuilder<TEntity> AddEmailFilter(string phone, FilterOperator op = FilterOperator.Equal)
+        public IListRequestBuilder<TEntity> AddEmailFilter(string phone, FilterOperator op = FilterOperator.Default)
         {
             AddEmailFilterInternal(phone, op);
             return this;
