@@ -12,7 +12,7 @@ namespace Bitrix24RestApiClient.Core.Builders
     {
         private List<Filter> filter = new List<Filter>();
 
-        public ISearchRequestBuilder<TEntity> AddFilter(Expression<Func<TEntity, object>> nameExpr, object value, FilterOperator op = FilterOperator.Equal)
+        public ISearchRequestBuilder<TEntity> AddFilter(Expression<Func<TEntity, object>> nameExpr, object value, FilterOperator op = FilterOperator.Default)
         {
             filter.Add(new Filter
             {

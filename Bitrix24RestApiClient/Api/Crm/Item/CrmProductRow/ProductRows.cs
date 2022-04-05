@@ -94,9 +94,9 @@ namespace Bitrix24RestApiClient.Api.Crm.Item.CrmProductRow
             return await client.SendPostRequest<CrmEntityAddArgs, AddProductRowResponse>(entityTypePrefix, EntityMethod.Add, builder.BuildArgs());
         } 
 
-        public async Task<object> Set(string ownerType, int ownerId, List<ProductRowNew> productRows)
+        public async Task<SetProductRowResponse> Set(string ownerType, int ownerId, List<ProductRowNew> productRows)
         {
-            return await client.SendPostRequest<CrmProductRowNewSetArgs, object>(entityTypePrefix, EntityMethod.Add, new CrmProductRowNewSetArgs
+            return await client.SendPostRequest<CrmProductRowNewSetArgs, SetProductRowResponse>(entityTypePrefix, EntityMethod.Set, new CrmProductRowNewSetArgs
             {
                 OwnerType = ownerType,
                 OwnerId = ownerId,

@@ -2,10 +2,12 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Bitrix24RestApiClient.Test.Utilities;
 using Bitrix24RestApiClient.Core.Models.Enums;
 using Bitrix24RestApiClient.Core.Models.Response;
 using Bitrix24RestApiClient.Api.Crm.CrmDeal.Models;
+using Bitrix24RestApiClient.Api.Crm.Item.CrmProductRow.Models;
 using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 
 namespace Bitrix24RestApiClient.Test.Tests.IntegrationTests
@@ -15,6 +17,31 @@ namespace Bitrix24RestApiClient.Test.Tests.IntegrationTests
     /// </summary>
     public class ProductRowNewTests : AbstractTest
     {
+        [Fact]
+        public async Task SetTest()
+        {
+            int entityTypeId = 179;
+            string entityTypeCode = "Tb3";
+            dynamic addedItem = (await bitrix24.Crm.SmartProcesses.ByEntityId(entityTypeId).Add<object>()).Result.Item;
+            int id = (int)addedItem.id;
+
+            var productItem = (await bitrix24.Crm.Products.List()).Result.First();
+
+            var setResponse = await bitrix24.Crm.SmartProcesses.ProductRows.Set(entityTypeCode, id, new List<ProductRowNew>
+            {
+                new ProductRowNew
+                {
+                    Productid = productItem.Id
+                }
+            });
+
+            var firstResponse = await bitrix24.Crm.SmartProcesses.ProductRows.First(x => x
+                .AddFilter(y => y.Ownerid, id, Core.Models.FilterOperator.Equal)
+                .AddFilter(y => y.Ownertype, entityTypeCode, Core.Models.FilterOperator.Equal));
+
+            Assert.Equal(setResponse.Result.ProductRows.First().Id, firstResponse.Id);
+        }
+
         [Fact]
         public async Task AddTest()
         {
