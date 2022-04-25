@@ -14,6 +14,8 @@ using Bitrix24RestApiClient.Core.Builders.Interfaces;
 using Bitrix24RestApiClient.Api.Crm.Item.CrmProductRow.Models;
 using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 using Bitrix24RestApiClient.Core.Models.Response.ListItemsResponse;
+using Bitrix24RestApiClient.Core.Models.Response.BatchResponse;
+using Bitrix24RestApiClient.Core.BatchStrategies;
 
 namespace Bitrix24RestApiClient.Api.Crm.Item.CrmProductRow
 {
@@ -24,11 +26,18 @@ namespace Bitrix24RestApiClient.Api.Crm.Item.CrmProductRow
 	{
         private IBitrix24Client client;
         private EntryPointPrefix entityTypePrefix;
+        private ProductRowsBySmartProcessIdsStrategy byIdsStrategy;
 
         public ProductRows(IBitrix24Client client)
 		{
             this.client = client;
             this.entityTypePrefix = EntryPointPrefix.CrmProductRow;
+            this.byIdsStrategy = new ProductRowsBySmartProcessIdsStrategy(client);
+        }
+
+        public IAsyncEnumerable<ByIdBatchResponseItem<ListProductRowsResponse>> GetBySmartProcessIds(string smartProcessType, List<int> ids)
+        {
+            return byIdsStrategy.Get(smartProcessType, ids);
         }
 
         public async Task<ExtFieldsResponse> Fields() 
