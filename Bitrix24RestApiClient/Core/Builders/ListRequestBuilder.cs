@@ -131,7 +131,10 @@ namespace Bitrix24RestApiClient.Core.Builders
         public CrmEntityListRequestArgs BuildArgs()
         {
             if (selectAll)
+            {
                 select.Add("*");
+                select.Add("UF_*");
+            }
 
             var args = new CrmEntityListRequestArgs();
 
