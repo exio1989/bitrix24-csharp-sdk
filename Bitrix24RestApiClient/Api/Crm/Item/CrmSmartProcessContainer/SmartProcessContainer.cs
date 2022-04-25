@@ -57,7 +57,7 @@ namespace Bitrix24RestApiClient.Api.Crm.Item.CrmSmartProcessContainer
             var builder = new ListRequestBuilder<TCustomEntity>();
             builder.SetEntityTypeId(entityTypeId);
             builderFunc(builder);
-            return (await client.SendPostRequest<CrmEntityListRequestArgs, ListResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs())).Result.FirstOrDefault();
+            return (await client.SendPostRequest<CrmEntityListRequestArgs, ListItemsResponse<TCustomEntity>>(entityTypePrefix, EntityMethod.List, builder.BuildArgs())).Result.Items.FirstOrDefault();
         }
 
         public async Task<GetResponse<TCustomEntity>> Get<TCustomEntity>(int id, params Expression<Func<TCustomEntity, object>>[] fieldsExpr) where TCustomEntity : class

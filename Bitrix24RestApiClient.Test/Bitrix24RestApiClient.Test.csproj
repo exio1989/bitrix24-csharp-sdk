@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Tests\RequestBodyTests\CommonTests\common.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Tests\RequestBodyTests\CommonTests\common.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Tests\RequestBodyTests\SmartProcessTests\SmartProcessTests.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

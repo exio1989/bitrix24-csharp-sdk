@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>Bitrix24RestApiClient</PackageId>
-    <Version>1.1.46</Version>
+    <Version>1.1.50</Version>
     <Authors>Rustam Shaikhatarov</Authors>
     <Company>-</Company>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -11,8 +11,8 @@
     <RepositoryUrl>https://github.com/exio1989/bitrix24-csharp-sdk</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageReleaseNotes>Это версия пригодна к использованию в продакшене, но учитывайте, что первое время будут периодически появляться брэйкинг чеинджис. Если Вам понравилась моя идея по созданию библиотеки, но нашли ошибку или не нашли нужную Вам фичу, то напишите, пожалуйста, мне по почте timergalin@gmail.com или в вайбер по номеру +79222404311 и я внесу правки.</PackageReleaseNotes>
-    <AssemblyVersion>1.1.46.0</AssemblyVersion>
-    <FileVersion>1.1.46.0</FileVersion>
+    <AssemblyVersion>1.1.50.0</AssemblyVersion>
+    <FileVersion>1.1.50.0</FileVersion>
     <Description>Библиотека для работы с REST API битрикс24.
 
 Это версия пригодна к использованию в продакшене, но учитывайте, что первое время будут периодически появляться брэйкинг чеинджис. Если Вам понравилась моя идея по созданию библиотеки, но нашли ошибку или не нашли нужную Вам фичу, то напишите, пожалуйста, мне по почте timergalin@gmail.com или в вайбер по номеру +79222404311 и я внесу правки.</Description>
