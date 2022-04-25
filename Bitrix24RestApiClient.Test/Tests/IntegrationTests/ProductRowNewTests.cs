@@ -7,8 +7,8 @@ using Bitrix24RestApiClient.Test.Utilities;
 using Bitrix24RestApiClient.Core.Models.Enums;
 using Bitrix24RestApiClient.Core.Models.Response;
 using Bitrix24RestApiClient.Api.Crm.CrmDeal.Models;
-using Bitrix24RestApiClient.Api.Crm.Item.CrmProductRow.Models;
 using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
+using Bitrix24RestApiClient.Api.Crm.Item.CrmProductRow.Models;
 
 namespace Bitrix24RestApiClient.Test.Tests.IntegrationTests
 {

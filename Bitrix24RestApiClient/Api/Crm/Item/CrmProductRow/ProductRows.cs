@@ -35,7 +35,7 @@ namespace Bitrix24RestApiClient.Api.Crm.Item.CrmProductRow
             this.byIdsStrategy = new ProductRowsBySmartProcessIdsStrategy(client);
         }
 
-        public IAsyncEnumerable<ByIdBatchResponseItem<ListProductRowsResponse>> GetBySmartProcessIds(string smartProcessType, List<int> ids)
+        public IAsyncEnumerable<ByIdBatchResponseItem<ListProductRowsResponseResult>> GetBySmartProcessIds(string smartProcessType, List<int> ids)
         {
             return byIdsStrategy.Get(smartProcessType, ids);
         }

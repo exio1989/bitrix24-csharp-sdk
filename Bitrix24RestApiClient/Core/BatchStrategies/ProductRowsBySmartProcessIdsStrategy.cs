@@ -19,7 +19,7 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
             this.client = client;
         }
 
-        public async IAsyncEnumerable<ByIdBatchResponseItem<ListProductRowsResponse>> Get(string smartProcessType, List<int> smartProcessIds)
+        public async IAsyncEnumerable<ByIdBatchResponseItem<ListProductRowsResponseResult>> Get(string smartProcessType, List<int> smartProcessIds)
         {
             int batchSize = 50;
 
@@ -27,12 +27,12 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
             {
                 var partIds = smartProcessIds.GetRange(i, Math.Min(batchSize, smartProcessIds.Count - i));
 
-                await foreach (ByIdBatchResponseItem<ListProductRowsResponse> item in BatchGetItems(smartProcessType, partIds))
+                await foreach (ByIdBatchResponseItem<ListProductRowsResponseResult> item in BatchGetItems(smartProcessType, partIds))
                     yield return item;
             }
         } 
 
-        private async IAsyncEnumerable<ByIdBatchResponseItem<ListProductRowsResponse>> BatchGetItems(string smartProcessType, List<int> ids)
+        private async IAsyncEnumerable<ByIdBatchResponseItem<ListProductRowsResponseResult>> BatchGetItems(string smartProcessType, List<int> ids)
         {
             CrmBatchRequestArgs getItemsBatch = new CrmBatchRequestArgs() 
             {
@@ -42,11 +42,11 @@ namespace Bitrix24RestApiClient.Core.BatchStrategies
                     .ToDictionary(x => x.Id.ToString(), x => x.Cmd)
             }; 
 
-            BatchResponse<ListProductRowsResponse> batchResponse = await client.SendPostRequest<CrmBatchRequestArgs, BatchResponse<ListProductRowsResponse>>(EntryPointPrefix.Batch, EntityMethod.None, getItemsBatch);
+            BatchResponse<ListProductRowsResponseResult> batchResponse = await client.SendPostRequest<CrmBatchRequestArgs, BatchResponse<ListProductRowsResponseResult>>(EntryPointPrefix.Batch, EntityMethod.None, getItemsBatch);
             if (batchResponse.Result.Error.Count > 0)
                 throw new Exception($"Ошибка при выполнении batch-запроса. Ответ: {JsonConvert.SerializeObject(batchResponse)}");
 
-            foreach (ByIdBatchResponseItem<ListProductRowsResponse> item in ids.Select(x => new ByIdBatchResponseItem<ListProductRowsResponse>
+            foreach (ByIdBatchResponseItem<ListProductRowsResponseResult> item in ids.Select(x => new ByIdBatchResponseItem<ListProductRowsResponseResult>
             {
                 Id = x,
                 Result  = batchResponse.Result.Result[x.ToString()]

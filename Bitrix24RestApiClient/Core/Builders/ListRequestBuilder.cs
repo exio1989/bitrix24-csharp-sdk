@@ -137,9 +137,13 @@ namespace Bitrix24RestApiClient.Core.Builders
             }
 
             var args = new CrmEntityListRequestArgs();
+            args.Filter = new Dictionary<string, object>();
+            args.Order = new Dictionary<string, string>();
 
             args.EntityTypeId = entityTypeId;
-            args.Select = select;
+            args.Select = select.Count == 0 
+                ? null
+                : select;
             args.Start = start;
 
             foreach (var filterItem in filter)

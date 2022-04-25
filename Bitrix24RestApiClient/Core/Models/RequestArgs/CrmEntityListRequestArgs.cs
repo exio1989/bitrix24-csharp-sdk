@@ -8,16 +8,16 @@ namespace Bitrix24RestApiClient.Core.Models.RequestArgs
         [JsonProperty("entityTypeId", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int? EntityTypeId { get; set; }
 
-        [JsonProperty("select")]
-        public List<string> Select { get; set; } = new List<string>();
+        [JsonProperty("select", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public List<string> Select { get; set; }
 
-        [JsonProperty("order")]
-        public Dictionary<string, string> Order { get; set; } = new Dictionary<string, string>();
+        [JsonProperty("order", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Dictionary<string, string> Order { get; set; }
 
-        [JsonProperty("filter")]
-        public Dictionary<string, object> Filter { get; set; } = new Dictionary<string, object>();
+        [JsonProperty("filter", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Dictionary<string, object> Filter { get; set; }
 
-        [JsonProperty("start")]
+        [JsonProperty("start", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int? Start { get; set; }
     }
 }

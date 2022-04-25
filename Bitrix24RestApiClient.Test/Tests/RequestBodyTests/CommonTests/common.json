@@ -1,0 +1,15 @@
+﻿{
+  "EmptySelectFilterAndOrderListTest": [
+    [
+      {
+      }
+    ]
+  ],
+  "EmptySelectFilterAndOrderInSmartProcessesListTest": [
+    [
+      {
+        "entityTypeId": 1
+      }
+    ]
+  ]
+}
