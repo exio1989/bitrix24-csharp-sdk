@@ -9,6 +9,8 @@
         CrmCurrency,
         CrmLead,
         CrmStatus,
+        CrmEntity,
+        ProductProperty,
         CrmQuote,
         Date,
         DateTime,

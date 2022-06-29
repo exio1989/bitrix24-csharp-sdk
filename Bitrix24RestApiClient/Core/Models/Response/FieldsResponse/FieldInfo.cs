@@ -1,9 +1,9 @@
-﻿using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
+﻿using System;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using Bitrix24RestApiClient.Core.Models.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
+using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 
 namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 {
@@ -76,6 +76,10 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 						return "int?";
 					case CrmFieldType.CrmStatus:
 						return "string?";
+					case CrmFieldType.CrmEntity:
+						return "string?";
+					case CrmFieldType.ProductProperty:
+						return "string?";						
 					case CrmFieldType.CrmQuote:
 						return "string?";
 					case CrmFieldType.Date:
@@ -118,7 +122,7 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 							? "List<CrmMultiField>"
 							: "CrmMultiField?"; 
 					default:
-						throw new ArgumentOutOfRangeException();
+						throw new ArgumentOutOfRangeException($"Unknown type of '{TypeExt}'");
 				}
 			}
 		}
@@ -332,6 +336,12 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 					case CrmFieldTypeEnum.CrmQuote:
 						TypeExt = CrmFieldType.CrmQuote;
 						break;
+					case CrmFieldTypeEnum.CrmEntity:
+						TypeExt = CrmFieldType.CrmEntity;
+						break;
+					case CrmFieldTypeEnum.ProductProperty:
+						TypeExt = CrmFieldType.ProductProperty;
+						break;						
 					case CrmFieldTypeEnum.Date:
 						TypeExt = CrmFieldType.Date;
 						break;

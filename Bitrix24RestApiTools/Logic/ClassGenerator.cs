@@ -1,7 +1,8 @@
-﻿using Humanizer;
-using System.Collections.Generic;
+﻿using System;
+using Humanizer;
 using System.Linq;
 using System.Text;
+using System.Collections.Generic;
 using Bitrix24RestApiClient.Core.Models.Response.FieldsResponse;
 
 namespace Bitrix24RestApiTools
@@ -33,10 +34,10 @@ namespace Bitrix24RestApiTools
                 sb.AppendLine("\t\t/// <summary>");
                 sb.AppendLine($"\t\t/// {(field.Value.IsDynamic ? field.Value.ListLabel : field.Value.Title)}");
                 sb.AppendLine($"\t\t/// Тип: {field.Value.TypeExt}");
-                
-                if(field.Value.IsRequired)
+
+                if (field.Value.IsRequired)
                     sb.AppendLine($"\t\t/// Обязательное поле");
-                
+
                 if (field.Value.IsReadOnly)
                     sb.AppendLine($"\t\t/// Только для чтения");
 

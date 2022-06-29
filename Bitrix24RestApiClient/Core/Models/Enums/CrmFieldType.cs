@@ -11,6 +11,8 @@
         public const string CrmLead = "crm_lead";
         public const string CrmStatus = "crm_status";
         public const string CrmQuote = "crm_quote";
+        public const string CrmEntity = "crm_entity";
+        public const string ProductProperty = "product_property";
         public const string Date = "date";
         public const string DateTime = "datetime";
         public const string Double = "double";

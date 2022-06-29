@@ -16,6 +16,8 @@ namespace Bitrix24RestApiClient.Core.Builders
         private int? entityTypeId;
         private int? start;
         private bool selectAll;
+        private bool selectEmails;
+        private bool selectPhones;
         private List<string> select = new List<string>();
         private List<Filter> filter = new List<Filter>();
         private List<Order> order = new List<Order>();
@@ -59,6 +61,8 @@ namespace Bitrix24RestApiClient.Core.Builders
         public ListRequestBuilder<TEntity> ClearSelect()
         {
             selectAll = false;
+            selectEmails = false;
+            selectPhones = false;
             select.Clear();
             return this;
         }
@@ -123,6 +127,18 @@ namespace Bitrix24RestApiClient.Core.Builders
             return this;
         }
 
+        public IListRequestBuilder<TEntity> SelectEmails()
+        {
+            selectEmails = true;
+            return this;
+        }
+
+        public IListRequestBuilder<TEntity> SelectPhones()
+        {
+            selectPhones = true;
+            return this;
+        }
+
         public ListRequestBuilder<TEntity> Copy()
         {
             return new ListRequestBuilder<TEntity>(entityTypeId, start, selectAll, select.ToList(), filter.ToList(), order.ToList());
@@ -135,6 +151,12 @@ namespace Bitrix24RestApiClient.Core.Builders
                 select.Add("*");
                 select.Add("UF_*");
             }
+
+            if (selectEmails)
+                select.Add("EMAIL");
+
+            if (selectPhones)
+                select.Add("PHONE");
 
             var args = new CrmEntityListRequestArgs();
             args.Filter = new Dictionary<string, object>();
