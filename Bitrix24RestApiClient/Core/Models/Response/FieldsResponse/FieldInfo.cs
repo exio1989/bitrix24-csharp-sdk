@@ -18,7 +18,9 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 				{
 					case CrmFieldType.Boolean:
 						return "bool?";
-					case CrmFieldType.ProductPropertyEnumElement:
+                    case CrmFieldType.Url:
+                        return "string?";
+                    case CrmFieldType.ProductPropertyEnumElement:
 						return "List<object>";
 					case CrmFieldType.CurrencyLocalization:
 						return "List<object>";
@@ -36,11 +38,17 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 						return "object?";
 					case CrmFieldType.Object:
 						return "object?";
-					case CrmFieldType.Null:
+                    case CrmFieldType.Rest142AmRegulate:
+                        return "object?";
+                    case CrmFieldType.IBlockElement:
+                        return "object?";
+                    case CrmFieldType.Null:
 						return "object?";
 					case CrmFieldType.CrmEnumFields:
 						return "int?";
-					case CrmFieldType.CrmEnumOwnerType:
+                    case CrmFieldType.Crm:
+                        return "object?";
+                    case CrmFieldType.CrmEnumOwnerType:
 						return "int?";
 					case CrmFieldType.CrmEnumContentType:
 						return "int?";
@@ -86,7 +94,11 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 						return "DateTimeOffset?";
 					case CrmFieldType.DateTime:
 						return "DateTimeOffset?";
-					case CrmFieldType.Double:
+					case CrmFieldType.Money:
+                        return "decimal?";
+                    case CrmFieldType.Address:
+                        return "string?";
+                    case CrmFieldType.Double:
 						return "decimal?";
 					case CrmFieldType.Enumeration:
 						return IsMultiple 
@@ -108,7 +120,13 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 						return "int?";
 					case CrmFieldType.Text:
 						return "string?";
-					case CrmFieldType.Variable:
+					case CrmFieldType.ResourceBooking:
+                        return "object?";
+                    case CrmFieldType.Rest50Amregulate:
+                        return "object?";
+                    case CrmFieldType.Employee:
+                        return "object?";
+                    case CrmFieldType.Variable:
 						return "object?";
 					case CrmFieldType.IndexArray:
 						return "List<object>";
@@ -134,7 +152,11 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 				{
 					case CrmFieldType.Boolean:
 						return CrmFieldTypeEnum.Boolean;
-					case CrmFieldType.ProductPropertyEnumElement:
+                    case CrmFieldType.IBlockElement:
+                        return CrmFieldTypeEnum.IBlockElement;
+                    case CrmFieldType.Url:
+                        return CrmFieldTypeEnum.Url;
+                    case CrmFieldType.ProductPropertyEnumElement:
 						return CrmFieldTypeEnum.ProductPropertyEnumElement;
 					case CrmFieldType.ProductFile:
 						return CrmFieldTypeEnum.ProductFile;
@@ -152,9 +174,13 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 						return CrmFieldTypeEnum.CrmActivityBinding;
 					case CrmFieldType.Object:
 						return CrmFieldTypeEnum.Object;
-					case CrmFieldType.Null:
+                    case CrmFieldType.Rest142AmRegulate:
+                        return CrmFieldTypeEnum.Rest142AmRegulate;
+                    case CrmFieldType.Null:
 						return CrmFieldTypeEnum.Null;
-					case CrmFieldType.CrmEnumFields:
+                    case CrmFieldType.Crm:
+                        return CrmFieldTypeEnum.Crm;
+                    case CrmFieldType.CrmEnumFields:
 						return CrmFieldTypeEnum.CrmEnumFields;
 					case CrmFieldType.CrmEnumOwnerType:
 						return CrmFieldTypeEnum.CrmEnumOwnerType;
@@ -186,7 +212,9 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 						return CrmFieldTypeEnum.IndexArray;
 					case CrmFieldType.Char:
 						return CrmFieldTypeEnum.Char;
-					case CrmFieldType.Text:
+					case CrmFieldType.ResourceBooking:
+                        return CrmFieldTypeEnum.ResourceBooking;
+                    case CrmFieldType.Text:
 						return CrmFieldTypeEnum.Text;
 					case CrmFieldType.CrmCategory:
 						return CrmFieldTypeEnum.CrmCategory;
@@ -206,9 +234,13 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 						return CrmFieldTypeEnum.CrmQuote;
 					case CrmFieldType.Date:
 						return CrmFieldTypeEnum.Date;
-					case CrmFieldType.DateTime:
+					case CrmFieldType.Address:
+                        return CrmFieldTypeEnum.Address;
+                    case CrmFieldType.DateTime:
 						return CrmFieldTypeEnum.DateTime;
-					case CrmFieldType.Double:
+					case CrmFieldType.Money:
+                        return CrmFieldTypeEnum.Money;
+                    case CrmFieldType.Double:
 						return CrmFieldTypeEnum.Double;
 					case CrmFieldType.Enumeration:
 						return CrmFieldTypeEnum.Enumeration;
@@ -218,9 +250,13 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 						return CrmFieldTypeEnum.Location;
 					case CrmFieldType.User:
 						return CrmFieldTypeEnum.User;
-					case CrmFieldType.String:
+					case CrmFieldType.Rest50Amregulate:
+                        return CrmFieldTypeEnum.Rest50Amregulate;
+                    case CrmFieldType.String:
 						return CrmFieldTypeEnum.String;
-					case CrmFieldType.File:
+                    case CrmFieldType.Employee:
+                        return CrmFieldTypeEnum.Employee;
+                    case CrmFieldType.File:
 						return CrmFieldTypeEnum.File;
 					case CrmFieldType.CrmMultiField:
 						return CrmFieldTypeEnum.CrmMultiField;
@@ -230,8 +266,14 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 			}
 			set {
 				switch (value)
-				{
-					case CrmFieldTypeEnum.Boolean:
+                {
+                    case CrmFieldTypeEnum.IBlockElement:
+                        TypeExt = CrmFieldType.IBlockElement;
+                        break;
+                    case CrmFieldTypeEnum.Url:
+                        TypeExt = CrmFieldType.Url;
+                        break;
+                    case CrmFieldTypeEnum.Boolean:
 						TypeExt = CrmFieldType.Boolean;
 						break;
 					case CrmFieldTypeEnum.ProductPropertyEnumElement:
@@ -261,10 +303,16 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 					case CrmFieldTypeEnum.Object:
 						TypeExt = CrmFieldType.Object;
 						break;
-					case CrmFieldTypeEnum.Null:
+                    case CrmFieldTypeEnum.Rest142AmRegulate:
+                        TypeExt = CrmFieldType.Rest142AmRegulate;
+                        break;
+                    case CrmFieldTypeEnum.Null:
 						TypeExt = CrmFieldType.Null;
 						break;
-					case CrmFieldTypeEnum.CrmEnumFields:
+                    case CrmFieldTypeEnum.Crm:
+                        TypeExt = CrmFieldType.Crm;
+                        break;
+                    case CrmFieldTypeEnum.CrmEnumFields:
 						TypeExt = CrmFieldType.CrmEnumFields;
 						break;
 					case CrmFieldTypeEnum.CrmEnumOwnerType:
@@ -312,7 +360,10 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 					case CrmFieldTypeEnum.Char:
 						TypeExt = CrmFieldType.Char;
 						break;
-					case CrmFieldTypeEnum.Text:
+					case CrmFieldTypeEnum.ResourceBooking:
+                        TypeExt = CrmFieldType.ResourceBooking;
+                        break;
+                    case CrmFieldTypeEnum.Text:
 						TypeExt = CrmFieldType.Text;
 						break;
 					case CrmFieldTypeEnum.CrmCategory:
@@ -342,13 +393,19 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 					case CrmFieldTypeEnum.ProductProperty:
 						TypeExt = CrmFieldType.ProductProperty;
 						break;						
-					case CrmFieldTypeEnum.Date:
+					case CrmFieldTypeEnum.Address:
+                        TypeExt = CrmFieldType.Address;
+                        break;
+                    case CrmFieldTypeEnum.Date:
 						TypeExt = CrmFieldType.Date;
 						break;
 					case CrmFieldTypeEnum.DateTime:
 						TypeExt = CrmFieldType.DateTime;
 						break;
-					case CrmFieldTypeEnum.Double:
+					case CrmFieldTypeEnum.Money:
+                        TypeExt = CrmFieldType.Money;
+                        break;
+                    case CrmFieldTypeEnum.Double:
 						TypeExt = CrmFieldType.Double;
 						break;
 					case CrmFieldTypeEnum.Enumeration:
@@ -415,7 +472,15 @@ namespace Bitrix24RestApiClient.Core.Models.Response.FieldsResponse
 		public List<FieldInfoEnumerationItem> Items { get; set; } = new List<FieldInfoEnumerationItem>();
 
 		[JsonProperty("settings")]
-		public FieldInfoSettings Settings { get; set; }
+		public object SettingsExt { get; set; }
+
+        [JsonIgnore]
+        public FieldInfoSettings Settings {
+			get
+			{
+				return null;
+			}
+		}
 
 		[JsonProperty("definition")]
 		public FieldInfoDefinition Definition { get; set; }

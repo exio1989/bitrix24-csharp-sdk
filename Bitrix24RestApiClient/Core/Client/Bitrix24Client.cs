@@ -4,10 +4,9 @@ using Flurl.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Logging;
-using System.Web;
 using System.Text.RegularExpressions;
-using Bitrix24RestApiClient.Core.Client;
 using Bitrix24RestApiClient.Core.Models.Enums;
+using System.Threading;
 
 namespace Bitrix24RestApiClient.Core.Client
 {
@@ -15,6 +14,9 @@ namespace Bitrix24RestApiClient.Core.Client
     {
         private string webhookUrl;
         private ILogger<Bitrix24Client> logger;
+        private static DateTimeOffset _lastRequestDate = DateTimeOffset.UtcNow;
+        private static TimeSpan DELAY_BETWEEN_SEQ_REQUESTS = TimeSpan.FromMilliseconds(1000);
+        private static SemaphoreSlim _importEntitiesSemaphore = new SemaphoreSlim(1, 1);
 
         public Bitrix24Client(string webhookUrl, ILogger<Bitrix24Client> logger)
         {
@@ -22,8 +24,18 @@ namespace Bitrix24RestApiClient.Core.Client
             this.logger = logger;
         }
 
-        public async Task<TResponse> SendPostRequest<TArgs,TResponse>(EntryPointPrefix entityTypePrefix, EntityMethod entityMethod, TArgs args) where TResponse : class
+        public async Task<TResponse> SendPostRequest<TArgs, TResponse>(EntryPointPrefix entityTypePrefix, EntityMethod entityMethod, TArgs args, CancellationToken ct = default) where TResponse : class
         {
+            await _importEntitiesSemaphore.WaitAsync(ct);
+
+            var passedTime = DateTimeOffset.UtcNow - _lastRequestDate;
+            if (DELAY_BETWEEN_SEQ_REQUESTS > passedTime)
+            {
+                var delay = DELAY_BETWEEN_SEQ_REQUESTS - passedTime;
+                await Task.Delay(delay);
+            }
+            _lastRequestDate = DateTimeOffset.UtcNow;
+
             string responseBodyStr = null;
 
             try
@@ -36,10 +48,16 @@ namespace Bitrix24RestApiClient.Core.Client
                 responseBodyStr = JsonConvert.SerializeObject(responseBody);
                 return responseBody;
             }
-            catch(FlurlHttpException ex)
+            catch (FlurlHttpException ex)
             {
                 try
                 {
+                    responseBodyStr = "";
+                    if (ex.Call.Response == null)
+                    {
+                        throw;
+                    }
+
                     responseBodyStr = Regex.Unescape(await ex.Call.Response.GetStringAsync());
                     throw new Exception(responseBodyStr, ex);
                 }
@@ -50,12 +68,7 @@ namespace Bitrix24RestApiClient.Core.Client
             }
             finally
             {
-                int partLength = 300;
-                string bodyStr = responseBodyStr.Length <= partLength*2
-                    ? responseBodyStr
-                    : $"{responseBodyStr.Substring(0, partLength)} ... {responseBodyStr.Substring(responseBodyStr.Length - partLength, partLength)}";
-
-                logger.LogInformation($"Bitrix24 API request\r\n\tMethod: {GetMethod(entityTypePrefix, entityMethod)}\r\n\tArgs: {JsonConvert.SerializeObject(args)}\r\n\tBody: {bodyStr}\r\n");
+                _importEntitiesSemaphore.Release();
             }
         }
 

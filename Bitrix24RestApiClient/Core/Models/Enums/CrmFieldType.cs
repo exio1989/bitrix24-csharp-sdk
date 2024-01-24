@@ -16,6 +16,8 @@
         public const string Date = "date";
         public const string DateTime = "datetime";
         public const string Double = "double";
+        public const string Address = "address";
+        public const string Money = "money";
         public const string Enumeration = "enumeration";
         public const string Integer = "integer";
         public const string Int = "int";
@@ -28,8 +30,14 @@
         public const string Text = "text";
         public const string AssociativeArray = "aarray";
         public const string IndexArray = "iarray";
+        public const string Rest142AmRegulate = "rest_142_amregulate";
+        public const string ResourceBooking = "resourcebooking";
+        public const string Employee = "employee";
+        public const string Rest50Amregulate = "rest_50_amregulate";
+        public const string IBlockElement = "iblock_element";
         public const string Variable = "variable";
         public const string Object = "object";
+        public const string Crm = "crm";
         public const string Null = "null";
         public const string RecurringParams = "recurring_params";
         public const string AttachedDiskfile = "attached_diskfile";
@@ -51,5 +59,6 @@
         public const string ProductFile = "product_file";
         public const string ProductPropertyEnumElement = "product_property_enum_element";
         public const string Boolean = "boolean";
+        public const string Url = "url";
     }
 }

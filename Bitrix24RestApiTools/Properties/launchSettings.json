@@ -2,7 +2,7 @@
   "profiles": {
     "Bitrix24RestApiTools": {
       "commandName": "Project",
-      "commandLineArgs": "-gall https://bitrix.persis.ru/rest/17/lkyun3zvykg9e8n1/ Crm C:\\repo\\CrmGeneratedClasses"
+      "commandLineArgs": "-gall https://not_set/rest/9148/not_set/ Crm C:\\repo\\CrmGeneratedClasses"
     }
   }
 }
